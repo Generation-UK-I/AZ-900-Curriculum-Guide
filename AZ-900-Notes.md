@@ -769,5 +769,98 @@ Features and benefits:
 - Replace a failed local server by installing Azure File Sync on a new server in the same datacenter.
 - Configure cloud tiering so the most frequently accessed files are replicated locally, while infrequently accessed files are kept in the cloud until requested.
 
-### Describe Azure identity, access, and security
+## Describe Azure identity, access, and security
 
+### Describe Azure directory services
+
+For decades organisations have used a directory service as a centralised place to manage & organise their user accounts, company devices, and permissions. By far, the market leading product for providing this functionality, is Microsoft's Active Directory software, installed on a Windows Server. You can also use AD to create and apply policies to your users and devices, which allow you to control features of the OS, manage software, and enforce security controls across the directory. 
+
+To take a step back, in our previous module we reviewed DNS, and discussed purchasing a domain from a registrar. We discussed creating a domain as a human-friendly name, which can be redirected to the IP address of your resources. However, there is another important function of domains, they represent trust boundaries. 
+
+When we deploy Active Directory, it's full name is **Active Directory Domain Services** (ADDS), the directory services run on a server configured as an **Active Directory Domain Controller** (ADDC). 
+
+When you configure your ADDC, you tell it what your domain is, and the directory for your resources is created within that domain. Once added, the user accounts and devices trust the domain controller as the authority for the domain. 
+
+If a user wants to log into a computer, the computer checks their credentials with the domain controller; If the user successfully logs in, then tries to access another resource, such as a file share, or the company intranet, the domain controller permits or denys them access. This is why we consider the domain a trust boundary, all of the resources within the domain, truest the domain controller.
+
+    The fact that comapnies have been using ADDS for so long is part of the reason that Azure has grown so quickly. By developing cloud services which mirror their on-premise technologies, Microsoft makes migration easier, and existing skills, knowledge, and workflows, developed and refined over years, require minimal changes and updates to migrate.
+
+#### Entra ID
+
+Entra ID is a cloud Identity Provider (IDp) with which you can manage authentication and authorisation for access to your applications and resources in Azure. It can also enhance the functionality of your on-premise AD deployment. 
+
+One example of this enhanced functionality is sign-in attempts - with on-premise solutions Microsoft doesn't have data regarding sign-in attempts, but with Entra ID it does. This means Entra can flag up if a user is attempting to log in from an unknown location, along with other anomalies.
+
+Where on-premise AD is managed by you, not just adding users, devices, and configuring; But also maintenance, making it highly available, reliable, secure, etc.
+
+With Entra ID, you simply create and manage identities, Microsoft look after the rest. 
+
+    NOTE: Entra ID was formerly known as Azure Active Directory (AAD), many references online may still use the previous name, but the functionality has not changed.
+
+Entra ID's functionality can benefit many different functions across an organisation:
+
+- **Administrators** use Entra ID to control access to applications and resources, and implement zero-trust models
+- **Developers** can use Entra ID to add authentication and authorisation functionality to their app's, and implement enterprise grade features such as SSO, Federation, etc.
+- **Users** benefit from streamlined workflows thanks to features such as SSO, and fewer delays with options like self-service password reset.
+
+  Additionally, if your users are already using Microsoft services, such as Office365, Dynamics CRM Online, etc. they are already using Entra ID.
+
+Entra ID provides a wide range of features, including but not limited to:
+
+- **Authentication** provides verified access to applications and resources. Including options for self-service password reset, multifactor authentication, custom password blacklists, lockout services, etc.
+- **Single Sign-On** simplifies access management by allowing users to login once, then using token-based authentication, they are granted access to required applications, without having to create multiple different accounts. 
+
+  This also simplifies administration, when someone joins or leaves, only one account needs to be added or disabled.
+
+- **Application Management** can be centralised and streamlined, for both cloud and on-premise app's. Can be integrated with various SaaS products, and provides a portal for users to quickly find permitted and verified app's.
+- **Device Management** allows devices to be registered with Entra ID, then managed with toold such as Intune. Enabled features such as conditional access (e.g. ensure necessary security updates are installed), remote wipe/lock, and many others.
+
+##### Microsoft Entra Connect
+
+If you have an on-premise Active Directory deployment, and Azure solutions using Entra ID, you do not want to manage multiple identities per employee. Microsoft Entra Connect allows you to syncronise identities between Active Directory and Entra ID.
+
+#### Microsoft Entra Domain Services
+
+Entra ID effectively de-couples the directory component from the Domain Controller and provides it as a separate service, so that all Azure customers can use it's features and benefits to manage their identities and resources. 
+
+However, a traditional Domain Controller does more than just directory services. A DC can manage devices with features like Group Policy, vendor neutral protocols such as LDAP (lightweight directory access protocol), and it supports authentication protocols such as Kerberos and NTLM which have been popular in the past and remain *secure enough*, but business critical applications may still rely upon.
+
+Microsoft Entra Domain Services provides domain services without the need to deploy and manage domain controllers. One important feature of Entra Domain Services is that it allows you to 'lift-n-shift' legacy applications to the cloud, maintaining compatibility with their requirements.
+
+To use Entra Domain Services you provide your owned domain (known as a *namespace*), then two Windows Server Domain Controllers are deployed in a replica set into your selected region, and these DCs are managed and maintained by Azure. 
+
+### Describe Azure authentication methods
+
+Authorisation is a fundamental building block of modern security models and controls, basically, 'Who Are You?'?
+
+We are frequently authenticated both on and offline, your passport is issued after verification that you're entitled to one. Once received you present it to authenticate your identity at the check-in desk before your flight.
+
+    Note that your passport doesn't say you're *allowed* to board the flight, just that you are who you claim to be, you require a separate ticket to *authorise* your entry.
+
+The security controls we implement have to strike a balance between security and useability. 
+
+Imagine a physical building, and a paranoid security analyst decides *"Someone might take sensitive data to read on the toilet, forget about it, then it's picked up and leaked by a customer!"* so they decide to put keypads on all of the bathroom doors. 
+
+How long do you think it will take for someone to bypass this security control by wedging the door open with a ream of paper, or a fire extinguisher?
+
+![*DIAGRAM*](./img/secure-toilet.jpg)
+
+So, if your security controls are intrusive and an impediment to a user actually achieving their goals, they will find a way to shortcut them. Whether it's using predictable passwords because they have too many to remember, or sharing credentials when a new employee starts because it takes several days to set up all of their accounts.
+
+All security controls ultimately just balance these two factors of security and convenience.
+
+![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-azure-identity-access-security/media/passwordless-convenience-security-30321b4d-18aa7d73.png)
+
+#### Single Sign-On
+
+Single sign-on involves a user authenticating once against a trusted identity provider, such as Entra ID, and if successful they are granted an authentication token. Different applications and service providers can be configured to trust the inital identity provider, and consequently the tokens issued by it. When a user tries to access the external resources their token is presented, and can be verified with the identity provider.
+
+Single sign-on relies upon the integrity of the initial provider, so it should be configured with secure authentication processes such as multifactor authentication at least.
+
+#### Multifactor Authentication (MFA)
+
+MFA requires a user to utilise more than one authentication factor in order to confirm their identity. This is also a process that we've been using for quite a while.
+
+## Extras
+
+Support Plans
