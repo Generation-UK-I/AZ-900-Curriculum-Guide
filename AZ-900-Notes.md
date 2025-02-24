@@ -610,7 +610,8 @@ Azure Storage is:
 
 Once you have created a storage account, you can deploy storage containers of various types, which are optimised for various use cases:
 
-- **Azure Blobs** - Binary Large OBjects (BLOBs) are any binary file, which is basically any file, text, image, video, anything. Azure Blobs are unstructured, allowing any type of data to be added. Users or client applications can access blobs via HTTP or HTTPS, via URLs, the Azure Storage REST API, Azure PowerShell, Azure CLI, or an Azure Storage client library.
+##### Azure Blobs
+Binary Large OBjects (BLOBs) are any binary file, which is basically any file, text, image, video, anything. Azure Blobs are unstructured, allowing any type of data to be added. Users or client applications can access blobs via HTTP or HTTPS, via URLs, the Azure Storage REST API, Azure PowerShell, Azure CLI, or an Azure Storage client library.
 
     Blob storage is ideal for:
 
@@ -622,39 +623,151 @@ Once you have created a storage account, you can deploy storage containers of va
 
   It is typically free to transfer your data into the cloud, and then you are charged for the amount of storage used, and retrieving the data - *that's not just downloading it, but just accessing the object requires you to read it*. Typically data is most valuable, and most frequently accessed, when it is new, a new report, a new customer account, and so on.
   
-  Storage tiers allow you to optimise storage costs by balancing the cost of capacity against the cost of retrieval, and how long the storage is required for. The following storage tiers are available:
+  **Storage tiers** allow you to optimise storage costs by balancing the cost of capacity against the cost of retrieval, and how long the storage is required for. The following storage tiers are available:
 
-  **Hot Access Tier** - For data which is frequently accessed, capacity cost may be a bit higher, but retrieval costs are lower.
-  **Cool Access Tier** - For data which is accessed less frequently, retrieval costs will be higher, and capacity costs lower. Data should reside in this tier for at least 30 days or an additional charge will be incured.
-  **Cold Access Tier** - For even less frequently accessed data, and objects should be stored for at least 90 days.
-  **Archive Tier** - Stores data offline, so is only suitable for rarely accessed data, and objects should be stored for at least 180 days. Not suitable for solutions which require low latency.
+  - **Hot Access Tier** - For data which is frequently accessed, capacity cost may be a bit higher, but retrieval costs are lower.
+  - **Cool Access Tier** - For data which is accessed less frequently, retrieval costs will be higher, and capacity costs lower. Data should reside in this tier for at least 30 days or an additional charge will be incured.
+  - **Cold Access Tier** - For even less frequently accessed data, and objects should be stored for at least 90 days.
+  - **Archive Tier** - Stores data offline, so is only suitable for rarely accessed data, and objects should be stored for at least 180 days. Not suitable for solutions which require low latency.
 
-        Data is not accessed directly from the Archive tier, it must be moved to a lower tier first, known as *rehydrating the blob*.
+    Data is not accessed directly from the Archive tier, it must be moved to a lower tier first, known as *rehydrating the blob*.
 
   The cool and cold tiers should not be used for highly available solutions, although high durability is still provided. Use when a lower availability SLA and higher access costs compared to hot data are acceptable trade-offs for lower storage costs.
 
   Hot, cool, cold, and archive tiers can be set at the blob level, during or after upload.
 
-- **Azure Files** - Users in an organisation need to share files. They could do so by passing them back and forth over email or DM, but this is cumbersome, only suitable for a few files at a time, and you may end up with multiple different copies of the file, all out of sync with each other. 
+##### Azure Files
+Users in an organisation need to share files. They could do so by passing them back and forth over email or DM, but this is cumbersome, only suitable for a few files at a time, and you may end up with multiple different copies of the file, all out of sync with each other. 
 
-  Instead, users can make shared folders, and grant permissions to the appropriate colleagues to access the share over the local network. This allows users to share and access any files they want, and they can each collaborate on the same file if they wish, keeping everything in sync.
+Instead, users can make shared folders, and grant permissions to the appropriate colleagues to access the share over the local network. This allows users to share and access any files they want, and they can each collaborate on the same file if they wish, keeping everything in sync.
 
-  Shared folders rely upon protocols to facilitate file sharing over networks. In Windows environments we can use Server Message Block (SMB), and in Linux we can use Network File Sharing (NFS). 
+Shared folders rely upon protocols to facilitate file sharing over networks. In Windows environments we can use Server Message Block (SMB), and in Linux we can use Network File Sharing (NFS). 
 
-  This is a big improvement over sharing individual files, but still has some limitations:
-  - The computer upon which the shared folder exists, needs to be switched on, and connected to the network - user absense may result in important files being unavailable.
-  - If users manage their own permissions, security and compliance issues may arise.
-  - Sharing may be limited by storage capacity on the client devices.
-  - Client devices may have limited hardware, compromising performance - *it is common for networks architects to provision more bandwidth for servers than clients*.
+This is a big improvement over sharing individual files, but still has some limitations:
+- The computer upon which the shared folder exists, needs to be switched on, and connected to the network - user absense may result in important files being unavailable.
+- If users manage their own permissions, security and compliance issues may arise.
+- Sharing may be limited by storage capacity on the client devices.
+- Client devices may have limited hardware, compromising performance - *it is common for networks architects to provision more bandwidth for servers than clients*.
 
-  Some of these challenges can be mitigated by hosting your file shares on a File Server, but considering serving files is a relatively simple task, a whole server may not be efficient. Another solution is to use a dedicated applicance just for this task, called a Network Attached Storage device, or a NAS. You can just fill it with hard disks, create shares, users, and permissions, connect to the network, and you're done. 
+Some of these challenges can be mitigated by hosting your file shares on a File Server, but considering serving files is a relatively simple task, a whole server may not be efficient. Another solution is to use a dedicated applicance just for this task, called a Network Attached Storage device, or a NAS. You can just fill it with hard disks, create shares, users, and permissions, connect to the network, and you're done. 
   
-  However, even with a NAS you are still limited by capacity, and reliant upon local power and networking.
+However, even with a NAS you are still limited by capacity, and reliant upon local power and networking.
 
-  **Azure Files** storage offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) or Network File System (NFS) protocols. 
+**Azure Files** storage offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) or Network File System (NFS) protocols. 
   
-  'Azure Files' file shares, can be mounted for access by cloud or on-premises deployments. 
-  - SMB Azure file shares are accessible from Windows, Linux, and macOS clients. 
-  - NFS Azure Files shares are accessible from Linux or macOS clients. 
-  - Additionally, SMB Azure file shares can be syncronised with local Windows Servers using Azure File Sync. This allows for fast, low latency, local access to files, with changes sync'd back to your Azure Files share.
+Azure Files file shares can be mounted for access by cloud or on-premises deployments. 
+- SMB Azure file shares are accessible from Windows, Linux, and macOS clients. 
+- NFS Azure Files shares are accessible from Linux or macOS clients. 
+- Additionally, SMB Azure file shares can be syncronised with local Windows Servers using Azure File Sync. This allows for fast, low latency, local access to files, with changes sync'd back to your Azure Files shares.
+
+Key benefits include:
+- Azure Files uses the same protocols that users, administrators, and developers are familiar with, so should seamlessly fit into existing workflows.
+- As a fully managed service Microsoft is repsonsible for maintenance activities, upgrading capacity as demand grows, and ensuring the shares are resilient and highly available.
+- Manage Azure Files with Azure Portal, Storage Explorer, PowerShell, or Azure CLI.
+
+##### Azure Queues
+When developing a web app there are typically multiple components, at the very least a user facing front-end, and a back-end which does the processesing. 
+
+Just to point out the obvious, but the front-end for a web-app, is usually just a website. This means that many people could be using it, and submitting jobs, simultaneously. 
+  
+When the front-end sends requests to the back-end, if it's busy, the request could time out and fail. 
+  
+    Individual requests are just small text files, typically just an API call with relevant fields filled in. Any large objects required by the job are usually referenced by a link to another location (such as blob storage), not embedded in the request. 
+
+Queues allow these small requests to be stored, they can then be retrieved by the the back-end when it's ready.
+
+##### Azure Disks
+Used for your block-level storage devices i.e. virtual hard disks (VHDs), which attach to your virtual machines. As a user you simple select the disk type and size, Azure will then create and manage it. You may also upload your existing VHDs from your on-premise environments to faciliate 'lift-n-shift' migrations.
+
+**Disk Types**:
+  
+The following table summarises the available disk types:
+
+|Type|Storage Medium|Max Size|Max Throughput|Maz IOPs|OS disk|
+|---|---|---|---|---|---|
+|Standard HDD|HDD|~32TB|500 MB/s|2,000|Yes|
+|Standard SSD|SSD|~32TB|750 MB/s|6,000|Yes|
+|Premium SSD|SSD|~32TB|900 MB/s|20,000|Yes|
+|Premium SSDv2|SSD|~65TB|1,200 MB/s|80,000|No|
+|Ultra Disk|SSD|~65TB|10,000 MB/S|400,000|No|
+
+Azure managed disks are designed for 5 nines (99.999%) availability, by creating 3 replicas of your data. Durability is defined by your selected level of redundancy, LRS = 11 nines, ZRS = 12 nines, etc.
+
+You can deploy Azure Disks into Availability Zones, Availability Sets, and you can deploy 50,000 per subscription.
+
+You can also use Azure role-based access control (RBAC) to assign specific permissions for a managed disk to one or more users.
+
+Your VHDs are encrypted by Azure Storage service, known as Server Side Encryption (SSE), which allows you to select either customer manages or platform manages keys. Additionally you can also enable Azure Disk Encryption on both OS and data disks, which uses BitLocker for Windows VMs, DM-Crypt for Linux based. 
+
+**Disk Roles**:
+  - **OS Disk** - Every VM requires an OS, so when you select an OS, a disk with it pre-installed is created. The OS disk can be up to 4TB, although that size is not supported by some OSes, and you may be limited to 2TB (unless you change MBR to GPT).
+  
+    You do have read/write access to the OS disk, it is not recommended that you use it for storing data, but you may if minimising costs is a priority. There are a few reasons for this:
+    - With separate OS and Data disks, any problem with one, does not affect the other. A data error will not affect the stability of the OS, and an OS problem will not compromise the data.
+    - Data disks can be resized without stopping the VM, OS disks do not support live-resize.
+    - You can apply separate access controls and permissions to the VM and the data. 
+
+  - **Data Disk** - Data disks are additional managed disks, used for storing application, or any needed data. They are attached as SCSI disks, and you can assign a Windows drive letter, or mount point in Linux. The size and type of data disks you can add is dictated by the type of VM deployed. 
+
+    Compared to storing data on the OS disk, allocating a separate data disk has the following benefits:
+    - Improved backup and disaster recovery
+    - More flexibility and scalability
+    - Performance isolation
+    - Easier maintenance
+    - Improved security and access control
+
+  - **Temporary Disk** - Temp' disks are not managed, i.e. they do not have the same level of durability or availability. They are designed for short-term storage for app's and processes, and data may be lost when you stop the VM, or if it fails due to an unplanned maintenance event. *During a normal successful restart, the data should be retained*.
+
+##### Azure Tables
+Azure tables is a NoSQL (non-relational) datastore in which you can store large amounts of structured data. Authenticated calls can be made against the data from inside and outside the Azure cloud. 
+  
+  Tables are schemaless, and can store a practically unlimited number of entries.
+
+### Identify Azure data migration options
+
+Migration is the process of moving your assets and workloads from one location to another, this could be on-premise to cloud, cloud to on-premise, site to site, or cloud to cloud. There are two main options to be aware of, **syncronous** migration of infrastructure, apps, and data, using Azure Migrate; Or **asyncronous** migration using Azure Data Box. 
+
+#### Azure Migrate
+
+Azure Migrate helps you migrate from on-prem' environments to the cloud, and provides a centralised hub to start, manage, and track your migration operation. There are three stages to a typical migration project: **Discover, Analyse, & Migrate.**
+
+Azure Migrate integrates a range of tools to gelp you with the process:
+- Azure Migrate: Discovery and assessment. Discover and assess on-premises servers running on VMware, Hyper-V, and physical servers in preparation for migration to Azure.
+- Azure Migrate: Server Migration. Migrate VMware VMs, Hyper-V VMs, physical servers, other virtualized servers, and public cloud VMs to Azure.
+- Data Migration Assistant. Data Migration Assistant is a stand-alone tool to assess SQL Servers. It helps pinpoint potential problems blocking migration. It identifies unsupported features, new features that can benefit you after migration, and the right path for database migration.
+- Azure Database Migration Service. Migrate on-premises databases to Azure VMs running SQL Server, Azure SQL Database, or SQL Managed Instances.
+- Azure App Service migration assistant. Azure App Service migration assistant is a standalone tool to assess on-premises websites for migration to Azure App Service. Use Migration Assistant to migrate .NET and PHP web apps to Azure.
+
+#### Azure Data Box
+
+An asyncronous migration process which allows you to get data in & out of Azure securely, using a physical storage device. You order the Data Box through the portal, it is shipped to you, you copy your data across, and ship it back to Microsoft.
+
+Data Box can be useful in a variety of scenarios, including:
+- Bulk uploads during migration.
+- Where data is stored or generated in locations with poor connectivity options. For example, filming in remote locations, or centralised gathering of data from IoT devices.
+- Where the quantity of data divided by the available bandwidth, or other factors such as metered connections, make directly uploading unfeasible.
+
+Data Box is available in three tiers:
+- **Data Box Disk** - 8TB SSD, with a USB/SATA interface; Comes in packs of 5x for up to 40TB of capacity.
+- **Data Box** - Useable capacity 80TB; Briefcase sized; Uses NAS protocols and common copy tools.
+- **Data Box Heavy** - Trolley sized; Similar interfaces to *Data Box* but faster; Useable capacity up to ~750TB.
+
+### Identify Azure file movement options
+
+Migration services are designed for moving entire infrastructures, workloads, or bulk quantities of data to the cloud. But if you want to move individual file(s), or ZIP archives, there are some more suitable tools available:
+
+- **AzCopy** - a CLI utility that lets you copy blobs or files to or from your storage account, synchronize files*, and back and forth between clouds.
+
+  *One-direction sync' only.
+
+- **Azure File Sync** - a tool for centralising your file shares in Azure Files, and keeping them syncronised with local copies. This provides the flexibility, performance, and compatibility of a Windows file server. But automatically stay bi-directionally synced with your files in Azure.
+
+Features and benefits:
+
+- Use any protocol that's available on Windows Server to access your data locally, including SMB, NFS, and FTPS.
+- Have as many caches as you need across the world.
+- Replace a failed local server by installing Azure File Sync on a new server in the same datacenter.
+- Configure cloud tiering so the most frequently accessed files are replicated locally, while infrequently accessed files are kept in the cloud until requested.
+
+### Describe Azure identity, access, and security
 
