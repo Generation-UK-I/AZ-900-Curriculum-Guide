@@ -859,7 +859,37 @@ Single sign-on relies upon the integrity of the initial provider, so it should b
 
 #### Multifactor Authentication (MFA)
 
-MFA requires a user to utilise more than one authentication factor in order to confirm their identity. This is also a process that we've been using for quite a while.
+MFA requires a user to utilise more than one authentication factor in order to confirm their identity.
+
+There are three authentication factors:
+
+- **Something you know** includes username and password pairs, but also answers to secret question, PIN numbers, etc.
+- **Something you have** refers to something typically on your person which can include a time-syncronised token (basically a number) provided by a key-fob or app, or receiving a text message on your phone. 
+- **Something you are** is your intrinsic characteristics, known as bio-metrics. This can include fingerprints, face/iris scans,  or to get a bit science-fiction-y voice print, or gait analysis. 
+
+![*DIAGRAM*](./img/gait-analysis.jpg)
+
+This is also a process that we've been using for quite a while, think about your bank account - to withdraw cash you need to **have** your card and **know** your PIN. Interestingly, this used to be the case for making in-store purchases. Contactless is one of the few occasions when security of a system has actually been lowered. 
+
+    Remember, MFA implies multiple authentication factors. To gain access two or more factors must be used, a password and a secret answer is not multi-factor because it's two things you know.
+
+Microsoft Entra multifactor authentication enables users to choose an additional form of authentication during sign-in, such as a phone call or mobile app notification
+
+#### Passwordless Authentication?
+
+Organisations can implement MFA policies, but there is usually going to be a password somewhere, and any time a user has to remember a password there's a weakness. Even with a password manager, it may generate and store complex passwords, but the human still needs a password they can remember to unlock their 'vault'.
+
+Passwordless authentication methods rely upon multiple factors to authenticate users, but with one important additional point, they rely upon proximity.
+
+If you use a single or small number of devices you can register them, with a service such as Windows Hello. That registered device acts as an additional authentication method, so in addition to having the password or PIN, you must be physically in front of that device to have entered it.
+
+Microsoft global Azure and Azure Government offer the following three passwordless authentication options that integrate with Microsoft Entra ID:
+
+- **Windows Hello for Business** - useful for employees who have a dedicated computer, uses bio-metrics (for example using the webcam), and a PIN to verify something you know, and that you are actually using the computer. 
+- **Microsoft Authenticator app** - is already a common option for many online services, so you may already have it. A configured app or service pushes a notification to the authenticator app, the user is prompted to match or enter a number shown by the requested resource, the user then provides their iOS or Android device's built in bio-metric authentication method.
+- **FIDO2 security keys** - 
+
+
 
 ## Extras
 
