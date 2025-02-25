@@ -977,12 +977,42 @@ The following diagram illustrates the defense-in-depth model, in which an organi
 
 ### Describe Microsoft Defender for Cloud
 
+#### History
+
 To be honest, a little over a decade ago, the built in security features of Windows were a bit of a joke. The very first thing you did after installing Windows was download and install anti-virus software (AVG was a good option, really, anything but McAffee or Norton), and a host-based firewall (ZoneAlarm was very popular). 
 
 ![*DIAGRAM*](./img/evil-mcaffee.jpg)
+
+However, post Windows 7 (ish) things improved; They brought a variety of security tools and controls, such as a firewall, anti-virus/malware, improved user account control (UAC), and more, together under one unified interface called Security Center (I think... it was a while ago). Over several iterations more features were added such as browser integration, and application guard, and Security Center evolved into Windows Defender. On Windows your built in security suite is now just known as 'Windows Security', and Defender has been spun off into a collection of other security focused products which we'll explore below.
+
+    Credit where credit is due, over the last couple of generations, as long as you keep everything up to day, Microsoft's built-in security controls are sufficient for the vast majority of home users... but not for enterprise.
+
+#### Defender for Cloud
+
+The term 'posture' pops up a lot in cybersecurity, it refers to an organisations overall security status, and also their ability and readiness to identify, respond, and recover from security breaches.
+
+Defender for Cloud is a monitoring tool for security posture management and threat protection. It provides tools for monitoring and track your security posture, harden your resources, implement various security controls, and streamline your security management, across your Azure, hybrid, on-premise*, and multicloud environments. 
+
+**Through the deployment of a software agent*
+
+Defender for Cloud is known as *cloud-native* software, which means it was developed for cloud deployment in mind from inception, compared to software which was envisaged for in-premise deployment on physical hardware.
+
+Sometimes the square peg of legacy software, may require modification or compromises, to fit in the round hole of cloud environments...
+
+![*DIAGRAM*](./img/force-migrate.jpg)
+
+Defender for Cloud does not require any deployment, your resources and services ar monitored and protected simply by enabling the required features. 
+
+#### Azure-Native Protections
+
+Defender for Cloud helps you detect threats across:
+
+- **Azure PaaS services** – Detect threats targeting services such as Azure App Service, Azure SQL, Azure Storage Account, and more. Perform anomaly detection on your Azure activity logs through native integration with Microsoft Defender for Cloud Apps (formerly known as Microsoft Cloud App Security)
+- **Azure data services** – Includes capabilities that help you automatically classify your data in Azure SQL. You can also get assessments for potential vulnerabilities across Azure SQL and Storage services, and recommendations for how to mitigate them.
+- **Networks** – Features include limiting exposure to brute force attacks; Restricting access to virtual machine ports using the just-in-time VM access; Hardenening your network by preventing unnecessary access; Setting secure access policies on selected ports for only authorized users; Allowing source IP address ranges or IP addresses, and only for a limited timeframe.
 
 
 
 ## Extras
 
-Support Plans
+Summary of Support Plans
