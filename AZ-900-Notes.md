@@ -993,7 +993,7 @@ The term 'posture' pops up a lot in cybersecurity, it refers to an organisations
 
 Defender for Cloud is a monitoring tool for security posture management and threat protection. It provides tools for monitoring and track your security posture, harden your resources, implement various security controls, and streamline your security management, across your Azure, hybrid, on-premise*, and multicloud environments. 
 
-**Through the deployment of a software agent*
+**To extend protection to on-premises machines, deploy Azure Arc and enable Defender for Cloud's enhanced security features.*
 
 Defender for Cloud is known as *cloud-native* software, which means it was developed for cloud deployment in mind from inception, compared to software which was envisaged for in-premise deployment on physical hardware.
 
@@ -1011,8 +1011,95 @@ Defender for Cloud helps you detect threats across:
 - **Azure data services** – Includes capabilities that help you automatically classify your data in Azure SQL. You can also get assessments for potential vulnerabilities across Azure SQL and Storage services, and recommendations for how to mitigate them.
 - **Networks** – Features include limiting exposure to brute force attacks; Restricting access to virtual machine ports using the just-in-time VM access; Hardenening your network by preventing unnecessary access; Setting secure access policies on selected ports for only authorized users; Allowing source IP address ranges or IP addresses, and only for a limited timeframe.
 
+#### Defender in Multicloud Environments
+
+The following features can be extended to protect resources in other cloud environments, including AWS and GCP.
+
+- **Defender for Cloud CSPM** - Cloud Security Posture Management features can be extended to resources in, for example, AWS allowing them to be assessed against AWS-specific security recommendations, and these results can feed into your overall CSPM score. 
+- **Defender for Cloud Asset Inventory** - can discover and help manage resources in multicloud environments.
+- **Defender for Containers** - can extend container threat protection to container clusters in AWS (EKS) or GCP (GKS)
+- **Microsoft Defender for Servers** - extends threat detection and defense to Windows and Linux servers in other cloud platforms.
+
+#### Assess, Secure, and Defend
+
+Defender for Cloud protects your assets, resources, and workloads by carrying out three important functions:
+
+![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-azure-identity-access-security/media/assess-secure-defend-46228306-c726aca3.png)
+
+- **Continuously assess** – Your environment is continuously assessed for known vulnerabilities; *Defender for Servers* integrates with *Defender for Endpoints* which provides access to findings from Microsoft threat and vulnerability management.
+- **Secure** – Security in the cloud is a fundamental pillar of operations, in order to be secure in the cloud, you have to ensure your workloads are secure. 
+
+  To secure your workloads, you need security policies in place that are tailored to your environment and situation; Policies in Defender for Cloud are built on top of Azure Policy controls. With Defender for Cloud, you can set your policies to run on management groups, across subscriptions, or for a whole tenant.
+
+  As new resources are created, DfC will detect and assess them to ensure they are compliant with security best practices. If they are not, they're flagged, and you are provided with recommendations for mitigating any issues.
+
+  Defender groups all recommendations and assigns each one a security score, your score is then the total of all of the recommendations and best practices that are properly configured, against your total possible score.
+- **Defend** – Detect and resolve threats to resources, workloads, and services. DfC helps defend your environment by providing security alerts and advanced threat protection features.
+
+#### Security alerts
+When Defender for Cloud detects a threat in any area of your environment, it generates a security alert which:
+
+- Describes details of the affected resources
+- Suggests remediation steps
+- May triggers an action in response
+
+### Advanced threat protection
+
+Defender for cloud provides advanced threat protection features for many of your deployed resources, including virtual machines, SQL databases, containers, web applications, and your network. Protections include securing the management ports of your VMs with just-in-time access, and adaptive application controls to create allowlists for what apps should and shouldn't run on your machines.
+
+## Describe Azure management and governance
+
+### Describe cost management in Azure
+
+As mentioned right at the beginning, one of the key benefits to organisations who adopt cloud services is the potential for cost savings. By moving to a **consumption based** (or PAYG) pricing model, organisations can shift their IT related costs from *capital expenses* or **CapEx**, to *operational expenses* or **OpEx**. 
+
+Capital expenses refers to the spending an organisation makes on assets which they will own. This includes buildings, furniture, vehicles if needed, and of course, IT assets such as computers, servers, network devices, cables, etc. 
+
+In addition to requiring a significant initial outlay (yes, you may be able to arrange credit and pay over time, but this just means you pay more), another financial drawback with purchasing and owning your IT assets is depreciation. We all know about depreciation with cars, well, IT hardware loses value at an even faster pace. Due to manufacturers releasing faster and more powerful CPUs, with more cores crammed in, every year, a 5 year old server may be slower and less efficient than an equivalent brand new one. Nobody wants to pay much for the old tech.
+
+All of this results in a long, convoluted process for acquiring new hardware. 
+
+Let's say you're a developer, and you decide the organisation need a new server because the current one is getting slow as you deploy more and more apps to it. The process might look something like this:
+- Verify your requirements, and get an initial quote from an approved supplier
+- Fill out a request form and submit it to the Accounting team
+- Wait for it to be picked up, reviewed, and likely rejected because they need more justification to invest the capital.
+- Ok, so...
+  - Gather more data
+  - Write a cost/benefit analysis
+  - Get a manager to agree with your request
+  - Sacrifice a goat to the Accounting Gods 
+  - Wait for a full moon 
+  - Resubmit your request.
+- Receive an approval (if the stars align), and place the order
+- Wait for the order to be fulfilled. Start planning for installation, make sure there is a sutiable location, access to power, networking, etc.
+- Continue waiting because the delivery was delayed.
+- Receive new server, verify specification, send it back because they didn't include the right amount of RAM. 
+- Try to install server, get shouted at by the cybersecurity, the Ops team, and the network team. Because they need to install SIEM tools, config management tools, and register the device on the network, respectively. 
+- Install Operating System, install updates, and configure
+- Install hypervisor, middleware, etc. and configure 
+- Deploy apps, containers, VMs, whatever it's purpose.
+- Test, test, test again.
+- Promote to production and de-commission the old server. 
+- Realise that it took so long, the new server is already out of date.
+- Identify another server which is starting to run a bit slow.
+- Lose will to live!!!
+
 
 
 ## Extras
 
-Summary of Support Plans
+### Summary of Support Plans
+
+The following table summarises the key features, and more importantly the differences, between the different Azure support plans offered:
+
+|   |Basic|Developer|Standard|Professional Direct|
+|---|---|---|---|---|
+|Price|Free|$29 per month|$100 per month|$1000 per month|
+|Suitable for...|n/a|Test & non-Prod'|Production|Business-critical|
+|Email & Phone support|&#x2612;|Business hours|&#x2611;|&#x2611;|
+|Response time & severity*|&#x2612;|Sev C: < 8 hours|Sev A: < 1 hour; Sev B: < 4 hours; Sev A: < 1 hour.|Sev A: < 1 hour; Sev B: < 2 hours; Sev A: < 1 hour.|
+|Architecture Support|&#x2612;|General|General|Specialist|
+|API access, Operations support, Training, & Proactive guidance|&#x2612;|&#x2612;|&#x2612;|&#x2611;|
+
+
+### Azure DevTest Labs
