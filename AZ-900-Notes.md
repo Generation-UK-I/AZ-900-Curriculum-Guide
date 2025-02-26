@@ -47,7 +47,7 @@ The default method of paying for resources you deploy in the cloud is based on c
 
 Say you need a server with 8 CPU cores (and associated resources), running for 8 hours a day. On-premise you need to purchase that server, let's say it's £5,000. Obviously, you pay that cost regardless of how much you use the device, 8 hours per day, or 24. 
 
-Don't take these figures as real, but just illustrative. Let's now say that to deploy the same server in the cloud would cost you 10p per hour. 24 hours per day, 30 days per month, that's 720 hours, at 10p per hour, your server costs you £72 per month. That is obviously a much more attractive figure, in fact you'd have to use the cloud server for >69 months to match the cost of the in-premise server. 
+Don't take these figures as real just illustrative, but now let's say that to deploy the same server in the cloud would cost you 10p per hour. 24 hours per day, 30 days per month, that's 720 hours, at 10p per hour, your server costs you £72 per month. That is obviously a much more attractive figure, in fact you'd have to use the cloud server for >69 months to match the cost of the in-premise server. 
 
 But, we can go lower; If you only need the server for 8 hours per day, and let's assume only Monday-Friday, then 8 hours, times 20 days per month is 160 hours. 10p per hour for 160 hours is just £16 per month.
 
@@ -1047,11 +1047,15 @@ When Defender for Cloud detects a threat in any area of your environment, it gen
 
 Defender for cloud provides advanced threat protection features for many of your deployed resources, including virtual machines, SQL databases, containers, web applications, and your network. Protections include securing the management ports of your VMs with just-in-time access, and adaptive application controls to create allowlists for what apps should and shouldn't run on your machines.
 
-## Describe Azure management and governance
+## Module 3 - Describe Azure management and governance
 
 ### Describe cost management in Azure
 
+#### CapEx vs OpEx
+
 As mentioned right at the beginning, one of the key benefits to organisations who adopt cloud services is the potential for cost savings. By moving to a **consumption based** (or PAYG) pricing model, organisations can shift their IT related costs from *capital expenses* or **CapEx**, to *operational expenses* or **OpEx**. 
+
+##### CapEx
 
 Capital expenses refers to the spending an organisation makes on assets which they will own. This includes buildings, furniture, vehicles if needed, and of course, IT assets such as computers, servers, network devices, cables, etc. 
 
@@ -1078,13 +1082,29 @@ Let's say you're a developer, and you decide the organisation need a new server 
 - Install Operating System, install updates, and configure
 - Install hypervisor, middleware, etc. and configure 
 - Deploy apps, containers, VMs, whatever it's purpose.
-- Test, test, test again.
+- Test, test, and test again.
 - Promote to production and de-commission the old server. 
 - Realise that it took so long, the new server is already out of date.
 - Identify another server which is starting to run a bit slow.
 - Lose will to live!!!
 
+##### OpEx
 
+**Operational** expenses are the costs related to your daily operations and they typically vary with workload. The more servers you have, the more electricity you will use; The larger your network, the more staff you need to keep on top of maintenance; The more phone calls you make, the larger your phone bill; And so on... So, one way to think of it is that CapEx pays for assets, and OpEx pays for services - which is why we use Infrastructure/Platform/Software **as a Service**
+
+Some costs, such as your internet connection, may not vary based on how much you use it, but are still considered OpEx because you don't own anything for the money you spend. 
+
+The adoption of cloud services frees the organisation from having to purchase IT hardware, instead they can deploy whatever servers they need in the cloud, instead pay just for what you use, just like your electricity or phone bill - hence why we call the service models infrastructure/platform/software **as a service**.
+
+There are some exceptions, for example you may still need to purchase a domain name, and you may choose to pay up front for reserved instances to achieve a discount. But the vast majority of your capital expenditure on purchasing IT hardware can be eliminated. Additionally, your utility bills should reduce, and your costs related to hardware maintenance will be eliminated. However, although your electricity and staffing OpEx may go down, your OpEx as a whole will go up, perhaps significantly. Just to remind you of a scenario from right at the beginning of this guide...
+
+    Say you need a server with 8 CPU cores (and associated resources), running for 8 hours a day. On-premise you need to purchase that server, let's say it's £5,000. Obviously, you pay that cost regardless of how much you use the device, 8 hours per day, or 24. 
+
+    Don't take these figures as real just illustrative, but now let's say that to deploy the same server in the cloud would cost you 10p per hour. 24 hours per day, 30 days per month, that's 720 hours, at 10p per hour, your server costs you £72 per month...
+
+In this scenario that's £72 per month, every month, or £864 per year, of OpEx that you didn't previously have - for one server.
+
+For this reason it is important 
 
 ## Extras
 
