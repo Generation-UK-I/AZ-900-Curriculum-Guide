@@ -1096,7 +1096,9 @@ Some costs, such as your internet connection, may not vary based on how much you
 
 The adoption of cloud services frees the organisation from having to purchase IT hardware, instead they can deploy whatever servers they need in the cloud, instead pay just for what you use, just like your electricity or phone bill - hence why we call the service models infrastructure/platform/software **as a service**.
 
-There are some exceptions, for example you may still need to purchase a domain name, and you may choose to pay up front for reserved instances to achieve a discount. But the vast majority of your capital expenditure on purchasing IT hardware can be eliminated. Additionally, your utility bills should reduce, and your costs related to hardware maintenance will be eliminated. However, although your electricity and staffing OpEx may go down, your OpEx as a whole will go up, perhaps significantly. Just to remind you of a scenario from right at the beginning of this guide...
+There are some exceptions, for example you may still need to purchase a domain name, and you may choose to pay up front for reserved instances to achieve a discount. But the vast majority of your capital expenditure on purchasing IT hardware can be eliminated. Additionally, your utility bills should reduce, and your costs related to hardware maintenance will be eliminated. 
+
+However, although your electricity and staffing OpEx may go down, your OpEx as a whole will go up, perhaps significantly. Just to remind you of a scenario from right at the beginning of this guide...
 
     Say you need a server with 8 CPU cores (and associated resources), running for 8 hours a day. On-premise you need to purchase that server, let's say it's £5,000. Obviously, you pay that cost regardless of how much you use the device, 8 hours per day, or 24. 
 
@@ -1104,7 +1106,96 @@ There are some exceptions, for example you may still need to purchase a domain n
 
 In this scenario that's £72 per month, every month, or £864 per year, of OpEx that you didn't previously have - for one server.
 
-For this reason it is important 
+For this reason it is important that organisations, and accounting teams, rethink their approach to managing costs and budgets. If demand can vary day by day, then scaling resources will incur different costs day by day. Accounting teams need a much more granular view of daily spending, and the reason the costs are necessary. They can no longer expect to be able to decide on the annual budget for each department in April, and expect it to be unchanged throughout the year.
+
+The organisation's processes need to change also. You can't be going through the process outlined previously (and accurately) every time, when deploying a new server can be completed in minutes. 
+
+#### Describe factors that can affect costs in Azure
+
+So clearly your IT related OpEx in the cloud is not fixed, but what are the factors which impact it?
+- Resource type - Including the type of VM and cores/RAM assigned; The amount of data in your storage account, and it's type, tier, and redundancy; The AzAppSvc tier, and number of instances; And so on...
+- Consumption - How long you use the resource for. Most of your resources will likely use a consumption based model, but there are many services, including compute, storage, and databases, which allow you to commit to a level of usage, and pay in advance to 'reserve' the resources and receive a discount of up to 72%. 
+
+  These commitments are made for 1 or 3 years, and you pay regardless of whether you use the resource or not. The recommended strategy is to identify your base-level of required resources and reserve those. Then you use the PAYG model for any additional resources added for scaling in response to demand.
+- Maintenance - is not completely eliminated for cloud resources, IaaS, PaaS, and SaaS options may shift the maintenance burden between the customer and cloud provider, but you never fully relinquish control. However, new maintenance tasks are also introduced. A common one is keeping on top of unneeded resources. From users neglecting to tear down VMs that are not needed, or delete data in cloud storage, many resources also deploy supporting components alongside, which are easy to forget about when you're finished with the main object.
+- Geography - Due to regional pricing difference, related to variations in the cost of utilities, labour, taxes, property, etc. signficant savings can be achieved by deploying resources in different regions. However, this should be balanced against increased latency, and may be restricted by legislation.
+- Network Traffic - Data ingress is typically free, but egress and inter-region tranfer is billed. [See bandwidth costs here](https://azure.microsoft.com/en-us/pricing/details/bandwidth/).
+- Azure Marketplace - Offers pre-configured and pre-installed VMs, containers, etc. from 3rd party vendors. In addition to the necessary resources required to run the product, you also pay for the vendor's licence costs, and/or expertise and time as part of the price. In some cases this can be great, because licences can become a service too, instead of a large annual outlay. However, some solutions you may be able to build yourself for less. 
+
+#### Pricing and Total Cost of Ownership Calculators
+
+These two tools are provided by Azure to faciliate customers making informed decisions about their cloud solutions.
+
+##### Pricing Calculator
+
+The Azure Pricing Calculator allows you to estimate the cost of provisioned resources. You can build out a full solution, including compute, storage, expected network traffic, as well as choose desired storage tiers, redundancy, and so on. 
+
+The report can be exported for sharing, but it's important to remember that it is an estimate, and all of the factors outlined above, and more, may raise or lower the real cost of deployment.
+
+##### Total Cost of Ownership Calculator
+
+The TCO Calculator is another useful tool for informing decisions around cloud adoption, but with a different lens. TCO compares the cost of a solution built in the cloud, compared to building the equivalent on-premise environment. It considers many factors, including cost of servers, networking, storage, traffic, and so on. 
+
+Some assumptions are made based on industry standards, and some factors can be adjusted to account for, for example, regional variations in utilities and labour costs.
+
+#### Describe the Microsoft Cost Management tool
+
+As a global platform, you can provision resources anywhere in the world, and you are likely deploying and removing resources frequently in response to changing demand, or a need to spin up and tear down development or test environments.
+
+As a result, it is both easy for users to forget to remove resources, and it can be difficult to keep track of what is actually deployed and incurring costs. Cost Management is about avoiding such situations, and there are various tools to support you. 
+
+##### Cost Management tool
+
+The Cost Mangement Tool in the Azure Portal provides you with the ability to view your actual and forecast costs for the current billing period, the quarter, or annually. You can filter by region, resources, and more. You can also explore your costs to understand where they are being accrued.
+
+##### Cost Alerts
+
+You can configure a variety of alerts related to costs, and Cost Alerts provides a centralised location to view and manage them. Alert types include:
+- **Budget Alerts** - allow you to define cost or usage based budgets, and receive alerts through the portal and email when a threshold is reached or breached.
+- **Credit Alerts** - Are used for Enterprise Agreements (EA) were credit can be allocated to your Azure users and receieve alers when percentage thresholds are met.
+- **Department Spending Quota Alerts** - notify you when department spending reaches a fixed threshold of the quota. Spending quotas are configured in the EA portal.
+
+##### Budgets
+
+You can set budgets based on a subscription, resource group, service type, or other criteria, you will also set a budget alert. When the alert level is reached, it will trigger a budget alert and if configured, budget alerts will also send an email notification.
+
+A more advanced use of budgets enables budget conditions to trigger automation that suspends or otherwise modifies resources.
+
+#### Describe the purpose of tags
+
+Tags are key-value pairs which allow you to assign additional meta-data to your resources. They are typically used to target resources with specific tags for management operations, or cost aggregation. Some use cases include:
+
+- **Resource Management** - locate and perform actions against resources with a specific tag, which may indicate workload, environment, function, etc. 
+- **Cost Management** - Aggregate costs from resources with specific tags in order to report on costs, track budgets, and forecast.
+- **Operations Management** - Groups resources according to business' criticality, to inform architecture decisions and provide SLA clarity.
+- **Security** - Define resources based on their confidentiality or security level to assign security controls.
+**Governance and Compliance** - Identify resources related to or necessary for regulatory or legislative compliance. 
+**Optimisation and Automation** - Automate workloads or processes such as a CI/CD pipeline by targetting actions against tagged resources.
+
+#### Managing Tags
+
+You can add, modify, or delete resource tags through Windows PowerShell, the Azure CLI, Azure Resource Manager templates, the REST API, or the Azure portal.
+
+However, it is highly recommended that you automate and enforce your tagging strategy using Azure Policy, which in turn align with your compliance requirements. This could include requiring that specific tags are added to newly deployed resources or re-applying tags which are removed. You can make custom policies to meet your needs.
+
+Tags are key-value pairs, make any you want to fit your environment, but some common ones include:
+- AppName
+- CostCenter
+- Owner
+- Environment
+- Impact
+
+### Describe features and tools in Azure for governance and compliance
+
+#### Describe the purpose of Microsoft Purview
+
+Purview is about managing and controlling your data to meet your governance and compliance requirements. 
+
+It comprises two functional areas:
+- **Risk and Compliance** is about protecting your data across the Microsoft365 (formerly Office365) suite of productivity app's and platforms.
+Unified data governance.
+
+
 
 ## Extras
 
@@ -1123,3 +1214,5 @@ The following table summarises the key features, and more importantly the differ
 
 
 ### Azure DevTest Labs
+
+REST APIs
