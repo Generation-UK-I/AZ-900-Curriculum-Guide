@@ -940,7 +940,7 @@ Roles may be applied at a number of scopes, which refers to layers of the resour
 
 RBAC is enforced for any action, against any resource, which is initiated by Azure Resource Manager - which is pretty much everything.
 
-![*DIAGRAM*](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/media/overview/consistent-management-layer.png)
+![*DIAGRAM*](https://learn.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-overview.png)
 
 RBAC does not work at the application level, application security it typically handled within the app and/or OS.
 
@@ -1192,10 +1192,125 @@ Tags are key-value pairs, make any you want to fit your environment, but some co
 Purview is about managing and controlling your data to meet your governance and compliance requirements. 
 
 It comprises two functional areas:
-- **Risk and Compliance** is about protecting your data across the Microsoft365 (formerly Office365) suite of productivity app's and platforms.
-Unified data governance.
+- **Risk and Compliance** is about protecting your data across the Microsoft365 (formerly Office365) suite of productivity app's and platforms, including OneDrive, Teams, Exchange, etc. by helping you manage and monitor your data it enables you to:
+  - Protect sensitive data across clouds, apps, and devices.
+  - Identify data risks and manage regulatory compliance requirements.
+  - Get started with regulatory compliance.
+- **Unified data governance.** - Microsoft Purview has robust, unified data governance solutions that help manage your on-premises, multicloud, and software as a service data. Microsoft Purview’s robust data governance capabilities enable you to manage your data stored in Azure, SQL and Hive databases, locally, and in other clouds.
 
+Microsoft Purview’s unified data governance helps your organization:
 
+- Create an up-to-date map of your entire data estate that includes data classification and end-to-end lineage.
+- Identify where sensitive data is stored in your estate.
+- Create a secure environment for data consumers to find valuable data.
+- Generate insights about how your data is stored and used.
+- Manage access to the data in your estate securely and at scale.
+
+#### Describe the purpose of Azure Policy
+
+Azure Policy is used to create, manage, assign, and enforce compliance requirements across your resources.
+
+You can create individual or collections of policies (initiatives), and Azure Policies will continuously evaluate your resources against these policies, and surface non-compliant resources, or prevent them from being deployed.
+
+Policies may be applied at the resource, Resource Group, or Subscription level, and they are inherited, so apply to any resource within that scope. 
+
+There are a range of pre-defined policies and intiatives which align with commonly used services across compute, storage, security, etc. For example, allowing you to limit the size of VM deployed, or restrict the usage of inadequate redundancy tiers. Some policies can take actions automatically, for example adding omitted tags against all resources deployed within a particular scope.
+
+Azure Policy also integrated with Azure DevOps, allowing you to apply policies against stages in your CI/CD pipeline.
+
+#### Describe the purpose of resource locks
+
+A resource lock prevents resources from being accidentally deleted or changed.
+
+Even with strict and granular access controls in place, there is still the potential for someone to accidentally delete an important resource. Especially if they're being pressured to minimise costs at all opportunities. Resource locks can prevent deletion or prevent updates to maintain stability. They can be applied to individual resources, or at various scopes within the resource hierarchy and be inherited. There are two types of resource lock:
+
+- **Delete** - authorised users may read and modify a resource, but not delete it.
+- **ReadOnly** - authorised users may only read a resource, and not change or delete it.
+
+You can manage resource locks from the Azure portal, PowerShell, the Azure CLI, or from an Azure Resource Manager template.
+
+To make changes to a resource you must remove the lock first, even if you have RBAC permissions or own the resource.
+
+#### Describe the purpose of the Service Trust portal
+
+Depending upon your industry, you may have a range of standards you need to abide by in your operations. Broadly speaking they can fall into three categories:
+
+- **Mandatory** compliance is enforced by law and legislation, and failure to comply opens you up to prosection and fines. These commonly apply to industries like finace, healthcare, defence or government, but in fact in line with the Data Protection Act, any company which holds PII must be aware of their legal obligations around use and handline. 
+- **Industry** enforced compliance are standards set by the industry in question. An example of this is PCI-DSS (Payment Card Industry - Data Security Standards) which dictate how organisations which handle payment card details must manage and secure that data. If they fail to comply, they can be excluded from operating in the industry.
+- **Voluntary** compliance is when an organisation doesn't have to achieve compliance, but they may choose to in order to gain a competitive edge or reputation in the industry, and customers may be looking for providers who meet a defined standard. An example is ISO 27001 which describes standards for an Information Security Management System (ISMS).
+
+When you want or need to meet a compliance standard, and you have put all of your processes and controls in place, you then invite an auditor in to assess your ability to meet the standards. If you are successful, your organisation is awarded the relevant accreditation, however, you are also obligated to permit future audits to ensure that you are consistent. 
+
+So, how do you show that you are doing everything correctly?
+
+First, you need data. Your log system, application, security, and access logs will all have valuable information to demonstrate that the correct security options and controls are configured, and that nobody has accessed the data or resources who did not have permission. 
+
+But there is a problem... many compliance standards extend to defining how your hardware is deployed and managed. When you deploy to the cloud, you relinquish control of the hardware, and Microsoft won't let you access it, so how do you evidence compliance?
+
+This is were the **Service Trust Portal** comes in.
+
+![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-features-tools-azure-for-governance-compliance/media/service-trust-portal-f7b27e61-b5ad84d7.png)
+
+Microsoft has pro-actively achieved compliance for a range of different international compliance standards, and the Service Trust Portal provides access to various content, tools, and other resources about Microsoft security, privacy, and compliance practices.
+
+Some of the information available through the portal is confidential, and to access it you must sign in with an authenticated account, and accept a non-disclosure greement.
+
+From the portal home page you can search for documentation outlining the various accrediations achieved by Microsoft, for Azure. You can also pin those relevant to your industry and operations to make a custom library.
+
+### Describe features and tools for managing and deploying Azure resources
+
+#### Describe tools for interacting with Azure
+
+Azure provides multiple methods of managing and interacting with your environment, including:
+
+- **Azure portal** - The portal is a centralised, GUI-based environment to manage your Azure subscriptions and resources. As you become a more confident Azure specialist, you will likely find that you spend more and more time in PS and/or the CLI for the accuracy, repeatability, and efficiency. However, to view you monitoring, metrics, and statuses on a 'single-pane-of-glass', the portal remains one of the best options. It allows you to:
+  - Build, manage, and monitor 
+  - Create custom dashboards
+  - Configure accessibility options
+
+  Another benefit of the portal is that it is accessible and navigable by people without in-depth cloud or IT knowledge, for example finance teams needing to gather cost data. 
+
+  - **Cloud Shell** - is a browser based shell (a *shell* takes commands from the user and passes through to the OS or system) that you can launch from within the Azure Portal. It can offer a PowerShell environment if you like to use PS cmdlets, or a Bash environment if you prefer to use Azure CLI commands. Also, the necessary PS modules, and CLI packages are pre-installed, whereas they may need to be installed manually on your local machine.
+
+    Since you need to log into the portal to access Cloud Shell, it is automatically authenticated - again, if using your local machine you will need to authenticate manually.
+
+- **Azure PowerShell** - PowerShell is a CLI developed by Microsoft, and allows developers, operations, administrators, and other IT professionals, to use command-lets (cmdlets) to carry out pretty much any action they need to across their Azure environment, including deployment, maintenance, and deleting resources.
+
+  PowerShell also supports scripting, allowing you to create complex logic chains of cmdlets, with with you can automate multiple branching operations, or make entire applications.
+
+- **Azure CLI** - is functionally the same as Azure PowerShell, however it is Bash based and uses Bash syntax and commands, and therefore you can use whichever one you're most comfortable with.
+
+Azure actually works based upon API calls. Your call, amongst other necessary information, includes your requested action, and your identity, so that your request can be authenticated and authorised. Therefore, no matter which way you interact with Azure, you are making the same API request in the back-end.
+
+#### Describe the purpose of Azure Arc
+
+It is not uncommon for modern large organisations to utilise multiple cloud providers for a number of reasons. Although major outages do occasionally occur, it is very unlikely that more than one cloud platform will be down simultaneously. Therefore, you may use a multi-cloud strategy to improve availability and resiliency. Maybe you just want to use Azure for the integration with Microsoft365 app's, you want to use some of the niche services on AWS, and deploy your Kubernetes clusters on GCP, whilst still keeping some sensitive data on-premise.
+
+This is the scenario ARC is used for, it can extend your management and governance requirements, and your monitoring capabilities to your hybrid and multi-cloud environments.
+
+- Manage your entire environment together by presenting non-Azure resources into Azure Resource Manager.
+- Manage multi-cloud and hybrid virtual machines, Kubernetes clusters, and databases as if they are running in Azure.
+- Use familiar Azure services and management capabilities, regardless of where they live.
+
+  Currently, Azure Arc allows you to manage the following resource types hosted outside of Azure:
+
+  - Servers
+  - Kubernetes clusters
+  - Azure data services
+  - SQL Server
+  - Virtual machines (preview)
+
+#### Describe Azure Resource Manager and Azure ARM templates
+
+Azure Resource Manager (ARM) is the deployment and management layer for Azure, through which you create, manage, and delete resources in your Azure account. So basically, ARM is involved in everything you want to do.
+
+As illustrated below, regardless of whether your request comes from the portal, PowerShell, CLI, an ADK*, or a REST call, it is passed through to ARM for authentication and authorisation, before then being actioned against the relevant resources. 
+
+    * A Software Developer Kit allows you to import or install Azure commands and features into your preferred programming language, allowing you to embed Azure functionality into your developed applications.
+
+ARM allows you to manage your infrastructure through declarative templates
+
+  ![*DIAGRAM*](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/media/overview/consistent-management-layer.png)
 
 ## Extras
 
