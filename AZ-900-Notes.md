@@ -1,45 +1,45 @@
 # Microsoft Azure Fundamentals: 
 
-## Module 1 - Describe cloud concepts
+# Module 1 - Describe cloud concepts
 
-## Describe cloud computing
+# Describe cloud computing
 
-### What is the Cloud
+## What is the Cloud
 
 Simply put, the cloud is where organisations, cloud providers, have built data centers and populated them with computing hardware. Other organisations and individuals can then use the provider’s resources, and pay for just what they use, rather than having to invest in their own on-premise hardware and infrastructure.
 
 There are lots of benefits which will be explored, but in brief, the cloud provides cost savings, flexibility, scalability, reduced overheads, and many more.
 
-### Shared Responsibility Model
+## Shared Responsibility Model
 When you use cloud services, since the hardware is owned by someone else, and resides in a data center which you do not have access to, so you’re always giving away some level of control over your infrastructure. How much control you hand over is dictated by the type of services you use, as outlined by this diagram 
 
 ![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-cloud-compute/media/shared-responsibility-b3829bfe.svg)
 
-### Cloud Deployment Models
-#### Public
+## Cloud Deployment Models
+### Public
 The main cloud providers (AZ, AWS, GCP, etc.) would like everyone to use their services, more users equals more profit 🙂 so they’re called public cloud providers. When you use the public cloud your resources can reside on physical servers alongside those of other cloud users. They’re logically isolated of course, but in some cases, such as highly regulated industries, or highly sensitive data, you may not wish to store it on hardware which you don’t have full control over. One example is that you may need to physically destroy hard disks when you’ve finished using them, so data can never be recovered. If using a public cloud provider, you cannot do this.
 
-#### Private
+### Private
 If your organisation wants some of the operational benefits of the cloud, such as flexibility so you can create multiple environments (dev/test/prod) without purchasing separate hardware, easy resource scaling, etc. But you can't hand control of your data assets to a 3rd party, you can create your own private cloud. It will be very expensive, but you own it, and have full control - *you also have complete ownership of any mistakes*
 
         There is another option called Co-Location (co-lo), where a third party has built a data center, the bricks and mortar, the utilities and networking, but not the servers, the customer brings their own. So you use your hardware, you can arrange physical access, but your resources are 'co-located' with other customer, in a shared physical location.
 
-#### Hybrid
+### Hybrid
 This deployment model is where customers deploy some resources and services on a public cloud provider, and retain some of their solution on-premise. These two environments can be connected together to share resources, or kept isolated. This can be very useful when an organisation has some sensitive workloads, and some which can be moved to a public cloud. However, it's worth remembering that pretty much every company has at least some physical devices, even if it's just the computers their employees use day to day. So, technically, everyone is using a hybrid solution.
 
-### Cloud Service Types
+## Cloud Service Types
 The Shared Responsibility Model has 3 verticals (4 if you count fully on-prem), which represent the common service types. Each service you use in the cloud will fall under one of these categories
 
-#### IaaS 
+### IaaS 
 Infrastructure as a Service options are replicating the hardware devices that you would purchase and deploy on-premise, and provide you with a similar level of control, and allow you to make similar choices. You don't necessarily need to worry about cables, routers, and switches, but, from the server's specification and upwards, you have control of everything you deploy, and whatever you build upon them.
-#### PaaS
+### PaaS
 Platform as a Service solutions hand over a more control of your infrastructure to the cloud provider. Use PaaS options when you want to deploy an application, and you require a certain level of performance and reliability, but how the underlying resources are deployed and configured is not really important to you. With PaaS you bring your application code, data, configure users and access, then the compute resources are assigned and allocated dynamically by the cloud provider. 
-#### SaaS
+### SaaS
 Software as a Service is for when you require pre-existing software packages, like PaaS, you don't want to worry about any servers running the software, or have to make any scaling decisions, etc. But in this case you're not providing your own application code, you're using an application from someone else, you just need to configure the app, and provide your users with access. 
 
         Another advantage of SaaS services is that software license costs can become a monthly operational expense (OpEx), just like your compute resources when you adopt cloud solutions, you no longer need to make significant capital expenditure (CapEx) for your software licences. 
 
-### Consumption Based Model
+## Consumption Based Model
 
 One of the most attractive benefits of the cloud is the ability to transform your business' spending model from one reliant upon capital expenditure, buying assets up front (or on credit), requiring significant investment. When it comes to IT resources, these investments will also depreciate over time, so you have to be confident that you will achieve an ROI.
 
@@ -53,15 +53,15 @@ But, we can go lower; If you only need the server for 8 hours per day, and let's
 
 Ok, that's an extreme case, in reality some of the resources would continue incurring costs when switched off, such as the storage space you're using, and public IP addresses you have reserved, but significant savings are possible.
 
-## Describe the benefits of using cloud services
+# Describe the benefits of using cloud services
 
-### High Availability
+## High Availability
 
 High availability is the idea that your resources and workloads remain operational and accessible, and in the face of changing circumstances, such as hardware rack or data center failure, availability zone or regional failure, even geography failure, if desired. 
 
 When architecting a cloud solution, you can take advantage of the Azure infrastructure features to achieve the level of resilience required. Microsoft have designed their infrastructure to provide high availability, so your deployment strategy dictates the service level agreement (SLA) provided.
 
-### Scaling
+## Scaling
 
 Scaling refers to changing the quantity, capacity, speed, etc. of your resources in response to changing workloads. This could be adding additional virtual machines to share a workload, or adding more storage space as needed. But since we pay for what we use in the cloud, it's also important to scale back down when demand falls; This is known as elasticity. 
 
@@ -78,11 +78,13 @@ In the cloud both horizontal and vertical scaling can be done. Although scaling 
 	Sharing a workload across multiple resources is not as simple as just deploying a duplicate - you also need a load balancer to distribute the inbound requests, and consider endpoints, shared storage, etc. 
 
 
-### Reliability & Predictability
+## Reliability & Predictability
 
 Organisations which are running critical workloads, who rely upon their IT infrastructure to support business operations, need their infrastructure to be both reliable, and operate predictabily, i.e. what is expected to happen should happen. The cloud, and cloud-based technologies can bring significant improvements and benefits in these areas. 
 
-Reliability in the cloud can be considered in a number of ways; In terms of a single server, assuming your on-premise device has reliable utilities and cooling, perhaps the cloud provider's data center has more redundancy built in, but at the end of the day a single server can be expected to fail at some point, regardless of where it is. However, the cloud will provide far more accessible options for you to deploy reliable solutions. Examples include:
+Reliability in the cloud can be considered in a number of ways; In terms of a single server, assuming your on-premise device has reliable utilities and cooling, perhaps the cloud provider's data center has more redundancy built in, but at the end of the day a single server can be expected to fail at some point, regardless of where it is. 
+
+However, the Azure cloud provides accessible options for you to deploy reliable and resilient solutions. Examples include:
 
 - Deploying multiple resources and load balancing, so if one fails there are others to take up the slack.
 - Scaling resources to reduce the likelyhood of failure as workloads increase.
@@ -92,7 +94,7 @@ Reliability in the cloud can be considered in a number of ways; In terms of a si
 
 There are many other strategies which may be implemented. 
 
-### Security and Governance
+## Security and Governance
 
 Every organisation has to consider the security of their assets and infrastructure as a priority. In our earlier modules we have already considered many security controls, including:
 
@@ -105,13 +107,13 @@ When deploying to the cloud, many of your existing security controls, with the e
 Azure has considered security during the development of their different service offerings, providing you with the ability to implement granular access control, encryption at rest and in transit, deploy backup and failover solutions, and many more security controls directly within the relevant service. However, correctly configuring these services to meet your needs, is your responsibility (at, least with IaaS and PaaS solutions it is).
 
 In addition to the security controls embedded into the different resources, Azure also offers a wide range of services which are specifically focused upon providing advanced security capabilities. Some examples include:
-- Entra ID (formerly AzAD), which acts as a secure identity provider, and can provide AAA capabilities for your Azure, on-premise, and multi-cloud resources and environments;
+- Entra ID (formerly Azure Active Directory), which acts as a secure identity provider, and can provide AAA capabilities for your Azure, on-premise, and multi-cloud resources and environments;
 - Azure RBAC to allow users to access only the resources they are required to access based on their roles within the organization.
 - Microsoft Sentinel which delivers intelligent security analytics and threat intelligence
 
 ... and many others. 
 
-### Manageability
+## Manageability
 
 Manageability in Azure refers to the ability to Migrate, Secure, Protect, Monitor, Configure, and Govern your resources and workloads in the cloud. For effective management you require:
 - Insight into your inventory and service catalog
@@ -126,37 +128,37 @@ In addition to support for 3rd party management tools, there are a variety of se
 - Microsoft Defender for Cloud, which includes unified security management and advanced threat protection across hybrid cloud workloads.
 - Azure Migrate is a service that helps you discover, assess, and migrate on-premises virtual machines to Azure.
 
-## Module 2 - Describe Azure Architecture and Services
+# Module 2 - Describe Azure Architecture and Services
 
-## Describe the Core Architectural Components
+# Describe the Core Architectural Components
 
-### Describe Azure physical infrastructure
+## Describe Azure physical infrastructure
 
-#### Geographies
+### Geographies
 
 Geographies represent geo-political boundaries, and also billing boundaries in Azure. As an example, consider the EU, which comprises multiple independent countries, but with equal privacy protections and data sharing agreements. So for Azure's purposes, it can be considered one Geography for data-residency and compliance reqirements. Geographies comprise multiple regions.
 
-#### Regions
+### Regions
 
 Regions are within countries, but a country may have multiple regions. They contain at least one, but typically multiple data centers, which are relatively close to each other, and networked with dedicated, low latency connections.
 
 When you deploy to a region, Microsoft intelligently selects the appropriate data center for your resources, to balance the workload.
 
-#### Region Pairs
+### Region Pairs
 
 Most regions are paired with another regions within the same geography, but at least 300 miles away. This allows for resource replication in a manner that can be resilient to significant regional outages such as natural disasters. Data and resources replicated across region pairs will continue to reside in the same geography for data-sovereignty, tax, and legal purposes. In the case of a Geographical outage such as a natural disaster, Microsoft will prioritise the restoration of services to one of the pair, to restore services as soon as possible.
 
-#### Sovereign Regions
+### Sovereign Regions
 
 Sovereign regions are instances of Azure which are isolated from the rest of the global infrastructure. They are designed to meet legal and compliance needs in highly restrictive areas. Examples include US DoD Central, US Gov Virginia, US Gov Iowa which are restricted to screened personnel. Also, China East and China North regions, which are operated via a partnership with 21Vianet.
 
-#### Availability Zones
+### Availability Zones
 
 Availability Zones represent physically seperate data centers within an Azure region. An Availability Zone contains one or more DC's, deployed in such a manner that the DC's on one Availabilit Zone are supplied by different utilites to another Availability Zone, so that if one were to go down, due to a power cut, the neighbouring zone should be unaffected.
 
 Not all regions are enabled for Availability Zone functionality, but regions were they are enabled comprise of at least 3.
 
-#### Zonal Services
+### Zonal Services
 
 You can use availability zones to run mission-critical applications and build high-availability into your application architecture by co-locating your compute, storage, networking, and data resources within an availability zone and replicating in other availability zones. 
 
@@ -168,9 +170,9 @@ Azure services that support availability zones fall into three categories:
 
 Two or more VMs, deployed across 2 or more availability zones, have an SLA of 99.99%.
 
-### Azure management infrastructure
+## Azure management infrastructure
 
-#### Resource Groups
+### Resource Groups
 
 In Azure, anything you create, provision, deploy, etc. is a resource. When you create a resource you are required to place it into a Resource Group, which is simple a collection of resources. However, RG's may not contain other RG's, i.e. they cannot be nested.
 
@@ -180,7 +182,7 @@ RG's provide a scope for applying access controls, or carrying out management ac
 
 There are no rules defining how to structure your resources and resource groups, so you're free to create them in a manner which reflects your business' needs.
 
-#### Subscriptions
+### Subscriptions
 
 Similar to how resource groups are a way to logically organize resources, subscriptions allow you to logically organize your resource groups and facilitate billing.
 
@@ -192,15 +194,19 @@ In addition to billing purposes, Subscriptions are commonly created to map to or
 
 When you create your free tier Azure account a free tier subscription is created for you. After your trial expires, you must upgrade to a paid subscription to continue using Azure.
 
-#### Management Groups
+### Management Groups
 
 Resources are gathered into resource groups, and resource groups are gathered into subscriptions. You then organize subscriptions into containers called Management Groups, allowing you to manage access, apply policies, and implement compliance and governance conditions.
 
 Management groups can be nested.
 
-#### Hierarchy
+### Resource Hierarchy
 
-The following diagram shows a hierarchy of management groups and subscriptions, which in turn will hold resource groups (not shown).
+The following diagram shows the Azure resource hierarchy
+
+![*DIAGRAM*](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png)
+
+The image below is a more realistic example of how a large organisation might organise just their management groups and subscriptions. Although not shown, it also illustrated how the resource groups and individual resources may be distributed across the different subscriptions within the organisation.
 
 ![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-core-architectural-components-of-azure/media/management-groups-subscriptions-dfd5a108-60f31f5a.png)
 
@@ -208,9 +214,9 @@ The following diagram shows a hierarchy of management groups and subscriptions, 
 - A management group tree can support up to six levels of depth. This limit doesn't include the root level or the subscription level.
 - Each management group and subscription can support only one parent.
 
-## Describe Azure compute and networking services
+# Describe Azure compute and networking services
 
-### Describe Azure virtual machines
+## Describe Azure virtual machines
 
 A virtual machine is a software defined computer, running upon a physical host, which has access to the underlying hardware via a Hypervisor. Azure Virtual Machines is an IaaS offering, allowing the Azure user to deploy virtual servers with:
 
@@ -222,11 +228,11 @@ As an IaaS service you have this level of granular control and flexibility, incl
 
 You are not limited to the pre-configured VMs available through the Portal or Marketplace. You can also migrate your own custom VM's, or export and import system images and virtual hard disks (VHDs).
 
-### VM Scaling
+## VM Scaling
 
 It is common to run multiple VMs grouped together to, for example, share workloads and increase performance, provide high availability, or redundancy.
 
-#### Virtual machine scale sets
+### Virtual machine scale sets
 
 Virtual machine scale sets let you create and manage a group of identical, load-balanced VMs. You could create them manually, but you would then need to ensure that they has the same configuration, the same software stack, set up network routing rules, and create a custom monitoring dashboard. 
 
@@ -234,7 +240,7 @@ Scale sets automate much of this work, allowing you to centrally manage large nu
 
 The number of VMs in the scale set can increase or decrease in response to demand or based on a set schedule. Scale sets will also deploy a load balancer automatically, ensuring efficient utilisation of your resources.
 
-#### Virtual machine scale sets
+### Virtual machine scale sets
 
 Availability sets allow you to deploy solutions which provide high availability and resiliency against hardware rack failure within a data center, but not against an entire data center outage.
 
@@ -246,11 +252,11 @@ Despite Microsoft's best efforts, they cannot guarantee that an unexpected failu
 
 An availability set is a deployment strategy which utilises two logical groupings, Fault Domains and Update Domains, to provide resilience against unexpected failure.
 
-#### Fault Domains
+### Fault Domains
 
 Fault domains are basically racks in the data center containing servers. A fault domain has an isolated power supply and networking from other fault domains, so that a hardware failure only impacts that domain.
 
-#### Update Domains
+### Update Domains
 
 Update domains are comprised of physical servers in the data center, but the member servers are spread across a range of fault domains. Update domains are used by Microsoft to strategically carry out updates and maintenance to the physical hardware, or OS level updates, to the servers in their data centers. Microsoft will only carry out updates and maintenance to servers one update domain at a time. They will wait until one round of updates are complete before moving on to the next update domain.
 
@@ -260,14 +266,14 @@ By deploying at least two VMs into an availability set they will be deployed in 
 
 Availability sets do not incur any costs, you only pay for the VMs within.
 
-### VM SLA Summary
+## VM SLA Summary
 |Deployment|SLA|
 |---|---|
 |Single VM|99.9%|
 |2 or more VMs in an availability set|99.95%|
 |2 or more VMs in 2 or more availability zones|99.99%|
 
-### VM Use cases
+## VM Use cases
 
 As mentioned, VMs are suitable when you require the highest level of control over your resources, but there are a number of scenarios where they are a good choice also:
 
@@ -276,13 +282,13 @@ As mentioned, VMs are suitable when you require the highest level of control ove
 - **Building Hybrid Infrastructures or Migrating** When connecting VM based workloads in private cloud or on-premise, or migrating existing VMs using a 'lift and shift' approach, minimising admin and developer work in redesigning workloads for cloud operation. 
 - **Disaster Recovery** A common strategy is for organisations to rebuild their infrastructure in the cloud, then turn it off to minimise costs. In the case of an outage at the primary site, the cloud environment can be launched in minutes, then traffic and workloads can be redirected to your cloud endpoints to restore service.
 
-### VM Resources
+## VM Resources
 
 When deploying a VM, in addition to resource like CPU cores and RAM, it requires a number of additional supporting resources, including storage both for the operating system, and, if desired, persistent user data. Additonially, since you obviously can't' sit in front of your VM and use it as a local user with a keyboard, mouse, and monitor, the VM needs both a VNet and a virtual network interface card (NIC). You may also wish to allocate a public IP address to the VM, which is another resource. 
 
 If you do not manually define these parameters they will be created automatically.
 
-### Azure Virtual Desktop
+## Azure Virtual Desktop
 
 Organisations have a wide range of compute requirements, many of which can be met with virtual machines, but cloud providers offer a wide range of different compute services which can be more suitable, offer greater performance, or cost effectiveness than dedicated VMs.
 
@@ -290,13 +296,15 @@ One such example is Azure Virtual Desktop (AVD). Traditionally, if a user works 
 
 Azure Virtual Desktop is a PaaS offering, which can provide a virtualised Windows 10 or 11 desktop experience, which can be accessed through a client app on Windows, Mac, iOS, & Android, or any device with a web browser. 
 
-AVD lets you virtualise multiple desktop and application environments on Azure VMs, and present them to your users, instead of installing and managing them on local devices. 
+AVD lets you virtualise multiple desktop and application environments on Azure VMs, and present them to your users, instead of installing and managing them on local devices. Whilst also centralising the management and administration of the app's and environments. 
+
+AVD can also provide performance improvements where applications available to multiple users, accessing shared storage. Their environment will have low latency access to the data in the cloud, because their application or desktop is also in the cloud.
 
 From the end users POV, they expect to click on an icon on their desktop or start menu, and have an app pop up. That is exactly what they get, it's just that the app, and/or the desktop, is running remotely. Each user's desktop, data, and app's are isolated from each other, and when delivered through the relevant client app the experience can be identical to running the environment locally.
 
-While virtual desktop solutions can be created manually with on-premise technologies, doing so can be very challenging, with complex requirements and significant administrative overhead. AVD simplifies and streamlines the process by automating many of the requirements and configuration. Additionally, AVD can be cost effective compared to deploying a whole computer per person, as a single or cluster of VMs can deliver virtualised desktops and apps to many different users simultaneously.
+While virtual desktop solutions have been available for a while, and can be created manually with on-premise technologies, doing so can be very challenging, with complex requirements and significant administrative overhead. AVD simplifies and streamlines the process by automating many of the requirements and configuration. Additionally, AVD can be cost effective compared to deploying a whole computer per person, as a single or cluster of VMs can deliver virtualised desktops and apps to many different users simultaneously.
 
-### Azure containers
+## Azure containers
 
 As flexible and configurable as VMs are, there are also some limitations:
 
@@ -310,15 +318,15 @@ There are a number of services in Azure which can be used to run and manage cont
 
 In the same way that a VM requires a hypervisor, to create and run containers you require a *container engine*, the most popular one is called **Docker**.
 
-#### Azure Container instances
+### Azure Container instances
 
 Azure Container Instances is a PaaS offering which provides a quick and easy way to deploy and manage your containers. They run on VMs, but you do not have direct access or control over the underlying services. Microsoft will add more instances as needed to provide compute sufficient resources for all running containers.
 
-#### Azure Container Apps
+### Azure Container Apps
 
 Azure Container Apps is similar to ACI, but hands additional container management responsibilities to Azure. Container Apps can automatically implement features such as load balancing and scaling.
 
-#### Azure Kubernetes Service
+### Azure Kubernetes Service
 
 Kubernetes is a containers orchestration service, which allows you to deploy and manage fleets of containers, which run on multiple compute nodes, as part of a cluster. 
 
@@ -326,9 +334,9 @@ Kubernetes is a containers orchestration service, which allows you to deploy and
 
         A microservice approach separates the functions and components of the application into separate parts, which can then be reconnected back together using APIs. This allows you to de-couple app functions, and make choices to suit these individual components. For example, the front end may be a static website, some components may be containerised, and some may be serverless functions.
 
-### Azure Functions
+## Azure Functions
 
-#### Serverless Computing
+### Serverless Computing
 
 All of us need compute resources, and traditionally, or in the on-premise world, those resources are purchased up-front, deployed and configured, then you can utilise it. 
 
@@ -338,7 +346,7 @@ What if we could just give our application code over to a service, and have it r
 
 Obviously, if you need some compute power, there needs to be a computer somewhere. But with serverless services, you never need think about it. The cloud provider has plenty of unused compute capacity in their data centers to run your code, so if you don't care *how* your code runs, as long as it runs, serverless services may be suitable.
 
-#### Azure Functions
+### Azure Functions
 
 Azure Functions runs your code in response to an event, which can be a REST API request, on a schedule, or be triggered by another Azure service. 
 
@@ -346,11 +354,11 @@ Functions can scale quickly on demand, so they are good for senarios with variab
 
 Azure Functions natively supports code written in C#, Java, JavaScript, PowerShell, and Python, with more supported through custom handlers.
 
-### Describe application hosting options
+## Describe application hosting options
 
 To host an application in Azure you may consider launching a VM, or deploying containers, particularly if you want to 'lift and shift' an existing workload. However another common hosting option is Azure App Service.
 
-#### Azure App Service
+### Azure App Service
 
 Azure App Service is an HTTP-based service for hosting web applications, REST APIs, and mobile back ends. It supports multiple languages, including .NET, .NET Core, Java, Ruby, Node.js, PHP, or Python. It can run apps in both Windows and Linux environments, with no infrastructure to manage.
 
@@ -367,7 +375,7 @@ Azure App Service can host:
 - Mobile Apps as a back-end for iOS and Android apps, for example storing app data in the cloud, authenticating mobile app' users, sending push notifications, etc.
 - WebJobs - run a program or script alongside a web app, API, or mobile app
 
-### Describe Azure virtual networking
+## Describe Azure virtual networking
 
 It sounds obvious, but since cloud resources are deployed remotely, to access and work with them, they need access to a network. On-premise networks have:
 - **Routers** which connect networks together, such as private networks to the public internet, allow us to make routing rules which define how traffic can reach specific destinations, define subnets for network segmentation, and implement NAT.
@@ -387,7 +395,7 @@ Azure VNets facilitate:
 - Filter network traffic
 - Connect virtual networks
 
-#### IP Addresses
+### IP Addresses
 
 Azure VNets support both public and private endpoints:
 - **Public endoints** are assigned a public IP, and can be accessed from the internet, or through an internet facing load-balancer - *assuming you permit the traffic through your Network Security Group, and Azure Firewall if deployed*.
@@ -395,7 +403,7 @@ Azure VNets support both public and private endpoints:
 
         *There are deployment options which do not require public access to resources in order to remotely manage them, for example by using a *Bastion* server
 
-#### Segmentation and Routing
+### Segmentation and Routing
 
 When you set up a virtual network, you define a private IP address space which only exists within the virtual network and isn't internet routable. You can then subnet the address space to divide the range into your required subnets.
 
@@ -406,32 +414,19 @@ Azure routes traffic between subnets on any connected virtual networks, on-premi
 
 For name resolution, you can configure the virtual network to use either private or public DNS.
 
-#### Communicating Securely with...
-
-##### ...Azure Resources
-Virtual networks can connect VMs in the same address space, but also other services such as Azure App Service, Azure Kubernetes Service, and VM Scale sets.
-
-Some Azure services, such as databases and storage accounts, may need to connect to multiple resources and VNets. For this **Service Endpoints** can be used.
-
-##### ...On-Premise Resources
-To create a network which spans your Azure and on-prem' resources you can use the following options:
-- **Point to Site VPN** - a client computer initiates a VPN connection to your Azure VNet.
-- **Site to Site VPN** - links your on premise VPN gateway to an Azure VPN Gateway. Azure and on-premise resources appear to be on the same local network.
-- **Azure ExpressRoute** - set up a private connection between your on-premise environment and Azure, which does not traverse the internet. Useful for environments where you need high levels of bandwidth and security.
-
-#### Filter network traffic
+### Filter network traffic
 
 You can filter traffic between subnets, VNets, and the internet using both:
 - **Network Security Groups** which are Azure resources which contain inbound and outbound rules to define which types of traffic should be blocked or permitted. Create rules based on source or destionation IP, port, or protocol.
 - **Virtual Appliances** are dedicated VMs which run applications providing network functionality such as firewalls, packet inspection, optimisations, etc. To use such a device you will create routing rules which directs traffic to the device before before it is then forwarded to it's destination.
 
-#### Connect virtual networks
+### Connect virtual networks
 
 **Virtual Network Peering** allows you to connect VNets together, traffic between them is private, and traverses the *Microsoft backbone network*, not the internet. Vnets may be in different regions, allowing the creation of a global infrastructure. 
 
 Control traffic routing within and between VNets by creating **User Defined Routes**.
 
-### Describe Azure virtual private networks
+## Describe Azure virtual private networks
 
 A VPN is an encrypted tunnel through a network, typically it is used to connect two trusted endpoints through an untrusted network such as the internet. 
 
@@ -441,7 +436,20 @@ A VPN may be configured on individual devices by installing VPN client software,
 2. Update your route tables to direct your sensitive traffic through the it 
 3. Traffic will be automatically encrypted and decrypted as it enters and exits the tunnel.
 
-#### Azure VPN Gateways
+### Communicating Securely with...
+
+#### ...Azure Resources
+Virtual networks can connect VMs in the same address space, but also other services such as Azure App Service, Azure Kubernetes Service, and VM Scale sets.
+
+Some Azure services, such as databases and storage accounts, may need to connect to multiple resources and VNets. For this **Service Endpoints** can be used.
+
+#### ...On-Premise Resources
+To create a network which spans your Azure and on-prem' resources you can use the following options:
+- **Point to Site VPN** - a client computer initiates a VPN connection to your Azure VNet.
+- **Site to Site VPN** - links your on premise VPN gateway to an Azure VPN Gateway. Azure and on-premise resources appear to be on the same local network.
+- **Azure ExpressRoute** - set up a private connection between your on-premise environment and Azure, which does not traverse the internet. Useful for environments where you need high levels of bandwidth and security.
+
+### Azure VPN Gateways
 
 Azure VPN Gateways are commonly used to:
 - Connect on-premises datacenters to virtual networks through a site-to-site connection.
@@ -455,27 +463,27 @@ You can specify two types of VPN, based on how it should determine which traffic
 
 - **Route-based** - tunnels are presented as interfaces. IP routing decides which one of these tunnel interfaces to use when sending each packet - use when creating connections between VNets, Point-to-site connections, and Multisite connections.
 
-#### High Availability
+### High Availability
 
 VPNs are used to improve security and privacy, and if this a compliance requirement, you do not want operations grinding to a halt in the case of the VPN going down. To configure a resilient VPN you have several options:
 
-##### Active/Standby
+#### Active/Standby
 
 By default Azure VPN gateways are deployed as two instances in an active/standby configuration. When disruption affects the active instance, the standby automatically assumes responsibility for connections without any human intervention. Connections are interrupted during failover, but they typically restore within 90 seconds for unplanned disruptions.
 
-##### Active/Active
+#### Active/Active
 
 In this configuration, you assign a unique public IP address to each instance, then create separate tunnels from the on-premises device to each IP address. You can extend the high availability by deploying an additional VPN device on-premises.
 
-##### ExpressRoute failover
+#### ExpressRoute failover
 
 Customers with ExpressRoute connections commonly configure a VPN gateway as a secure failover route.
 
-##### Zone-redundant gateways
+#### Zone-redundant gateways
 
 In regions that support availability zones, VPN gateways and ExpressRoute gateways can be deployed in a zone-redundant configuration.
 
-#### Describe Azure ExpressRoute
+### Describe Azure ExpressRoute
 
 Azure ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection, they don't go over the public Internet.
 
@@ -498,9 +506,9 @@ ExpressRoute supports four models for connecting your on-premises network to Azu
 - **Any-to-any connection** - integrate your wide area network (WAN) with Azure.
 - **Directly from ExpressRoute sites** - connect through one of Microsoft's global network of peering locations strategically distributed across the world. ExpressRoute Direct provides dual 100 Gbps or 10-Gbps connectivity, supporting Active/Active connectivity at scale.
 
-### Describe Azure DNS
+## Describe Azure DNS
 
-#### Describe DNS
+### Describe DNS
 
 The Domain Name System is a service which maps URLs to IP addresses. As we've explored previously, resources on the internet require a public IP address to be reachable, however, humans are not very good at remembering lots of different numbers. 
 
@@ -514,7 +522,7 @@ When you have purchased a domain name your registrar will typically offer a publ
 
         If you want the functionality of DNS within your private network, and you don't need your resources to be publically accessible via a friendly domain name, you can deploy a private domain server and domain. 
 
-#### Azure DNS
+### Azure DNS
 
 Azure DNS hosts public and private DNS domains, providing name resolution across Microsoft Azure infrastructure. You can manage your DNS records using the same credentials, APIs, tools, and billing as your other Azure services.
 
@@ -528,7 +536,7 @@ Azure DNS leverages the Azure infrastructure to provide:
 - Customisability - use your own custom domain names in your private virtual networks, rather than being stuck with the Azure-generated names.
 - Alias records - your Azure resources can receive a public IP address, and a DNS name. The IP may change, but the name will not, so you can use Alias record to map a resource name to an endpoint.
 
-### Describe Azure storage services
+## Describe Azure storage services
 
 A storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over HTTP or HTTPS. Data in this account is secure, highly available, durable, and massively scalable.
 
@@ -555,9 +563,9 @@ The following table shows the endpoint format for Azure Storage services.
 |Queue Storage|https://<storage-account-name>.queue.core.windows.net|
 |Table Storage|https://<storage-account-name>.table.core.windows.net|
 
-#### Azure storage redundancy
+## Azure storage redundancy
 
-##### Locally redundant storage
+### Locally redundant storage
 
 LRS replicates your data three times within a single data center in the primary region and provides 11 nines (99.999999999%) durability for objects over a given year.
 
@@ -565,7 +573,7 @@ LRS replicates your data three times within a single data center in the primary 
 
 LRS is the lowest-cost redundancy option and offers the least durability, it is designed to protect against rack and drive failures, but not a data center failure - mitigating this risk requires ZRS, GRS, or GZRS.
 
-##### Zone-redundant storage
+### Zone-redundant storage
 
 ZRS replicates your data synchronously across three Azure availability zones in the primary region, and provides 12 nines (99.9999999999%) durability for objects over a given year.
 
@@ -575,7 +583,7 @@ With ZRS your data remains accessible for read and write operations if a zone be
 
 Azure recommends using ZRS for high availability in a single region, and replicating within a region to ensure complicance with data governance restrictions.
 
-##### Geo-redundant storage
+### Geo-redundant storage
 
 GRS copies your data *synchronously* three times within a single location in the primary region using LRS; It then copies your data *asynchronously* to a single location in the secondary region (the region pair) using LRS. 
 
@@ -583,7 +591,7 @@ GRS offers durability of at least 16 nines (99.99999999999999%) over a given yea
 
 ![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-azure-storage-services/media/geo-redundant-storage.png)
 
-##### Geo-zone-redundant storage
+### Geo-zone-redundant storage
 
 GZRS, as the name suggests, combines ZRS and GRS features. Data is replicated across 3 availability zones in the primary region, and replicated to a secondary region. 
 
@@ -591,13 +599,13 @@ GZRS is designed to provide at least 16 nines (99.99999999999999%) of durability
 
 ![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-azure-storage-services/media/geo-zone-redundant-storage.png)
 
-##### Read access to data in the secondary region
+### Read access to data in the secondary region
 
 With both GRS and GZRS you can enable read-access to data in the secondary region, so it can be accessed even if the primary region is operational. This can provide lower latency to users closer to the secondary region. 
 
         Remember that data in the secondary region may be out of date if changes were made in the primary region which have yet to be replicated. 
 
-#### Azure storage services
+## Azure storage services
 
 Storage is one of the most common services companies require from their cloud provider, not least because most resources will need to have access to, or generate some data, and data is usually an organisation's most valuable asset.
 
@@ -610,7 +618,7 @@ Azure Storage is:
 
 Once you have created a storage account, you can deploy storage containers of various types, which are optimised for various use cases:
 
-##### Azure Blobs
+### Azure Blobs
 Binary Large OBjects (BLOBs) are any binary file, which is basically any file, text, image, video, anything. Azure Blobs are unstructured, allowing any type of data to be added. Users or client applications can access blobs via HTTP or HTTPS, via URLs, the Azure Storage REST API, Azure PowerShell, Azure CLI, or an Azure Storage client library.
 
     Blob storage is ideal for:
@@ -636,7 +644,7 @@ Binary Large OBjects (BLOBs) are any binary file, which is basically any file, t
 
   Hot, cool, cold, and archive tiers can be set at the blob level, during or after upload.
 
-##### Azure Files
+### Azure Files
 Users in an organisation need to share files. They could do so by passing them back and forth over email or DM, but this is cumbersome, only suitable for a few files at a time, and you may end up with multiple different copies of the file, all out of sync with each other. 
 
 Instead, users can make shared folders, and grant permissions to the appropriate colleagues to access the share over the local network. This allows users to share and access any files they want, and they can each collaborate on the same file if they wish, keeping everything in sync.
@@ -665,7 +673,7 @@ Key benefits include:
 - As a fully managed service Microsoft is repsonsible for maintenance activities, upgrading capacity as demand grows, and ensuring the shares are resilient and highly available.
 - Manage Azure Files with Azure Portal, Storage Explorer, PowerShell, or Azure CLI.
 
-##### Azure Queues
+### Azure Queues
 When developing a web app there are typically multiple components, at the very least a user facing front-end, and a back-end which does the processesing. 
 
 Just to point out the obvious, but the front-end for a web-app, is usually just a website. This means that many people could be using it, and submitting jobs, simultaneously. 
@@ -676,7 +684,7 @@ When the front-end sends requests to the back-end, if it's busy, the request cou
 
 Queues allow these small requests to be stored, they can then be retrieved by the the back-end when it's ready.
 
-##### Azure Disks
+### Azure Disks
 Used for your block-level storage devices i.e. virtual hard disks (VHDs), which attach to your virtual machines. As a user you simple select the disk type and size, Azure will then create and manage it. You may also upload your existing VHDs from your on-premise environments to faciliate 'lift-n-shift' migrations.
 
 **Disk Types**:
@@ -718,16 +726,16 @@ Your VHDs are encrypted by Azure Storage service, known as Server Side Encryptio
 
   - **Temporary Disk** - Temp' disks are not managed, i.e. they do not have the same level of durability or availability. They are designed for short-term storage for app's and processes, and data may be lost when you stop the VM, or if it fails due to an unplanned maintenance event. *During a normal successful restart, the data should be retained*.
 
-##### Azure Tables
+### Azure Tables
 Azure tables is a NoSQL (non-relational) datastore in which you can store large amounts of structured data. Authenticated calls can be made against the data from inside and outside the Azure cloud. 
   
   Tables are schemaless, and can store a practically unlimited number of entries.
 
-### Identify Azure data migration options
+## Identify Azure data migration options
 
 Migration is the process of moving your assets and workloads from one location to another, this could be on-premise to cloud, cloud to on-premise, site to site, or cloud to cloud. There are two main options to be aware of, **syncronous** migration of infrastructure, apps, and data, using Azure Migrate; Or **asyncronous** migration using Azure Data Box. 
 
-#### Azure Migrate
+### Azure Migrate
 
 Azure Migrate helps you migrate from on-prem' environments to the cloud, and provides a centralised hub to start, manage, and track your migration operation. There are three stages to a typical migration project: **Discover, Analyse, & Migrate.**
 
@@ -738,7 +746,7 @@ Azure Migrate integrates a range of tools to gelp you with the process:
 - Azure Database Migration Service. Migrate on-premises databases to Azure VMs running SQL Server, Azure SQL Database, or SQL Managed Instances.
 - Azure App Service migration assistant. Azure App Service migration assistant is a standalone tool to assess on-premises websites for migration to Azure App Service. Use Migration Assistant to migrate .NET and PHP web apps to Azure.
 
-#### Azure Data Box
+### Azure Data Box
 
 An asyncronous migration process which allows you to get data in & out of Azure securely, using a physical storage device. You order the Data Box through the portal, it is shipped to you, you copy your data across, and ship it back to Microsoft.
 
@@ -752,7 +760,7 @@ Data Box is available in three tiers:
 - **Data Box** - Useable capacity 80TB; Briefcase sized; Uses NAS protocols and common copy tools.
 - **Data Box Heavy** - Trolley sized; Similar interfaces to *Data Box* but faster; Useable capacity up to ~750TB.
 
-### Identify Azure file movement options
+## Identify Azure file movement options
 
 Migration services are designed for moving entire infrastructures, workloads, or bulk quantities of data to the cloud. But if you want to move individual file(s), or ZIP archives, there are some more suitable tools available:
 
@@ -769,9 +777,9 @@ Features and benefits:
 - Replace a failed local server by installing Azure File Sync on a new server in the same datacenter.
 - Configure cloud tiering so the most frequently accessed files are replicated locally, while infrequently accessed files are kept in the cloud until requested.
 
-## Describe Azure identity, access, and security
+# Describe Azure identity, access, and security
 
-### Describe Azure directory services
+## Describe Azure directory services
 
 For decades organisations have used a directory service as a centralised place to manage & organise their user accounts, company devices, and permissions. By far, the market leading product for providing this functionality, is Microsoft's Active Directory software, installed on a Windows Server. You can also use AD to create and apply policies to your users and devices, which allow you to control features of the OS, manage software, and enforce security controls across the directory. 
 
@@ -785,7 +793,7 @@ If a user wants to log into a computer, the computer checks their credentials wi
 
     The fact that comapnies have been using ADDS for so long is part of the reason that Azure has grown so quickly. By developing cloud services which mirror their on-premise technologies, Microsoft makes migration easier, and existing skills, knowledge, and workflows, developed and refined over years, require minimal changes and updates to migrate.
 
-#### Entra ID
+### Entra ID
 
 Entra ID is a cloud Identity Provider (IDp) with which you can manage authentication and authorisation for access to your applications and resources in Azure. It can also enhance the functionality of your on-premise AD deployment. 
 
@@ -815,11 +823,11 @@ Entra ID provides a wide range of features, including but not limited to:
 - **Application Management** can be centralised and streamlined, for both cloud and on-premise app's. Can be integrated with various SaaS products, and provides a portal for users to quickly find permitted and verified app's.
 - **Device Management** allows devices to be registered with Entra ID, then managed with toold such as Intune. Enabled features such as conditional access (e.g. ensure necessary security updates are installed), remote wipe/lock, and many others.
 
-##### Microsoft Entra Connect
+#### Microsoft Entra Connect
 
 If you have an on-premise Active Directory deployment, and Azure solutions using Entra ID, you do not want to manage multiple identities per employee. Microsoft Entra Connect allows you to syncronise identities between Active Directory and Entra ID.
 
-#### Microsoft Entra Domain Services
+### Microsoft Entra Domain Services
 
 Entra ID effectively de-couples the directory component from the Domain Controller and provides it as a separate service, so that all Azure customers can use it's features and benefits to manage their identities and resources. 
 
@@ -829,7 +837,7 @@ Microsoft Entra Domain Services provides domain services without the need to dep
 
 To use Entra Domain Services you provide your owned domain (known as a *namespace*), then two Windows Server Domain Controllers are deployed in a replica set into your selected region, and these DCs are managed and maintained by Azure. 
 
-### Describe Azure authentication methods
+## Describe Azure authentication methods
 
 Authorisation is a fundamental building block of modern security models and controls, basically, 'Who Are You?'?
 
@@ -851,13 +859,13 @@ All security controls ultimately just balance these two factors of security and 
 
 ![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-azure-identity-access-security/media/passwordless-convenience-security-30321b4d-18aa7d73.png)
 
-#### Single Sign-On
+### Single Sign-On
 
 Single sign-on involves a user authenticating once against a trusted identity provider, such as Entra ID, and if successful they are granted an authentication token. Different applications and service providers can be configured to trust the inital identity provider, and consequently the tokens issued by it. When a user tries to access the external resources their token is presented, and can be verified with the identity provider.
 
 Single sign-on relies upon the integrity of the initial provider, so it should be configured with secure authentication processes such as multifactor authentication at least.
 
-#### Multifactor Authentication (MFA)
+### Multifactor Authentication (MFA)
 
 MFA requires a user to utilise more than one authentication factor in order to confirm their identity.
 
@@ -875,7 +883,7 @@ This is also a process that we've been using for quite a while, think about your
 
 Microsoft Entra multifactor authentication enables users to choose an additional form of authentication during sign-in, such as a phone call or mobile app notification
 
-#### Passwordless Authentication?
+### Passwordless Authentication?
 
 Organisations can implement MFA policies, but there is usually going to be a password somewhere, and any time a user has to remember a password there's a weakness. Even with a password manager, it may generate and store complex passwords, but the human still needs a password they can remember to unlock their 'vault'.
 
@@ -889,7 +897,7 @@ Microsoft global Azure and Azure Government offer the following three passwordle
 - **Microsoft Authenticator app** - is already a common option for many online services, so you may already have it. A configured app or service pushes a notification to the authenticator app, the user is prompted to match or enter a number shown by the requested resource, the user then provides their iOS or Android device's built in bio-metric authentication method.
 - **FIDO2 security keys** - Fast Identity Online (FIDO) is an open standard for passwordless authentication. FIDO allows users and organizations to leverage the standard to sign-in to their resources without a username or password by using an external security key or a platform key built into a device.
 
-### Describe Azure External Identities
+## Describe Azure External Identities
 
 In addition to their trusted employees, organisations commonly need to work with external parties and organisations for various purposes. It could be contractors working on fixed-term projects, outsourced service providers such as payroll or accounting, or as a service provider yourself, you may invite client organisations and customers to use your resources.
 
@@ -901,7 +909,7 @@ External Identities offers a range of capabilities:
 - **B2B Direct Connect** - allows you to establish a 2-way trust between an external organisation's Entra ID tenant, and your own. External users can connect to Teams shared channels, and share resources through this channel. External users are not visible in your Entra ID tenant, but can be seen through the Teams shared channel, and Teams Admin Center.
 - **Microsoft Azure Active Directory business to customer (B2C)** - Provides the ability to publish (non-Microsoft) SaaS app's to consumers, using Azure AD B2C for identity and access management.
 
-### Describe Azure Conditional Access
+## Describe Azure Conditional Access
 
 Conditional Access allows you to permit or restrict access to resources based on identity related signals.
 
@@ -917,7 +925,7 @@ Common uses for conditional access include:
 - Enforce access only via managed devices
 - Block access from all untrusted locations/devices
 
-### Describe Azure Role-Based Access Control (RBAC)
+## Describe Azure Role-Based Access Control (RBAC)
 
 Access control is one of the fundamental security controls available to protect your data and assets. Access is granted or denied by creating permission, the permissions a user is assigned should follow the principle of least privilege (PoLP) to ensure that they have access to what they require, but only what they require. 
 
@@ -929,7 +937,7 @@ There are 3 common models used to manage access control:
 
 You can create your own roles aligned with your operations, but Microsoft also provide a wide range of pre-defined roles which match common job titles and business functions. For example, you may have a billing administrator, who needs access to all of the cost management tools, but not to any deployed resources. Someone responsible for monitoring workloads may have read access to VMs so they can configure logs and metrics, but cannot access the data disk on the VM. There are countless scenarios which can be modelled as a role, with the necessary permissions.
 
-#### RBAC Scopes
+### RBAC Scopes
 
 Roles may be applied at a number of scopes, which refers to layers of the resource hierarchy. Roles can be applied at the following scopes, and the designated permissions will propogate to all resources below. 
 
@@ -944,7 +952,7 @@ RBAC is enforced for any action, against any resource, which is initiated by Azu
 
 RBAC does not work at the application level, application security it typically handled within the app and/or OS.
 
-### Describe Zero Trust model
+## Describe Zero Trust model
 
 Traditional IT operations were based on the assumption that if you were inside the network, you were allowed to be there. Commonly only company owned and controlled devices are used, they are domain joined, and if you login to a trusted device with valid credentials, you must be safe. Few people worked remotely, it was possible but restricted, and the tools to facilitate it were cumbersome, and introduced lots of administrative overhead (for example, deploying and configuring RADIUS servers).
 
@@ -959,7 +967,7 @@ The Zero Trust model is based around the following principles:
 - **Use least privilege access** - Limit user access with Just-In-Time and Just-Enough-Access (JIT/JEA), risk-based adaptive policies, and data protection.
 - **Assume breach** - Minimize blast radius and segment access. Verify end-to-end encryption. Use analytics to get visibility, drive threat detection, and improve defenses.
 
-### Describe Defense-in-Depth
+## Describe Defense-in-Depth
 
 Defense-in-depth is a security model, versions of which have been in use for a long time, which models security controls as layers of defense. This is sometimes called the castle approach to security, where you have a moat, and a gate, and walls, and a keep, and so on.
 
@@ -975,9 +983,9 @@ The following diagram illustrates the defense-in-depth model, in which an organi
 - Application is about securing applications, including host based security, updates and patching of application vulnerabilities, and other maintenance operations.
 - Data is the central layer, and all other layers need to be compromised in order to gain access. But, we need to ensure our data has CIA. We need to be aware of where are data is, it may be in DBs, on VHDs, in storage accounts, and so on. Then implement access controls as necessary. You should also ensure that data is encrypted both in transit, and at rest, using appropriate protocols, and secure encryption keys.
 
-### Describe Microsoft Defender for Cloud
+## Describe Microsoft Defender for Cloud
 
-#### History
+### History
 
 To be honest, a little over a decade ago, the built in security features of Windows were a bit of a joke. The very first thing you did after installing Windows was download and install anti-virus software (AVG was a good option, really, anything but McAffee or Norton), and a host-based firewall (ZoneAlarm was very popular). 
 
@@ -987,7 +995,7 @@ However, post Windows 7 (ish) things improved; They brought a variety of securit
 
     Credit where credit is due, over the last couple of generations, as long as you keep everything up to day, Microsoft's built-in security controls are sufficient for the vast majority of home users... but not for enterprise.
 
-#### Defender for Cloud
+### Defender for Cloud
 
 The term 'posture' pops up a lot in cybersecurity, it refers to an organisations overall security status, and also their ability and readiness to identify, respond, and recover from security breaches.
 
@@ -1003,7 +1011,7 @@ Sometimes the square peg of legacy software, may require modification or comprom
 
 Defender for Cloud does not require any deployment, your resources and services ar monitored and protected simply by enabling the required features. 
 
-#### Azure-Native Protections
+### Azure-Native Protections
 
 Defender for Cloud helps you detect threats across:
 
@@ -1011,7 +1019,7 @@ Defender for Cloud helps you detect threats across:
 - **Azure data services** – Includes capabilities that help you automatically classify your data in Azure SQL. You can also get assessments for potential vulnerabilities across Azure SQL and Storage services, and recommendations for how to mitigate them.
 - **Networks** – Features include limiting exposure to brute force attacks; Restricting access to virtual machine ports using the just-in-time VM access; Hardenening your network by preventing unnecessary access; Setting secure access policies on selected ports for only authorized users; Allowing source IP address ranges or IP addresses, and only for a limited timeframe.
 
-#### Defender in Multicloud Environments
+### Defender in Multicloud Environments
 
 The following features can be extended to protect resources in other cloud environments, including AWS and GCP.
 
@@ -1020,7 +1028,7 @@ The following features can be extended to protect resources in other cloud envir
 - **Defender for Containers** - can extend container threat protection to container clusters in AWS (EKS) or GCP (GKS)
 - **Microsoft Defender for Servers** - extends threat detection and defense to Windows and Linux servers in other cloud platforms.
 
-#### Assess, Secure, and Defend
+### Assess, Secure, and Defend
 
 Defender for Cloud protects your assets, resources, and workloads by carrying out three important functions:
 
@@ -1036,7 +1044,7 @@ Defender for Cloud protects your assets, resources, and workloads by carrying ou
   Defender groups all recommendations and assigns each one a security score, your score is then the total of all of the recommendations and best practices that are properly configured, against your total possible score.
 - **Defend** – Detect and resolve threats to resources, workloads, and services. DfC helps defend your environment by providing security alerts and advanced threat protection features.
 
-#### Security alerts
+### Security alerts
 When Defender for Cloud detects a threat in any area of your environment, it generates a security alert which:
 
 - Describes details of the affected resources
@@ -1047,15 +1055,15 @@ When Defender for Cloud detects a threat in any area of your environment, it gen
 
 Defender for cloud provides advanced threat protection features for many of your deployed resources, including virtual machines, SQL databases, containers, web applications, and your network. Protections include securing the management ports of your VMs with just-in-time access, and adaptive application controls to create allowlists for what apps should and shouldn't run on your machines.
 
-## Module 3 - Describe Azure management and governance
+# Module 3 - Describe Azure management and governance
 
-### Describe cost management in Azure
+## Describe cost management in Azure
 
-#### CapEx vs OpEx
+### CapEx vs OpEx
 
 As mentioned right at the beginning, one of the key benefits to organisations who adopt cloud services is the potential for cost savings. By moving to a **consumption based** (or PAYG) pricing model, organisations can shift their IT related costs from *capital expenses* or **CapEx**, to *operational expenses* or **OpEx**. 
 
-##### CapEx
+#### CapEx
 
 Capital expenses refers to the spending an organisation makes on assets which they will own. This includes buildings, furniture, vehicles if needed, and of course, IT assets such as computers, servers, network devices, cables, etc. 
 
@@ -1088,7 +1096,7 @@ Let's say you're a developer, and you decide the organisation need a new server 
 - Identify another server which is starting to run a bit slow.
 - Lose will to live!!!
 
-##### OpEx
+#### OpEx
 
 **Operational** expenses are the costs related to your daily operations and they typically vary with workload. The more servers you have, the more electricity you will use; The larger your network, the more staff you need to keep on top of maintenance; The more phone calls you make, the larger your phone bill; And so on... So, one way to think of it is that CapEx pays for assets, and OpEx pays for services - which is why we use Infrastructure/Platform/Software **as a Service**
 
@@ -1110,7 +1118,7 @@ For this reason it is important that organisations, and accounting teams, rethin
 
 The organisation's processes need to change also. You can't be going through the process outlined previously (and accurately) every time, when deploying a new server can be completed in minutes. 
 
-#### Describe factors that can affect costs in Azure
+### Describe factors that can affect costs in Azure
 
 So clearly your IT related OpEx in the cloud is not fixed, but what are the factors which impact it?
 - Resource type - Including the type of VM and cores/RAM assigned; The amount of data in your storage account, and it's type, tier, and redundancy; The AzAppSvc tier, and number of instances; And so on...
@@ -1122,46 +1130,46 @@ So clearly your IT related OpEx in the cloud is not fixed, but what are the fact
 - Network Traffic - Data ingress is typically free, but egress and inter-region tranfer is billed. [See bandwidth costs here](https://azure.microsoft.com/en-us/pricing/details/bandwidth/).
 - Azure Marketplace - Offers pre-configured and pre-installed VMs, containers, etc. from 3rd party vendors. In addition to the necessary resources required to run the product, you also pay for the vendor's licence costs, and/or expertise and time as part of the price. In some cases this can be great, because licences can become a service too, instead of a large annual outlay. However, some solutions you may be able to build yourself for less. 
 
-#### Pricing and Total Cost of Ownership Calculators
+### Pricing and Total Cost of Ownership Calculators
 
 These two tools are provided by Azure to faciliate customers making informed decisions about their cloud solutions.
 
-##### Pricing Calculator
+#### Pricing Calculator
 
 The Azure Pricing Calculator allows you to estimate the cost of provisioned resources. You can build out a full solution, including compute, storage, expected network traffic, as well as choose desired storage tiers, redundancy, and so on. 
 
 The report can be exported for sharing, but it's important to remember that it is an estimate, and all of the factors outlined above, and more, may raise or lower the real cost of deployment.
 
-##### Total Cost of Ownership Calculator
+#### Total Cost of Ownership Calculator
 
 The TCO Calculator is another useful tool for informing decisions around cloud adoption, but with a different lens. TCO compares the cost of a solution built in the cloud, compared to building the equivalent on-premise environment. It considers many factors, including cost of servers, networking, storage, traffic, and so on. 
 
 Some assumptions are made based on industry standards, and some factors can be adjusted to account for, for example, regional variations in utilities and labour costs.
 
-#### Describe the Microsoft Cost Management tool
+### Describe the Microsoft Cost Management tool
 
 As a global platform, you can provision resources anywhere in the world, and you are likely deploying and removing resources frequently in response to changing demand, or a need to spin up and tear down development or test environments.
 
 As a result, it is both easy for users to forget to remove resources, and it can be difficult to keep track of what is actually deployed and incurring costs. Cost Management is about avoiding such situations, and there are various tools to support you. 
 
-##### Cost Management tool
+#### Cost Management tool
 
 The Cost Mangement Tool in the Azure Portal provides you with the ability to view your actual and forecast costs for the current billing period, the quarter, or annually. You can filter by region, resources, and more. You can also explore your costs to understand where they are being accrued.
 
-##### Cost Alerts
+#### Cost Alerts
 
 You can configure a variety of alerts related to costs, and Cost Alerts provides a centralised location to view and manage them. Alert types include:
 - **Budget Alerts** - allow you to define cost or usage based budgets, and receive alerts through the portal and email when a threshold is reached or breached.
 - **Credit Alerts** - Are used for Enterprise Agreements (EA) were credit can be allocated to your Azure users and receieve alers when percentage thresholds are met.
 - **Department Spending Quota Alerts** - notify you when department spending reaches a fixed threshold of the quota. Spending quotas are configured in the EA portal.
 
-##### Budgets
+#### Budgets
 
 You can set budgets based on a subscription, resource group, service type, or other criteria, you will also set a budget alert. When the alert level is reached, it will trigger a budget alert and if configured, budget alerts will also send an email notification.
 
 A more advanced use of budgets enables budget conditions to trigger automation that suspends or otherwise modifies resources.
 
-#### Describe the purpose of tags
+### Describe the purpose of tags
 
 Tags are key-value pairs which allow you to assign additional meta-data to your resources. They are typically used to target resources with specific tags for management operations, or cost aggregation. Some use cases include:
 
@@ -1172,7 +1180,7 @@ Tags are key-value pairs which allow you to assign additional meta-data to your 
 **Governance and Compliance** - Identify resources related to or necessary for regulatory or legislative compliance. 
 **Optimisation and Automation** - Automate workloads or processes such as a CI/CD pipeline by targetting actions against tagged resources.
 
-#### Managing Tags
+### Managing Tags
 
 You can add, modify, or delete resource tags through Windows PowerShell, the Azure CLI, Azure Resource Manager templates, the REST API, or the Azure portal.
 
@@ -1185,9 +1193,9 @@ Tags are key-value pairs, make any you want to fit your environment, but some co
 - Environment
 - Impact
 
-### Describe features and tools in Azure for governance and compliance
+## Describe features and tools in Azure for governance and compliance
 
-#### Describe the purpose of Microsoft Purview
+### Describe the purpose of Microsoft Purview
 
 Purview is about managing and controlling your data to meet your governance and compliance requirements. 
 
@@ -1206,7 +1214,7 @@ Microsoft Purview’s unified data governance helps your organization:
 - Generate insights about how your data is stored and used.
 - Manage access to the data in your estate securely and at scale.
 
-#### Describe the purpose of Azure Policy
+### Describe the purpose of Azure Policy
 
 Azure Policy is used to create, manage, assign, and enforce compliance requirements across your resources.
 
@@ -1218,7 +1226,7 @@ There are a range of pre-defined policies and intiatives which align with common
 
 Azure Policy also integrated with Azure DevOps, allowing you to apply policies against stages in your CI/CD pipeline.
 
-#### Describe the purpose of resource locks
+### Describe the purpose of resource locks
 
 A resource lock prevents resources from being accidentally deleted or changed.
 
@@ -1231,7 +1239,7 @@ You can manage resource locks from the Azure portal, PowerShell, the Azure CLI, 
 
 To make changes to a resource you must remove the lock first, even if you have RBAC permissions or own the resource.
 
-#### Describe the purpose of the Service Trust portal
+### Describe the purpose of the Service Trust portal
 
 Depending upon your industry, you may have a range of standards you need to abide by in your operations. Broadly speaking they can fall into three categories:
 
@@ -1257,9 +1265,9 @@ Some of the information available through the portal is confidential, and to acc
 
 From the portal home page you can search for documentation outlining the various accrediations achieved by Microsoft, for Azure. You can also pin those relevant to your industry and operations to make a custom library.
 
-### Describe features and tools for managing and deploying Azure resources
+## Describe features and tools for managing and deploying Azure resources
 
-#### Describe tools for interacting with Azure
+### Describe tools for interacting with Azure
 
 Azure provides multiple methods of managing and interacting with your environment, including:
 
@@ -1282,7 +1290,7 @@ Azure provides multiple methods of managing and interacting with your environmen
 
 Azure actually works based upon API calls. Your call, amongst other necessary information, includes your requested action, and your identity, so that your request can be authenticated and authorised. Therefore, no matter which way you interact with Azure, you are making the same API request in the back-end.
 
-#### Describe the purpose of Azure Arc
+### Describe the purpose of Azure Arc
 
 It is not uncommon for modern large organisations to utilise multiple cloud providers for a number of reasons. Although major outages do occasionally occur, it is very unlikely that more than one cloud platform will be down simultaneously. Therefore, you may use a multi-cloud strategy to improve availability and resiliency. Maybe you just want to use Azure for the integration with Microsoft365 app's, you want to use some of the niche services on AWS, and deploy your Kubernetes clusters on GCP, whilst still keeping some sensitive data on-premise.
 
@@ -1300,7 +1308,7 @@ This is the scenario ARC is used for, it can extend your management and governan
   - SQL Server
   - Virtual machines (preview)
 
-#### Describe Azure Resource Manager and Azure ARM templates
+### Describe Azure Resource Manager and Azure ARM templates
 
 Azure Resource Manager (ARM) is the deployment and management layer for Azure, through which you create, manage, and delete resources in your Azure account. So basically, ARM is involved in everything you want to do.
 
@@ -1308,9 +1316,104 @@ As illustrated below, regardless of whether your request comes from the portal, 
 
     * A Software Developer Kit allows you to import or install Azure commands and features into your preferred programming language, allowing you to embed Azure functionality into your developed applications.
 
-ARM allows you to manage your infrastructure through declarative templates
+![*DIAGRAM*](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/media/overview/consistent-management-layer.png)
 
-  ![*DIAGRAM*](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/media/overview/consistent-management-layer.png)
+ARM allows you to manage your infrastructure through declarative templates written in JSON. **Declarative** scripts, rather than giving instructions such as "deploy 3 web servers", they instead define *what should be* so "there should be 3 web servers". This difference is sutble, but important. If you were to run the first instruction over and over, you end up with lots of web servers, these are known as *imperative commands*. If you run the second one, it will simply verify your original deployment. Using this approach you can define your **desired state**, and have it evaluated for compliance with your design.
+
+Benefits of using ARM include:
+- By defining your resources in an ARM template you can deploy, manage, and monitor all of the described resources as a group.
+- The template can be reused to deploy duplicate environments in alternate regions.
+- The ARM template can be managed with an SCM tool such as management, allowing for iterative changes and refinements.
+- The template allows you to define dependencies between resources, ensuring they're deployed in the correct order. So, if component B relies upon component A, ARM will wait until A is ready before deploying B to avoid errors.
+- ARM also allows you to implement RBAC for access control, and apply tags to deployed resources for enhanced management and billing capabilities.
+
+### Infrastructure as Code
+
+If you're used to traditional on-premise based operations, adapting to cloud operations can be a bit of a paradigm shift. Consider a virtual machine, back in the stone age a computer was always a physical device limited to it's specification. Making changes such as upgrades and completing regular maintenance required physical access, and lots of planning.
+
+In the cloud, or with virtualisation, a computer, or *virtual machine* is defined by software. The configuration of the VM is stored in files, and a virtual hard disk is simply a file containing other files (the files on the VM). This applies to the rest of your cloud resources as well. Networks are defined by software, firewall rules are defined and implemented in software, and so on. Ultimately everything can be defined or described by lines of code, known as **Infrastructure as Code**. 
+
+You can manage your infrastructure with PowerShell and CLI commands, and you can create scripts to automate your commands. However, this would be an imperative approach, ARM templates and Bicep are two examples of using infrastructure as code with the Azure Resource Manager to maintain your environment declaratively.
+
+#### ARM templates
+
+By using ARM templates, you can describe the resources you want to use in a declarative JSON format. The deployment code is verified before any code is run ensuring that the resources will be created and connected correctly. ARM then uses the template to orchestrate the deployment of the defined resources automatically, in your defined order. As explored previously, you define the desired state and configuration of each resource in the ARM template, and the template does the rest. 
+
+Templates can even execute PowerShell and Bash scripts before or after the resource has been set up.
+
+In addition to declarative syntax, ARM templates are able to provide consistent and repeatable results, they can simplify and orchestrate complex deployments, and they can also be split into modules so that smaller components can be reused.
+
+#### Bicep
+
+Bicep, like ARM templates, uses declarative syntax to deploy Azure resources. A Bicep file defines the infrastructure and configuration, then ARM deploys that environment based on your Bicep file. 
+
+While similar to an ARM template, which is written in JSON which can be complex and difficult to read, with multiple nested objects. Bicep files tend to use a simpler, more concise style, but still supports all resource types and APIs. Bicep requires no previous knowledge of programming languages, and allows you to repeatedly deploy your infrastructure in a consistent manner throughout the development lifecycle. 
+
+Bicep files are also idempotent, which means you can deploy the same file many times and get the same resource types in the same state. 
+
+### Describe the purpose of Azure Advisor
+
+Azure advisor continuously evaluates your infrastructure and makes recommendations for improvements based around 5 areas. You can view the recommendations through the Azure Advisor portal dashboard, you can also access them via API, and enable notifications when new recommendations are generated. 
+
+The 5 areas of focus are:
+
+- **Reliability** - Reduce the potential for your app's and workload to be non-functional when you need them.
+- **Security** - Detect threats and vulnerabilities in your security posture.
+- **Performance** - Improve the speed of your deployed apps and resources.
+- **Operational Excellence** - Improve efficiency, manageability, and adhere to best practices.
+- **Cost** - Suggestions for how to optimise your spending, without compromising any of the above areas.
+
+![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-monitoring-tools-azure/media/azure-advisor-dashboard-baca22e2.png)
+
+### Describe Azure Service Health
+
+Azure Service Health utilises three sub-services to give you insight into the overall status of Azure services globally, and your specific services. 
+
+- **Azure Status** - Provides a global view of the status of Azure services across all regions.
+- **Service Health** - Provides a closer view of services within a region(s) you're using. This will typically be your most valuable view, providing information into outages, planned maintenance, and any other known issues affecting service availability. It does require authenticated access to provide you with a customised view, and you can also set up alerts for newly announced issues.
+- **Resource Health** - Provides a view of your actual resources, such as specific virtual machines. Integrate with Azure Monitor for alerts and notifications.
+
+Through the use of all three sub-services, Azure Advisor gives you insight across all services and resources, from a global to a granualar view. 
+
+### Describe Azure Monitor
+
+Azure Monitor allows you to aggregate metrics, logs, and signals, analyse and viualise the data, and take action based on the results. It can monitor resources across your infrastructure, including on-premise and multi-cloud environments. 
+
+The below diagram illustrates how data is gathered from various sources, aggregated in a data platform, which then feeds into a wide range of tools for analysis, visualisation, response, etc.
+
+![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-monitoring-tools-azure/media/azure-monitor-overview-614cd2fd.svg)
+
+#### Azure Log Analytics
+
+Log Analytics allows you to run queries on the data gathered by Azure Monitor. You can create complex queries for analysis, or simple queries and use comrehensive filters to limit and sort the results.
+
+#### Azure Monitor Alerts
+
+When monitoring data indicated a threshold has been breached, Azure Monitoring Alerts can be configured to notify key personell, and optionally carry out corrective actions.
+
+Action groups allow you to define a collection of notifications and actions that can be taken when a defined threshold is reached.
+
+#### Application Insights
+
+Application Insights monitors your applications in Azure, on-premises, or in different cloud environments. It can provide this functionality in one of two ways. 
+
+The Software Development Kit is a module or plugin developed by Azure for common programming languages. To state the obvious, the developers of individual languages, such as C#, Python, Node.js, etc. are not the developers of Azure, and they may not have any knowledge of how to use Azure, therefore no native Azure functionality is included in their language. 
+
+Of course, this logic applies to many areas. Python for example, out-of-the-box isn't necessarily great at making games, or performing data analytics, or working with AI. But all of this functionality and more can be imported through modules. 
+
+Microsoft's developers create SDK's for popular languages, and when installed or imported, they provide the additional functionality to the language in question, so that it can interact with the Azure cloud, or integrate with Azure Monitoring.
+
+Alternatively, rather than implementing the monitoring integration at the application development level, you can install an Application Insight Agent, which supports C#, .NET, VB.NET, Java, JavaScript, Node.js, and Python.
+
+Once properly configured, Application Insights can gather and monitor:
+- Request rates, reponse times, and failure rates.
+- Dependency rates, response times, and failure rates, to show whether external services are slowing down performance
+- Page views and load performance reported by users' browsers
+- AJAX calls from web pages, including rates, response times, and failure rates
+- User and session counts
+- Performance counters from Windows or Linux server machines, such as CPU, memory, and network usage
+
+It is also capable of sending dummy requests to your app as a health-check.
 
 ## Extras
 
