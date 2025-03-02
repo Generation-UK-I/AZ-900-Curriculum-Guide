@@ -6,90 +6,122 @@
 
 ## What is the Cloud
 
-Simply put, the cloud is where organisations, cloud providers, have built data centers and populated them with computing hardware. Other organisations and individuals can then use the provider’s resources, and pay for just what they use, rather than having to invest in their own on-premise hardware and infrastructure.
+Simply put, the cloud is where organisations, known as cloud providers, have built data centers and populated them with computing hardware. Other organisations and individuals can then use the provider’s resources and pay for just what they use, rather than having to invest in their own on-premise hardware and infrastructure.
 
 There are lots of benefits which will be explored, but in brief, the cloud provides cost savings, flexibility, scalability, reduced overheads, and many more.
 
 ## Shared Responsibility Model
-When you use cloud services, since the hardware is owned by someone else, and resides in a data center which you do not have access to, so you’re always giving away some level of control over your infrastructure. How much control you hand over is dictated by the type of services you use, as outlined by this diagram 
+When you use cloud services, since the hardware is owned by someone else, and resides in a data center to which you do not have access, you’re always giving away some level of control over your infrastructure. 
+
+How much control you hand over is dictated by the type of services you use, as outlined by this diagram.
 
 ![*DIAGRAM*](https://learn.microsoft.com/en-us/training/wwl-azure/describe-cloud-compute/media/shared-responsibility-b3829bfe.svg)
 
 ## Cloud Deployment Models
-### Public
-The main cloud providers (AZ, AWS, GCP, etc.) would like everyone to use their services, more users equals more profit 🙂 so they’re called public cloud providers. When you use the public cloud your resources can reside on physical servers alongside those of other cloud users. They’re logically isolated of course, but in some cases, such as highly regulated industries, or highly sensitive data, you may not wish to store it on hardware which you don’t have full control over. One example is that you may need to physically destroy hard disks when you’ve finished using them, so data can never be recovered. If using a public cloud provider, you cannot do this.
 
-### Private
-If your organisation wants some of the operational benefits of the cloud, such as flexibility so you can create multiple environments (dev/test/prod) without purchasing separate hardware, easy resource scaling, etc. But you can't hand control of your data assets to a 3rd party, you can create your own private cloud. It will be very expensive, but you own it, and have full control - *you also have complete ownership of any mistakes*
+### Public Cloud
+
+The main cloud providers (AZ, AWS, GCP, etc.) would like anyone & everyone to use their services, since more users equals more $$$$$, so they’re called public cloud providers. 
+
+When you use the public cloud your resources can reside on physical servers alongside those of other cloud users. They’re logically isolated, but in some cases, such as highly regulated industries, or when you work with highly sensitive data, you may not wish to store it on hardware which you don’t have full control over. 
+
+One example is industries which require you to physically destroy hard disks when you’ve finished using them, so data can never be recovered. If using a public cloud provider, you cannot do this.
+
+### Private Cloud
+If your organisation wants some of the operational benefits of the cloud, but you can't hand control of your data assets to a 3rd party, you can create your own *private* cloud. It will be very expensive, but you own it, and have full control - *you also have complete responsibility for any mistakes*
 
         There is another option called Co-Location (co-lo), where a third party has built a data center, the bricks and mortar, the utilities and networking, but not the servers, the customer brings their own. So you use your hardware, you can arrange physical access, but your resources are 'co-located' with other customer, in a shared physical location.
 
-### Hybrid
-This deployment model is where customers deploy some resources and services on a public cloud provider, and retain some of their solution on-premise. These two environments can be connected together to share resources, or kept isolated. This can be very useful when an organisation has some sensitive workloads, and some which can be moved to a public cloud. However, it's worth remembering that pretty much every company has at least some physical devices, even if it's just the computers their employees use day to day. So, technically, everyone is using a hybrid solution.
+### Hybrid Cloud
+This deployment model is where customers deploy some resources and services on a public cloud provider, and retain some of their solution on-premise. These two environments can be connected together to share resources, or kept isolated. This can be very useful when an organisation has some sensitive workloads, and some which can be moved to a public cloud. However, it's worth remembering that pretty much every company likely has some physical devices, even if it's just the computers their employees use day to day. 
+
+So, technically, everyone is using a hybrid solution.
 
 ## Cloud Service Types
-The Shared Responsibility Model has 3 verticals (4 if you count fully on-prem), which represent the common service types. Each service you use in the cloud will fall under one of these categories
+The Shared Responsibility Model has 3 verticals (4 if you count fully on-prem), which represent the common service types. 
 
-### IaaS 
-Infrastructure as a Service options are replicating the hardware devices that you would purchase and deploy on-premise, and provide you with a similar level of control, and allow you to make similar choices. You don't necessarily need to worry about cables, routers, and switches, but, from the server's specification and upwards, you have control of everything you deploy, and whatever you build upon them.
-### PaaS
-Platform as a Service solutions hand over a more control of your infrastructure to the cloud provider. Use PaaS options when you want to deploy an application, and you require a certain level of performance and reliability, but how the underlying resources are deployed and configured is not really important to you. With PaaS you bring your application code, data, configure users and access, then the compute resources are assigned and allocated dynamically by the cloud provider. 
-### SaaS
-Software as a Service is for when you require pre-existing software packages, like PaaS, you don't want to worry about any servers running the software, or have to make any scaling decisions, etc. But in this case you're not providing your own application code, you're using an application from someone else, you just need to configure the app, and provide your users with access. 
+![DIAGRAM](https://learn.microsoft.com/en-us/training/wwl-azure/describe-cloud-compute/media/shared-responsibility-b3829bfe.svg)
 
-        Another advantage of SaaS services is that software license costs can become a monthly operational expense (OpEx), just like your compute resources when you adopt cloud solutions, you no longer need to make significant capital expenditure (CapEx) for your software licences. 
+Each service you use in the cloud will fall under one of these categories:
+
+### Infrastructure as a Service (IaaS)
+Infrastructure as a Service options are replicating the hardware devices that you would purchase and deploy on-premise, provide you with a similar level of control, and allow you to make similar choices. 
+
+You don't need to worry about cables, routers, and switches, but, from the server's specification and upwards, you have control of everything you deploy, and whatever you build upon those foundations.
+
+### Platform as a Service (PaaS)
+Platform as a Service solutions hand over a more control of your infrastructure to the cloud provider. Use PaaS options when you want to deploy an application, and you require a certain level of performance and reliability, but how the underlying resources are deployed and configured is not a concern as long as it works. 
+
+With PaaS you bring your application code, data, configure users and manage access. The compute resources to run your code are assigned and allocated dynamically by the cloud provider.
+
+### Software as a Service (SaaS)
+Software as a Service is when you require pre-existing applications offered by another provider. Like PaaS, with SaaS solutions you don't want to worry about any servers running the software, or have to make any scaling decisions, etc. But you're not providing your own application code, you're using an application from someone else. You just need to configure the app, and provide your users with access. One of the most commonly used SaaS options is `Microsoft365` (formerly Office365).
+
+    Another advantage of SaaS services is that software license costs can become a monthly operational expense (OpEx), just like your compute resources when you adopt cloud solutions, you no longer need to make significant capital expenditure (CapEx) for your software licences. 
+
+One thing to bear in mind, a software development company may choose to sell their software under a SaaS model, which is delivered to their customers via the cloud. In which case, providing the stable and reliable experience your customers expect, may be dependent upon the stability and reliability of the cloud solution upon which you deliver it.
 
 ## Consumption Based Model
 
 One of the most attractive benefits of the cloud is the ability to transform your business' spending model from one reliant upon capital expenditure, buying assets up front (or on credit), requiring significant investment. When it comes to IT resources, these investments will also depreciate over time, so you have to be confident that you will achieve an ROI.
 
-The default method of paying for resources you deploy in the cloud is based on consumption, i.e. how much of each resource you consume, or Pay as You Go (PAYG). 
+The default method of paying for resources you deploy in the cloud is based on consumption, i.e. how much of each resource you consume, or `Pay as You Go (PAYG)`. 
 
 Say you need a server with 8 CPU cores (and associated resources), running for 8 hours a day. On-premise you need to purchase that server, let's say it's £5,000. Obviously, you pay that cost regardless of how much you use the device, 8 hours per day, or 24. 
 
-Don't take these figures as real just illustrative, but now let's say that to deploy the same server in the cloud would cost you 10p per hour. 24 hours per day, 30 days per month, that's 720 hours, at 10p per hour, your server costs you £72 per month. That is obviously a much more attractive figure, in fact you'd have to use the cloud server for >69 months to match the cost of the in-premise server. 
+Don't take these figures as real, just illustrative, but now let's say that to deploy the same server in the cloud would cost you 10p per hour. 24 hours per day, 30 days per month is 720 hours, at 10p per hour your server costs you £72 per month. That is obviously a much more attractive figure, in fact you'd have to use the cloud server for ~70 months (nearly 6 years) to match the cost of the on-premise server. 
 
-But, we can go lower; If you only need the server for 8 hours per day, and let's assume only Monday-Friday, then 8 hours, times 20 days per month is 160 hours. 10p per hour for 160 hours is just £16 per month.
+But, we can go lower; If you only need the server for 8 hours per day, and let's assume only 5 days per week, for 8 hours per day, for four weeks per month. That's 160 hours, at 10p your server costs just £16 per month.
 
-Ok, that's an extreme case, in reality some of the resources would continue incurring costs when switched off, such as the storage space you're using, and public IP addresses you have reserved, but significant savings are possible.
+That's an extreme case, in reality some of the resources would continue incurring costs when switched off, such as the storage space you're using, and public IP addresses you have reserved, but significant savings can be achieved if the cloud is used correctly.
 
 # Describe the benefits of using cloud services
 
 ## High Availability
 
-High availability is the idea that your resources and workloads remain operational and accessible, and in the face of changing circumstances, such as hardware rack or data center failure, availability zone or regional failure, even geography failure, if desired. 
+High availability is the idea that your resources and workloads remain operational and accessible in the face of changing circumstances, such as hardware, data center, availability zone, or regional failure, even geography failure, if needed.
 
-When architecting a cloud solution, you can take advantage of the Azure infrastructure features to achieve the level of resilience required. Microsoft have designed their infrastructure to provide high availability, so your deployment strategy dictates the service level agreement (SLA) provided.
+When architecting a cloud solution you can take advantage of the Azure infrastructure features to achieve the level of resilience required. Microsoft have designed their infrastructure to provide high availability, so the deployment strategy you use dictates the service level agreement (SLA) provided, for example using `Availability Sets`, and `Zonal services`.
 
 ## Scaling
 
-Scaling refers to changing the quantity, capacity, speed, etc. of your resources in response to changing workloads. This could be adding additional virtual machines to share a workload, or adding more storage space as needed. But since we pay for what we use in the cloud, it's also important to scale back down when demand falls; This is known as elasticity. 
+Scaling refers to changing the quantity, capacity, and performance of your resources in response to changing workloads. This could be adding additional virtual machines to share a workload, or adding more storage space as needed. But since we pay for what we use in the cloud, it's also important to scale back down when demand falls; This is known as `elasticity`. 
 
 There are two types of scaling:
 
-- Vertical scaling refers to making one resource more powerful, so you could upgrade a server's CPU to one with more cores, or you could add more RAM to the system. One advantage of vertical scaling is that you can improve performance for less cost than a complete additional system. However, the system usually needs to be taken offline to complete the upgrade.
+- `Vertical scaling` refers to making one resource more powerful. You could upgrade a server's CPU to add cores, or add more RAM to the system. One advantage of vertical scaling is that you can improve performance for less cost than a whole new system. 
 
-- Horizontal scaling is about adding extra copies of a resource, so deploying an additional server, then sharing the workload across them. Adding the additional server should not affect the original, so no downtime is incurred, but you likely have to purchase a whole additional server.
+  However, there are significant drawbacks, the system usually needs to be taken offline to complete the upgrade, incremental changes are not viable, and due to the long time to implement upgrades you will typically have to plan for and purchase your resource needs well in advance.
 
-On-premise scaling is difficult for a number of reasons - Organisations usually need a return on their investment, if they purchase an expensive server they expect it to be doing some work and contributing to their revenue. So, having a spare server sat idle, but ready to turn on and share the workload as needed, doesn't really make sense. As mentioned, vertical scaling may be more cost effective, but requires you to plan for downtime, which may impact business operations. 
+- `Horizontal scaling` is about adding extra copies of a resource, such as deploying an additional server then sharing the workload. Adding the additional server should not affect the original, so no downtime is incurred, but you are doubling your administration and management overhead. 
 
-In the cloud both horizontal and vertical scaling can be done. Although scaling applies to various services, we'll stick to VMs for simplicity - you can change the size or type of a VM, or change the size of the attached VHD, but doing so requires stopping the machine. You can also quickly and easily horizontally scale by adding additional VMs - The cloud overcomes one of the barriers to horizontal scaling on-premise, because you don't need to purchase the hardware in advance, just deploy as needed, and tear down when demand falls. 
+`On-premise scaling` is difficult for a number of reasons. Organisations usually need a return on their investment; If they purchase an expensive server they expect it to be doing some work and contributing to their revenue. So, having a spare server, sat idle but ready to horizontally scale and share the workload, but only when needed, doesn't really make sense. Therefore, horizontal scaling, particularly in granular increments, and certainly the ability to scale down as well, is only really possible in the cloud.
+
+In the cloud both horizontal and vertical scaling can be done quickly and easily. Although scaling applies to various services, we'll stick to VMs for simplicity. You can vertically scale by changing the size or type of a VM, or changing the size of the attached virtual hard disks (VHDs), but doing so requires stopping the machine. You can horizontally scale by adding additional VMs, thousands if needed. 
+
+The cloud overcomes one of the barriers to horizontal scaling on-premise, because you don't need to purchase the hardware in advance, just deploy as needed, and tear down when demand falls.
+
+You can define your minimum and maximum number of VMs, allowing you to set a base level of performance, as well as control costs, as illustrated below.
+
+![DIAGRAM](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/media/autoscale-overview/autoscaleconcept.png#lightbox)
 
 	Sharing a workload across multiple resources is not as simple as just deploying a duplicate - you also need a load balancer to distribute the inbound requests, and consider endpoints, shared storage, etc. 
 
 
 ## Reliability & Predictability
 
-Organisations which are running critical workloads, who rely upon their IT infrastructure to support business operations, need their infrastructure to be both reliable, and operate predictabily, i.e. what is expected to happen should happen. The cloud, and cloud-based technologies can bring significant improvements and benefits in these areas. 
+Organisations which are running critical workloads rely upon their IT infrastructure to support business operations. They need their infrastructure to be both reliable, and operate predictabily, i.e. what is expected to happen should happen. 
 
-Reliability in the cloud can be considered in a number of ways; In terms of a single server, assuming your on-premise device has reliable utilities and cooling, perhaps the cloud provider's data center has more redundancy built in, but at the end of the day a single server can be expected to fail at some point, regardless of where it is. 
+The cloud, and cloud-based technologies can bring significant improvements and benefits in these areas. 
 
-However, the Azure cloud provides accessible options for you to deploy reliable and resilient solutions. Examples include:
+`Reliability` in the cloud can be considered in a number of ways; In terms of a single server, assuming your on-premise server has reliable utilities and cooling, perhaps the cloud provider's data center has more redundancy available. At the end of the day, a single server can be expected to fail at some point, regardless of where it is.
 
-- Deploying multiple resources and load balancing, so if one fails there are others to take up the slack.
+The Azure cloud provides easily accessible options for you to deploy reliable and resilient solutions. Examples include:
+
+- Deploying multiple resources and load balancing across them, so if one fails there are others to take up the slack.
 - Scaling resources to reduce the likelyhood of failure as workloads increase.
-- Deploying failover solutions where traffic is directed to one primary resource, then re-directed to the failover in case of primary failure. 
-- Services such as storage will automatically make multiple copies of your data to meet any reliability and durability requirements.
+- Deploying failover solutions where traffic is directed to one primary resource, then re-directed to a secondary in case of primary failure. 
+- Storage services will automatically make multiple copies of your data to meet any reliability and durability requirements.
 - Intergrated monitoring of resources and workloads can provide early indication of impending failure, allowing for intervention.
 
 There are many other strategies which may be implemented. 
@@ -98,35 +130,35 @@ There are many other strategies which may be implemented.
 
 Every organisation has to consider the security of their assets and infrastructure as a priority. In our earlier modules we have already considered many security controls, including:
 
-- Harden servers by disabling and/or removing unnecessary app's and services; Restrict access and permissions following the principle of least privilge; Install host-based anti-virus and firewall software; Update and patch; Etc.
-- Secure networks with properly configured routers, switches, and firewalls; Deploy network intrusion/prevention systems; Segment networks with subnets to isolate traffic and resources; Etc.
-- Deploy physical security controls such as ID badges, physical entry controls, CCTV, security personell, along with organisational wide training, policies, and process for reinforcement of controls.
+- `Harden servers` by disabling and/or removing unnecessary app's and services; Restrict access and permissions following the principle of least privilge; Install host-based anti-virus and firewall software; Update and patch; Etc.
+- `Secure networks` with properly configured routers, switches, and firewalls; Deploy network intrusion/prevention systems; Segment networks with subnets to isolate traffic and resources; Etc.
+- Deploy `physical security` controls such as ID badges, physical entry controls, CCTV, security personell, along with organisational wide training, policies, and process for reinforcement of controls.
 
-When deploying to the cloud, many of your existing security controls, with the exception of physical ones, will likely work just the same, you just deploy them to your cloud environment instead.
+When deploying to the cloud, many of your existing security controls, with the exception of physical, will likely work just the same, you just deploy them to your cloud environment instead.
 
-Azure has considered security during the development of their different service offerings, providing you with the ability to implement granular access control, encryption at rest and in transit, deploy backup and failover solutions, and many more security controls directly within the relevant service. However, correctly configuring these services to meet your needs, is your responsibility (at, least with IaaS and PaaS solutions it is).
+Azure has considered security during the development of their different service offerings, providing you with the ability to implement **granular access control**, **encryption at rest and in transit**, deploy **backup** and **failover** solutions, and many more security controls directly within the relevant service. However, correctly configuring these services to meet your needs, is your responsibility (at, least with IaaS and PaaS solutions it is).
 
 In addition to the security controls embedded into the different resources, Azure also offers a wide range of services which are specifically focused upon providing advanced security capabilities. Some examples include:
-- Entra ID (formerly Azure Active Directory), which acts as a secure identity provider, and can provide AAA capabilities for your Azure, on-premise, and multi-cloud resources and environments;
-- Azure RBAC to allow users to access only the resources they are required to access based on their roles within the organization.
-- Microsoft Sentinel which delivers intelligent security analytics and threat intelligence
+- `Entra ID` (formerly Azure Active Directory), which acts as a secure identity provider, and can provide AAA capabilities for your Azure, on-premise, and multi-cloud resources and environments;
+- `Azure RBAC` to allow users to access only the resources they are required to access based on their roles within the organization.
+- `Microsoft Sentinel` which delivers intelligent security analytics and threat intelligence
 
 ... and many others. 
 
 ## Manageability
 
-Manageability in Azure refers to the ability to Migrate, Secure, Protect, Monitor, Configure, and Govern your resources and workloads in the cloud. For effective management you require:
-- Insight into your inventory and service catalog
-- Understanding of your operational compliance requirements
-- Protection and recovery capabilities
-- Baseline metrics for workload operations
+Manageability in Azure refers to the ability to **Migrate, Secure, Protect, Monitor, Configure**, and **Govern** your resources and workloads in the cloud. For effective management you require:
+- **Insight** into your inventory and service catalog
+- **Understanding** of your operational **compliance** requirements
+- **Protection** and **recovery** capabilities
+- **Baseline** metrics for workload operations
 
 In addition to support for 3rd party management tools, there are a variety of services available through Azure to facilitate and enhance your management capabilities. Some examples include:
-- Azure Monitoring provides granular monitoring capabilities for resources in Azure, on-premise, and multi-cloud environments. A wide range of pre-defined and custom metrics can be used to monitor and evaluate your workloads and resources.
-- Azure Automation provides services for automating configuration tasks.
-- Azure Policy allows you to create, assign, and manage policy definitions to enforce rules for your resources.
-- Microsoft Defender for Cloud, which includes unified security management and advanced threat protection across hybrid cloud workloads.
-- Azure Migrate is a service that helps you discover, assess, and migrate on-premises virtual machines to Azure.
+- `Azure Monitoring` provides granular monitoring capabilities for resources in Azure, on-premise, and multi-cloud environments. A wide range of pre-defined and custom metrics can be used to monitor and evaluate your workloads and resources.
+- `Azure Automation` provides services for automating configuration tasks.
+- `Azure Policy` allows you to create, assign, and manage policy definitions to enforce rules for your resources.
+- `Microsoft Defender for Cloud`, which includes unified security management and advanced threat protection across hybrid cloud workloads.
+- `Azure Migrate` is a service that helps you discover, assess, and migrate on-premises virtual machines to Azure.
 
 # Module 2 - Describe Azure Architecture and Services
 
@@ -160,21 +192,21 @@ Not all regions are enabled for Availability Zone functionality, but regions wer
 
 ### Zonal Services
 
-You can use availability zones to run mission-critical applications and build high-availability into your application architecture by co-locating your compute, storage, networking, and data resources within an availability zone and replicating in other availability zones. 
+You can use Availability Zones to run mission-critical applications and build high-availability into your application architecture by co-locating your compute, storage, networking, and data resources within an availability zone and replicating in other availability zones. 
 
 Azure services that support availability zones fall into three categories:
 
-- Zonal services: You pin the resource to a specific zone (for example, VMs, managed disks, IP addresses).
-- Zone-redundant services: The platform replicates automatically across zones (for example, zone-redundant storage, SQL Database).
-- Non-regional services: Services are always available from Azure geographies and are resilient to zone-wide outages as well as region-wide outages.
+- `Zonal services`: You pin the resource to a specific zone (for example, VMs, managed disks, IP addresses).
+- `Zone-redundant services`: The platform replicates automatically across zones (for example, zone-redundant storage, SQL Database).
+- `Non-regional services`: Services are always available from Azure geographies and are resilient to zone-wide outages as well as region-wide outages.
 
-Two or more VMs, deployed across 2 or more availability zones, have an SLA of 99.99%.
+**Two or more VMs, deployed across 2 or more Availability Zones, have an SLA of 99.99%**.
 
 ## Azure management infrastructure
 
 ### Resource Groups
 
-In Azure, anything you create, provision, deploy, etc. is a resource. When you create a resource you are required to place it into a Resource Group, which is simple a collection of resources. However, RG's may not contain other RG's, i.e. they cannot be nested.
+In Azure anything you create, provision, deploy, etc. is a resource. When you create a resource you are required to place it into a Resource Group, which is a collection of resources. RG's may not contain other RG's, i.e. they **cannot** be nested.
 
 A Resource Group can contain many resources, each resource may only reside in one RG at a time, but may be moved from one to another.
 
@@ -192,7 +224,7 @@ An Azure subscription is both a billing boundary for all resources within, and i
 
 In addition to billing purposes, Subscriptions are commonly created to map to organisational structure, to separate environments such as `dev'`, `test`, & `prod'`.
 
-When you create your free tier Azure account a free tier subscription is created for you. After your trial expires, you must upgrade to a paid subscription to continue using Azure.
+When you create your `free tier` Azure account a free tier subscription is created for you. After your trial expires, you must upgrade to a paid subscription to continue using Azure.
 
 ### Management Groups
 
@@ -216,9 +248,9 @@ The image below is a more realistic example of how a large organisation might or
 
 # Describe Azure compute and networking services
 
-## Describe Azure virtual machines
+## Describe Azure Virtual Machines
 
-A virtual machine is a software defined computer, running upon a physical host, which has access to the underlying hardware via a Hypervisor. Azure Virtual Machines is an IaaS offering, allowing the Azure user to deploy virtual servers with:
+A virtual machine (VM) is a software defined computer, running upon a physical host, which has access to the underlying hardware via a `Hypervisor`. Azure Virtual Machines is an IaaS offering, allowing the Azure user to deploy virtual servers with:
 
 - Full control over the VM's operating system
 - The ability to run any software they want
@@ -228,11 +260,11 @@ As an IaaS service you have this level of granular control and flexibility, incl
 
 You are not limited to the pre-configured VMs available through the Portal or Marketplace. You can also migrate your own custom VM's, or export and import system images and virtual hard disks (VHDs).
 
-## VM Scaling
+## Virtual Machine Scaling
 
 It is common to run multiple VMs grouped together to, for example, share workloads and increase performance, provide high availability, or redundancy.
 
-### Virtual machine scale sets
+### Virtual Machine Scale Sets
 
 Virtual machine scale sets let you create and manage a group of identical, load-balanced VMs. You could create them manually, but you would then need to ensure that they has the same configuration, the same software stack, set up network routing rules, and create a custom monitoring dashboard. 
 
@@ -240,7 +272,7 @@ Scale sets automate much of this work, allowing you to centrally manage large nu
 
 The number of VMs in the scale set can increase or decrease in response to demand or based on a set schedule. Scale sets will also deploy a load balancer automatically, ensuring efficient utilisation of your resources.
 
-### Virtual machine scale sets
+### Virtual Machine Availability Sets
 
 Availability sets allow you to deploy solutions which provide high availability and resiliency against hardware rack failure within a data center, but not against an entire data center outage.
 
@@ -254,7 +286,7 @@ An availability set is a deployment strategy which utilises two logical grouping
 
 ### Fault Domains
 
-Fault domains are basically racks in the data center containing servers. A fault domain has an isolated power supply and networking from other fault domains, so that a hardware failure only impacts that domain.
+Fault domains are basically racks in the data center containing servers. A fault domain has an isolated power supply and networking from other fault domains, so that a hardware failure is restricted to just that domain.
 
 ### Update Domains
 
@@ -279,26 +311,32 @@ As mentioned, VMs are suitable when you require the highest level of control ove
 
 - **Testing and Development** When developing apps it is common to need to verify functionality and compatibility with a variety of O/S and software configurations, which can be quickly deployed and destroyed as VMs. 
 - **Running Apps** Some applications may not 'scale to zero' or have rpaidly fluctuating demand which requires performance head room to be maintained.
-- **Building Hybrid Infrastructures or Migrating** When connecting VM based workloads in private cloud or on-premise, or migrating existing VMs using a 'lift and shift' approach, minimising admin and developer work in redesigning workloads for cloud operation. 
+- **Hybrid Infrastructures & Migration** When connecting VM based workloads in private cloud or on-premise, or migrating existing VMs using a 'lift and shift' approach, minimising admin and developer work in redesigning workloads for cloud operation. 
 - **Disaster Recovery** A common strategy is for organisations to rebuild their infrastructure in the cloud, then turn it off to minimise costs. In the case of an outage at the primary site, the cloud environment can be launched in minutes, then traffic and workloads can be redirected to your cloud endpoints to restore service.
 
 ## VM Resources
 
-When deploying a VM, in addition to resource like CPU cores and RAM, it requires a number of additional supporting resources, including storage both for the operating system, and, if desired, persistent user data. Additonially, since you obviously can't' sit in front of your VM and use it as a local user with a keyboard, mouse, and monitor, the VM needs both a VNet and a virtual network interface card (NIC). You may also wish to allocate a public IP address to the VM, which is another resource. 
+When deploying a VM, in addition to resource like `CPU cores` and `RAM`, it requires a number of additional supporting resources, such as storage. Azure VMs require an OS disk for the operating system, and persistent storage for user data if required. 
 
-If you do not manually define these parameters they will be created automatically.
+Additonially, since you obviously can't' sit in front of your VM and use it as a local user with a keyboard, mouse, and monitor, the VM needs access tp a Virtual Network (VNet) and a virtual network interface card (NIC) to connect to the VNet. You may also wish to allocate a public IP address to the VM, which is another resource. 
+
+If you do not manually select these options they will be created automatically.
 
 ## Azure Virtual Desktop
 
-Organisations have a wide range of compute requirements, many of which can be met with virtual machines, but cloud providers offer a wide range of different compute services which can be more suitable, offer greater performance, or cost effectiveness than dedicated VMs.
+Organisations have a wide range of compute requirements which can be met with virtual machines, but cloud providers offer a range of different compute services which can offer greater performance, or be more cost effectiveness than dedicated VMs. One such example is Azure Virtual Desktop (AVD). 
 
-One such example is Azure Virtual Desktop (AVD). Traditionally, if a user works in a desktop environment, carrying out typical productivity tasks with common O365 apps, you give that user a computer running the required OS, and install all of the required app's. You then manage them using, ideally, some automated configuration management tool and/or group policy. You may also let your users use their own computer, known as 'bring your own device (BYOD), but that introduces further administrative overhead and security concerns.
+Traditionally, if a user works in a desktop environment, carrying out typical productivity tasks with common Microsoft365 and 3rd party apps, you give that user a computer running the required OS, and install all of the required app's. You then manage the computer using some automated configuration management tool, and/or `group policy`. You may also allow your users to use their own computers and phones, known as **bring your own device** (BYOD), but that introduces further administrative overhead and security concerns.
 
-Azure Virtual Desktop is a PaaS offering, which can provide a virtualised Windows 10 or 11 desktop experience, which can be accessed through a client app on Windows, Mac, iOS, & Android, or any device with a web browser. 
+**Azure Virtual Desktop** is a PaaS offering, which can provide a virtualised `Windows 10 or 11` desktop experience, which can be accessed through a client app on **Windows, Mac, iOS**, & **Android**, or any device with a **web browser**. 
 
-AVD lets you virtualise multiple desktop and application environments on Azure VMs, and present them to your users, instead of installing and managing them on local devices. Whilst also centralising the management and administration of the app's and environments. 
+### AVD Benefits
 
-AVD can also provide performance improvements where applications available to multiple users, accessing shared storage. Their environment will have low latency access to the data in the cloud, because their application or desktop is also in the cloud.
+AVD lets you virtualise multiple desktop and application environments on Azure VMs and present them to your users, instead of installing and managing local devices. You're also able centralise the management and administration of these app's and environments - it's much easier to manage a virtual environment in the cloud, than have to go and physically access a local on-premise machine.
+
+AVD can also provide performance improvements, for example, virtualised applications which are accessing storage in the cloud, will have low latency access to the data, because the application or desktop is also in the cloud.
+
+### AVD User Experience
 
 From the end users POV, they expect to click on an icon on their desktop or start menu, and have an app pop up. That is exactly what they get, it's just that the app, and/or the desktop, is running remotely. Each user's desktop, data, and app's are isolated from each other, and when delivered through the relevant client app the experience can be identical to running the environment locally.
 
@@ -308,7 +346,7 @@ While virtual desktop solutions have been available for a while, and can be crea
 
 As flexible and configurable as VMs are, there are also some limitations:
 
-- Each virtual machine includes an entire OS, and software stack, which means that changes and deployments can take a little while - we're talking minutes, but any downtime is a problem. 
+- Each virtual machine includes an entire OS, and **software stack**, which means that changes and deployments can take a while - we're talking minutes, but any downtime is a problem. 
 - You have to pay for a VM's attached storage, so, if you need to deploy multiple servers with the same operating system, there is potentially a lot of duplicate data.
 - Whilst portable, we can migrate VMs from on-premise to the cloud and vice-versa, they can be quite large, so the process of moving them can take some time, on a slow connection for example.
 
@@ -1417,6 +1455,8 @@ It is also capable of sending dummy requests to your app as a health-check.
 
 ## Extras
 
+The following topics are technically outside of the scope of AZ-900, but you can't be sure they won't use some additional services in as distractors, or they could throw in some wild-card questions. It's also useful to have additional context, and never bad to expand your knowledge.
+
 ### Summary of Support Plans
 
 The following table summarises the key features, and more importantly the differences, between the different Azure support plans offered:
@@ -1432,5 +1472,9 @@ The following table summarises the key features, and more importantly the differ
 
 
 ### Azure DevTest Labs
+
+DevTest Labs is a service which allows you to quickly create, manage, and access IaaS VMs. Some common scenarios include classroom and training environments, or for testing software in a variety of configurations.  You can build and pre-configure a range of VMs with the necessary tools and software to meet your requirements. 
+
+
 
 REST APIs
