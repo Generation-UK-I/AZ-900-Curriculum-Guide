@@ -4,6 +4,8 @@
 
 # Describe cloud computing
 
+![DIAGRAM](https://uploads.dailydot.com/2024/06/old-man-yells-at-cloud.jpg?q=65&auto=format&w=1200&ar=2:1&fit=crop)
+
 ## What is the Cloud
 
 Simply put, the cloud is where organisations, known as cloud providers, have built data centers and populated them with computing hardware. Other organisations and individuals can then use the provider’s resources and pay for just what they use, rather than having to invest in their own on-premise hardware and infrastructure.
@@ -347,10 +349,9 @@ From the end users POV, they expect to click on an icon on their desktop or star
 
 While virtual desktop solutions have been available for a while, they can be created manually with on-premise technologies. But doing so can be very challenging, with complex requirements and significant administrative overhead. AVD simplifies and streamlines the process by automating much of the configuration. Additionally, AVD can be cost effective compared to deploying a whole computer per person, as a single or cluster of VMs can deliver virtualised desktops and apps to many different users simultaneously.
 
-## Azure containers
+## Azure Containers
 
 As flexible and configurable as VMs are, there are also some limitations:
-
 - Each virtual machine includes an entire OS, and **software stack**, which means that changes and deployments can take a while - we're talking minutes, but any downtime is a problem. 
 - You have to pay for a VM's attached storage, so, if you need to deploy multiple servers with the same operating system, there is potentially a lot of duplicate data.
 - Whilst portable, we can migrate VMs from on-premise to the cloud and vice-versa, they can be quite large, so migrating them can take some time, particularly on a slow connection.
@@ -1556,3 +1557,7 @@ Services - Monitor, Governance, Advisor, OSI,
 - Technical knowledge and images: http://learn.microsoft.com  
 - Microsoft Azure Fundamentals, Third Edition  
 - Cartoons - original creations - inspired by XKCD  
+
+Additional Images:
+- https://uploads.dailydot.com/2024/06/old-man-yells-at-cloud.jpg?q=65&auto=format&w=1200&ar=2:1&fit=crop
+- 
