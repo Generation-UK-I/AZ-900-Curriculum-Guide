@@ -57,7 +57,8 @@ With PaaS you bring your application code, data, configure users and manage acce
 ### Software as a Service (SaaS)
 Software as a Service is when you require pre-existing applications offered by another provider. Like PaaS, with SaaS solutions you don't want to worry about any servers running the software, or have to make any scaling decisions, etc. But you're not providing your own application code, you're using an application from someone else. You just need to configure the app, and provide your users with access. One of the most commonly used SaaS options is `Microsoft365` (formerly Office365).
 
-    Another advantage of SaaS services is that software license costs can become a monthly operational expense (OpEx), just like your compute resources when you adopt cloud solutions, you no longer need to make significant capital expenditure (CapEx) for your software licences. 
+    Another advantage of SaaS services is that software license costs can become a monthly operational expense (OpEx).  
+    Just like your compute resources, when you adopt cloud solutions you no longer need to make significant annual capital expenditure (CapEx) for your software licences. 
 
 A common metaphor to help understand these service models is pizza - with IaaS you build from scratch, with PaaS the build has been done, but you need cook it and customise if needed, then with SaaS you just get to eat.
 
@@ -610,7 +611,8 @@ When you have purchased a domain name your registrar will typically offer a publ
 Azure DNS hosts public and private DNS domains, providing name resolution across Microsoft Azure infrastructure. You can manage your DNS records using the same credentials, APIs, tools, and billing as your other Azure services.
 
 Azure DNS leverages the Azure infrastructure to provide:
-- **Reliability and performance** - Azure DNS uses anycast networking, so the closest available DNS server answers each query.
+- **Reliability and performance** - Azure DNS runs across multiple name servers, and uses anycast networking, so the closest available DNS server answers each query.
+![DIAGRAM](https://learn.microsoft.com/en-us/azure/dns/media/dns-getstarted-portal/environment-diagram.png#lightbox)
 - **Security** - Azure DNS is based on Azure Resource Manager, which provides:
   - RBAC - to control who has access to specific actions
   - Activity Logs - to monitor how resources are modified
@@ -764,21 +766,21 @@ Key benefits include:
 - As a fully managed service Microsoft is repsonsible for maintenance activities, upgrading capacity as demand grows, and ensuring the shares are resilient and highly available.
 - Manage Azure Files with **Azure Portal**, **Storage Explorer**, **PowerShell**, or **Azure CLI**.
 
-### Azure Queues
+### Azure Queue Storage
 When developing a web app there are typically multiple components, at the very least a user facing front-end, and a back-end which does the processesing. 
 
 Just to point out the obvious, but the front-end for a web-app, is usually just a website. This means that many people could be using it, and submitting jobs, simultaneously. 
   
 When the front-end sends requests to the back-end, if it's busy, the request could time out and fail. 
   
-    Individual requests are just small text files, typically just an API call with relevant fields filled in. Any large objects required by the job are usually referenced by a link to another location (such as blob storage), not embedded in the request. 
+    Individual requests, API calls, are just small text files with job-relevant fields completed. Any large objects required by the job are usually referenced by a link to another location (such as blob storage), not embedded in the request. 
 
 Queues allow these small requests to be stored, they can then be retrieved by the the back-end when it's ready.
 
 ### Azure Disks
-Used for your block-level storage devices i.e. virtual hard disks (VHDs), which attach to your virtual machines. As a user you simple select the disk type and size, Azure will then create and manage it. You may also upload your existing VHDs from your on-premise environments to faciliate 'lift-n-shift' migrations.
+Used for your block-level storage devices i.e. **virtual hard disks** or `VHDs`, which attach to your virtual machines. As a user you simple select the disk type and size, Azure will then create and manage it. You may also upload your existing VHDs from your on-premise environments to faciliate **lift-n-shift** migrations.
 
-**Disk Types**:
+#### Disk Types:
   
 The following table summarises the available disk types:
 
@@ -792,21 +794,21 @@ The following table summarises the available disk types:
 
 Azure managed disks are designed for 5 nines (99.999%) availability, by creating 3 replicas of your data. Durability is defined by your selected level of redundancy, LRS = 11 nines, ZRS = 12 nines, etc.
 
-You can deploy Azure Disks into Availability Zones, Availability Sets, and you can deploy 50,000 per subscription.
+You can deploy Azure Disks into `Availability Zones`, `Availability Sets`, and you can deploy **50,000 per subscription**.
 
-You can also use Azure role-based access control (RBAC) to assign specific permissions for a managed disk to one or more users.
+You can also use **Azure role-based access control** (RBAC) to assign specific permissions for a managed disk to one or more users.
 
-Your VHDs are encrypted by Azure Storage service, known as Server Side Encryption (SSE), which allows you to select either customer manages or platform manages keys. Additionally you can also enable Azure Disk Encryption on both OS and data disks, which uses BitLocker for Windows VMs, DM-Crypt for Linux based. 
+Your VHDs are encrypted by Azure Storage service, known as **Server Side Encryption**  or `SSE`, which allows you to select either customer manages or platform manages keys. Additionally you can also enable `Azure Disk Encryption` on both OS and data disks, which uses `BitLocker` for Windows VMs, `DM-Crypt` for Linux based. 
 
 **Disk Roles**:
-  - **OS Disk** - Every VM requires an OS, so when you select an OS, a disk with it pre-installed is created. The OS disk can be up to 4TB, although that size is not supported by some OSes, and you may be limited to 2TB (unless you change MBR to GPT).
+  - **OS Disk** - Every VM requires an OS, so when you select an OS, a disk with it pre-installed is created. The **OS disk can be up to 4TB**, although that size is not supported by some OSes, and you may be limited to 2TB (unless you change MBR to GPT).
   
-    You do have read/write access to the OS disk, it is not recommended that you use it for storing data, but you may if minimising costs is a priority. There are a few reasons for this:
+    It is not recommended that you use the O/S disk for storing data, but you may if minimising costs is a priority. There are a few reasons for this:
     - With separate OS and Data disks, any problem with one, does not affect the other. A data error will not affect the stability of the OS, and an OS problem will not compromise the data.
     - Data disks can be resized without stopping the VM, OS disks do not support live-resize.
     - You can apply separate access controls and permissions to the VM and the data. 
 
-  - **Data Disk** - Data disks are additional managed disks, used for storing application, or any needed data. They are attached as SCSI disks, and you can assign a Windows drive letter, or mount point in Linux. The size and type of data disks you can add is dictated by the type of VM deployed. 
+  - **Data Disk** - Data disks are additional managed disks, used for storing application, or any needed data. They are attached as `SCSI` disks, and you can assign a *Windows drive letter*, or *mount point in Linux*. The size and type of data disks you can add is dictated by the type of VM deployed. 
 
     Compared to storing data on the OS disk, allocating a separate data disk has the following benefits:
     - Improved backup and disaster recovery
@@ -815,33 +817,35 @@ Your VHDs are encrypted by Azure Storage service, known as Server Side Encryptio
     - Easier maintenance
     - Improved security and access control
 
-  - **Temporary Disk** - Temp' disks are not managed, i.e. they do not have the same level of durability or availability. They are designed for short-term storage for app's and processes, and data may be lost when you stop the VM, or if it fails due to an unplanned maintenance event. *During a normal successful restart, the data should be retained*.
+  - **Temporary Disk** - Temp' disks are not managed, i.e. they do **not** have the same level of durability or availability. They are designed for short-term storage for app's and processes, and data may be lost when you stop the VM or if it fails due to an unplanned maintenance event. *During a normal successful restart, the data should be retained*.
 
 ### Azure Tables
-Azure tables is a NoSQL (non-relational) datastore in which you can store large amounts of structured data. Authenticated calls can be made against the data from inside and outside the Azure cloud. 
+Azure tables is a `NoSQL` (non-relational) datastore in which you can store large amounts of **structured data**. Authenticated calls can be made against the data from inside and outside the Azure cloud. 
   
   Tables are schemaless, and can store a practically unlimited number of entries.
 
 ## Identify Azure data migration options
 
-Migration is the process of moving your assets and workloads from one location to another, this could be on-premise to cloud, cloud to on-premise, site to site, or cloud to cloud. There are two main options to be aware of, **syncronous** migration of infrastructure, apps, and data, using Azure Migrate; Or **asyncronous** migration using Azure Data Box. 
+Migration is the process of moving your assets and workloads from one location to another, this could be on-premise to cloud, cloud to on-premise, site to site, or cloud to cloud. There are two main options to be aware of:
+- **Syncronous** migration of infrastructure, apps, and data, using `Azure Migrate` 
+- **Asyncronous** migration using `Azure Data Box`. 
 
 ### Azure Migrate
 
 Azure Migrate helps you migrate from on-prem' environments to the cloud, and provides a centralised hub to start, manage, and track your migration operation. There are three stages to a typical migration project: **Discover, Analyse, & Migrate.**
 
 Azure Migrate integrates a range of tools to gelp you with the process:
-- Azure Migrate: Discovery and assessment. Discover and assess on-premises servers running on VMware, Hyper-V, and physical servers in preparation for migration to Azure.
-- Azure Migrate: Server Migration. Migrate VMware VMs, Hyper-V VMs, physical servers, other virtualized servers, and public cloud VMs to Azure.
-- Data Migration Assistant. Data Migration Assistant is a stand-alone tool to assess SQL Servers. It helps pinpoint potential problems blocking migration. It identifies unsupported features, new features that can benefit you after migration, and the right path for database migration.
-- Azure Database Migration Service. Migrate on-premises databases to Azure VMs running SQL Server, Azure SQL Database, or SQL Managed Instances.
-- Azure App Service migration assistant. Azure App Service migration assistant is a standalone tool to assess on-premises websites for migration to Azure App Service. Use Migration Assistant to migrate .NET and PHP web apps to Azure.
+- **Azure Migrate**: Discovery and assessment. Discover and assess on-premises servers running on VMware, Hyper-V, and physical servers in preparation for migration to Azure.
+- **Azure Migrate**: Server Migration. Migrate VMware VMs, Hyper-V VMs, physical servers, other virtualized servers, and public cloud VMs to Azure.
+- **Data Migration Assistant**. Data Migration Assistant is a stand-alone tool to assess SQL Servers. It helps pinpoint potential problems blocking migration. It identifies unsupported features, new features that can benefit you after migration, and the right path for database migration.
+- **Azure Database Migration Service**. Migrate on-premises databases to Azure VMs running SQL Server, Azure SQL Database, or SQL Managed Instances.
+- **Azure App Service Migration Assistant**. Azure App Service migration assistant is a standalone tool to assess on-premises websites for migration to Azure App Service. Use Migration Assistant to migrate .NET and PHP web apps to Azure.
 
 ### Azure Data Box
 
 An asyncronous migration process which allows you to get data in & out of Azure securely, using a physical storage device. You order the Data Box through the portal, it is shipped to you, you copy your data across, and ship it back to Microsoft.
 
-Data Box can be useful in a variety of scenarios, including:
+**Data Box** can be useful in a variety of scenarios, including:
 - Bulk uploads during migration.
 - Where data is stored or generated in locations with poor connectivity options. For example, filming in remote locations, or centralised gathering of data from IoT devices.
 - Where the quantity of data divided by the available bandwidth, or other factors such as metered connections, make directly uploading unfeasible.
@@ -857,62 +861,63 @@ Migration services are designed for moving entire infrastructures, workloads, or
 
 - **AzCopy** - a CLI utility that lets you copy blobs or files to or from your storage account, synchronize files*, and back and forth between clouds.
 
-  *One-direction sync' only.
+      *One-direction sync' only.
 
 - **Azure File Sync** - a tool for centralising your file shares in Azure Files, and keeping them syncronised with local copies. This provides the flexibility, performance, and compatibility of a Windows file server. But automatically stay bi-directionally synced with your files in Azure.
 
 Features and benefits:
-
-- Use any protocol that's available on Windows Server to access your data locally, including SMB, NFS, and FTPS.
+- Use any protocol that's available on Windows Server to access your data locally, including `SMB`, `NFS`, and `FTPS`.
 - Have as many caches as you need across the world.
-- Replace a failed local server by installing Azure File Sync on a new server in the same datacenter.
+- Replace a failed local server by installing `Azure File Sync` on a new server in the same datacenter.
 - Configure cloud tiering so the most frequently accessed files are replicated locally, while infrequently accessed files are kept in the cloud until requested.
 
 # Describe Azure identity, access, and security
 
 ## Describe Azure directory services
 
-For decades organisations have used a directory service as a centralised place to manage & organise their user accounts, company devices, and permissions. By far, the market leading product for providing this functionality, is Microsoft's Active Directory software, installed on a Windows Server. You can also use AD to create and apply policies to your users and devices, which allow you to control features of the OS, manage software, and enforce security controls across the directory. 
+For decades organisations have used a directory service as a centralised place to manage & organise their user accounts, company devices, and permissions. By far, the market leading product for providing this functionality, is Microsoft's `Active Directory` software, installed on a `Windows Server`. You can also use AD to create and apply policies to your users and devices, which allow you to control features of the OS, manage software, and enforce security controls across the directory. 
 
-To take a step back, in our previous module we reviewed DNS, and discussed purchasing a domain from a registrar. We discussed creating a domain as a human-friendly name, which can be redirected to the IP address of your resources. However, there is another important function of domains, they represent trust boundaries. 
+To take a step back, in our previous module we reviewed DNS, and discussed purchasing a domain from a registrar, then using DNS to forward requests from the domain name to the IP address of your resources by creating records.
 
-When we deploy Active Directory, it's full name is **Active Directory Domain Services** (ADDS), the directory services run on a server configured as an **Active Directory Domain Controller** (ADDC). 
+However, there is another important function of domains, they represent trust boundaries. 
 
-When you configure your ADDC, you tell it what your domain is, and the directory for your resources is created within that domain. Once added, the user accounts and devices trust the domain controller as the authority for the domain. 
+When we deploy Active Directory, it's full name is **Active Directory Domain Services** or `ADDS`, the directory services run on a server configured as an **Active Directory Domain Controller** although other domain controller or `DC` options are available. 
 
-If a user wants to log into a computer, the computer checks their credentials with the domain controller; If the user successfully logs in, then tries to access another resource, such as a file share, or the company intranet, the domain controller permits or denys them access. This is why we consider the domain a trust boundary, all of the resources within the domain, truest the domain controller.
+When you configure your **ADDC**, you tell it what your domain is, and the directory for your resources is created within that domain. Once added, the user accounts and devices *trust* the domain controller as the authority for the domain. 
 
-    The fact that comapnies have been using ADDS for so long is part of the reason that Azure has grown so quickly. By developing cloud services which mirror their on-premise technologies, Microsoft makes migration easier, and existing skills, knowledge, and workflows, developed and refined over years, require minimal changes and updates to migrate.
+If a user wants to log into a computer, the computer checks their credentials with the domain controller; If the user successfully logs in then tries to access another resource, such as a file share, or the company intranet, the target resource again checks with the DC, then permits or denys the access. This is why we consider the domain a trust boundary, all of the resources within the domain, trust the DC.
+
+    The fact that comapnies have been using ADDS for so long is part of the reason that Azure has grown so quickly.  
+    By developing cloud services which mirror their on-premise technologies, Microsoft makes migration easier.  
+    Existing skills, knowledge, and workflows, developed and refined over years, require minimal changes and updates to migrate.
 
 ### Entra ID
 
-Entra ID is a cloud Identity Provider (IDp) with which you can manage authentication and authorisation for access to your applications and resources in Azure. It can also enhance the functionality of your on-premise AD deployment. 
+Entra ID is a cloud Identity Provider or `IDp` with which you can manage **authentication** and **authorisation** for access to your applications and resources in Azure. It can also enhance the functionality of your on-premise AD deployment. 
 
 One example of this enhanced functionality is sign-in attempts - with on-premise solutions Microsoft doesn't have data regarding sign-in attempts, but with Entra ID it does. This means Entra can flag up if a user is attempting to log in from an unknown location, along with other anomalies.
 
-Where on-premise AD is managed by you, not just adding users, devices, and configuring; But also maintenance, making it highly available, reliable, secure, etc.
+Where on-premise AD is managed by you, not just adding users, devices, and configuration, but also ongoing maintenance, i.e. making it highly available, reliable, secure, etc.
 
-With Entra ID, you simply create and manage identities, Microsoft look after the rest. 
+With Entra ID, you simply create and manage identities, Microsoft look after the rest.
 
     NOTE: Entra ID was formerly known as Azure Active Directory (AAD), many references online may still use the previous name, but the functionality has not changed.
 
 Entra ID's functionality can benefit many different functions across an organisation:
-
-- **Administrators** use Entra ID to control access to applications and resources, and implement zero-trust models
-- **Developers** can use Entra ID to add authentication and authorisation functionality to their app's, and implement enterprise grade features such as SSO, Federation, etc.
-- **Users** benefit from streamlined workflows thanks to features such as SSO, and fewer delays with options like self-service password reset.
+- **Administrators** use Entra ID to control access to applications and resources, and implement `zero-trust models`
+- **Developers** can use Entra ID to add authentication and authorisation functionality to their app's, and implement enterprise grade features such as `SSO`, `Federation`, etc.
+- **Users** benefit from streamlined workflows thanks to features such as SSO, and fewer delays with options like **self-service password reset**.
 
   Additionally, if your users are already using Microsoft services, such as Office365, Dynamics CRM Online, etc. they are already using Entra ID.
 
 Entra ID provides a wide range of features, including but not limited to:
-
 - **Authentication** provides verified access to applications and resources. Including options for self-service password reset, multifactor authentication, custom password blacklists, lockout services, etc.
 - **Single Sign-On** simplifies access management by allowing users to login once, then using token-based authentication, they are granted access to required applications, without having to create multiple different accounts. 
 
   This also simplifies administration, when someone joins or leaves, only one account needs to be added or disabled.
 
 - **Application Management** can be centralised and streamlined, for both cloud and on-premise app's. Can be integrated with various SaaS products, and provides a portal for users to quickly find permitted and verified app's.
-- **Device Management** allows devices to be registered with Entra ID, then managed with toold such as Intune. Enabled features such as conditional access (e.g. ensure necessary security updates are installed), remote wipe/lock, and many others.
+- **Device Management** allows devices to be registered with Entra ID, then managed with toold such as Intune. Enabled features such as `conditional access` (e.g. ensure necessary security updates are installed), `remote wipe/lock`, and many others.
 
 #### Microsoft Entra Connect
 
@@ -922,11 +927,15 @@ If you have an on-premise Active Directory deployment, and Azure solutions using
 
 Entra ID effectively de-couples the directory component from the Domain Controller and provides it as a separate service, so that all Azure customers can use it's features and benefits to manage their identities and resources. 
 
-However, a traditional Domain Controller does more than just directory services. A DC can manage devices with features like Group Policy, vendor neutral protocols such as LDAP (lightweight directory access protocol), and it supports authentication protocols such as Kerberos and NTLM which have been popular in the past and remain *secure enough*, but business critical applications may still rely upon.
+However, a traditional Domain Controller does more than just directory services. A DC can manage devices with features like `Group Policy`, vendor neutral protocols such as `LDAP` (lightweight directory access protocol), and it supports authentication protocols such as `Kerberos` and `NTLM` which have been popular in the past and remain *secure enough*, and business critical applications may still rely upon them.
 
-Microsoft Entra Domain Services provides domain services without the need to deploy and manage domain controllers. One important feature of Entra Domain Services is that it allows you to 'lift-n-shift' legacy applications to the cloud, maintaining compatibility with their requirements.
+**Microsoft Entra Domain Services** provides domain services without the need to deploy and manage domain controllers. One important feature of Entra Domain Services is that it allows you to **lift-n-shift** legacy applications to the cloud, maintaining compatibility with their requirements.
 
-To use Entra Domain Services you provide your owned domain (known as a *namespace*), then two Windows Server Domain Controllers are deployed in a replica set into your selected region, and these DCs are managed and maintained by Azure. 
+To use Entra Domain Services you provide your owned domain, known as a *namespace*, then two **Windows Server Domain Controllers** are deployed in a replica set into your selected region, and these DCs are managed and maintained by Azure.
+
+In a hybrid environment with an on-premises DC running ADDS, Microsoft Entra Connect synchronizes identities with Microsoft Entra ID, and they can then be used to access resources in the managed domain.
+
+![DIAGRAM](https://learn.microsoft.com/en-us/entra/identity/domain-services/media/entra-domain-services-design-guide/sync-topology.png)
 
 ## Describe Azure authentication methods
 
@@ -934,11 +943,11 @@ Authorisation is a fundamental building block of modern security models and cont
 
 We are frequently authenticated both on and offline, your passport is issued after verification that you're entitled to one. Once received you present it to authenticate your identity at the check-in desk before your flight.
 
-    Note that your passport doesn't say you're *allowed* to board the flight, just that you are who you claim to be, you require a separate ticket to *authorise* your entry.
+    Your passport doesn't say you're *allowed* to board the flight, just that you are who you claim to be; You require a separate ticket to *authorise* your entry.
 
-The security controls we implement have to strike a balance between security and useability. 
+The security controls we implement have to strike a balance between security and useability.
 
-Imagine a physical building, and a paranoid security analyst decides *"Someone might take sensitive data to read on the toilet, forget about it, then it's picked up and leaked by a customer!"* so they decide to put keypads on all of the bathroom doors. 
+Imagine a physical building, and a paranoid security analyst decides *"Someone might take sensitive data to read on the toilet and forget about it. Then it could be picked up and leaked by a competitor!"* so they decide to put keypads on all of the bathroom doors. 
 
 How long do you think it will take for someone to bypass this security control by wedging the door open with a ream of paper, or a fire extinguisher?
 
@@ -1535,3 +1544,15 @@ REST APIs or REpresentational State Transfer APIs is a framework for application
 REST APIs use standard HTTP methods such as GET, PUT, POST, etc. to interact with resources including services, documents, images, or other objects, and return HTTP responses and status codes.
 
 REST APIs are stateless, meaning each request is an individual object, and not dependant upon preceding or subsequent requests.
+
+## Load Balancers
+
+Services - Monitor, Governance, Advisor, OSI, 
+
+
+
+
+#### References:
+- Technical knowledge and images: http://learn.microsoft.com  
+- Microsoft Azure Fundamentals, Third Edition  
+- Cartoons - original creations - inspired by XKCD  
