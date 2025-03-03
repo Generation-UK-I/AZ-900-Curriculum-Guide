@@ -59,6 +59,10 @@ Software as a Service is when you require pre-existing applications offered by a
 
     Another advantage of SaaS services is that software license costs can become a monthly operational expense (OpEx), just like your compute resources when you adopt cloud solutions, you no longer need to make significant capital expenditure (CapEx) for your software licences. 
 
+A common metaphor to help understand these service models is pizza - with IaaS you build from scratch, with PaaS the build has been done, but you need cook it and customise if needed, then with SaaS you just get to eat.
+
+![DIAGRAM](./img/cloud-pizza-models.jpg)
+
 One thing to bear in mind, a software development company may choose to sell their software under a SaaS model, which is delivered to their customers via the cloud. In which case, providing the stable and reliable experience your customers expect, may be dependent upon the stability and reliability of the cloud solution upon which you deliver it.
 
 ## Consumption Based Model
@@ -340,7 +344,7 @@ AVD can also provide performance improvements, for example, virtualised applicat
 
 From the end users POV, they expect to click on an icon on their desktop or start menu, and have an app pop up. That is exactly what they get, it's just that the app, and/or the desktop, is running remotely. Each user's desktop, data, and app's are isolated from each other, and when delivered through the relevant client app the experience can be identical to running the environment locally.
 
-While virtual desktop solutions have been available for a while, and can be created manually with on-premise technologies, doing so can be very challenging, with complex requirements and significant administrative overhead. AVD simplifies and streamlines the process by automating many of the requirements and configuration. Additionally, AVD can be cost effective compared to deploying a whole computer per person, as a single or cluster of VMs can deliver virtualised desktops and apps to many different users simultaneously.
+While virtual desktop solutions have been available for a while, they can be created manually with on-premise technologies. But doing so can be very challenging, with complex requirements and significant administrative overhead. AVD simplifies and streamlines the process by automating much of the configuration. Additionally, AVD can be cost effective compared to deploying a whole computer per person, as a single or cluster of VMs can deliver virtualised desktops and apps to many different users simultaneously.
 
 ## Azure containers
 
@@ -348,49 +352,80 @@ As flexible and configurable as VMs are, there are also some limitations:
 
 - Each virtual machine includes an entire OS, and **software stack**, which means that changes and deployments can take a while - we're talking minutes, but any downtime is a problem. 
 - You have to pay for a VM's attached storage, so, if you need to deploy multiple servers with the same operating system, there is potentially a lot of duplicate data.
-- Whilst portable, we can migrate VMs from on-premise to the cloud and vice-versa, they can be quite large, so the process of moving them can take some time, on a slow connection for example.
+- Whilst portable, we can migrate VMs from on-premise to the cloud and vice-versa, they can be quite large, so migrating them can take some time, particularly on a slow connection.
 
 Containers are another type of virtualised environment, but unlike a VM, they don't require a full OS, just a user environment, the application code, and maybe any required dependencies or middleware. This makes them much smaller, faster to deploy and change, and they more efficiently use resources. You can typically run many more containers on any given physical server compared to VMs, and you don't need multiple copies of the operating system running.
 
-There are a number of services in Azure which can be used to run and manage containers:
-
-In the same way that a VM requires a hypervisor, to create and run containers you require a *container engine*, the most popular one is called **Docker**.
+In the same way that a VM requires a hypervisor, to create and run containers you require a *container engine*, the most popular one is called **Docker**. There are a number of services in Azure which can be used to run and manage containers:
 
 ### Azure Container instances
 
 Azure Container Instances is a PaaS offering which provides a quick and easy way to deploy and manage your containers. They run on VMs, but you do not have direct access or control over the underlying services. Microsoft will add more instances as needed to provide compute sufficient resources for all running containers.
 
+Some of the features of Azure Container Instances include:
+- Run Linux and Windows containers
+- Connect containers to VNets, allowing them to communicate with other Azure resources
+- Supports Zonal deployments
+- Integrates with Entra ID for access management
+- Spot Container Deployment - (run on unused compute capacity for a discount)
+- Mount Azure file shares and other external volumes
+
+...and many more
+
 ### Azure Container Apps
 
-Azure Container Apps is similar to ACI, but hands additional container management responsibilities to Azure. Container Apps can automatically implement features such as load balancing and scaling.
+Azure Container Apps is similar to ACI, but hands additional container management responsibilities to Azure. Container Apps can automatically implement features such as load balancing and auto-scaling.
+
+Additional features of Azure Container Apps include:
+- Run multiple container revisions and manage the container app's application lifecycle.
+- Enable HTTPS ingress without having to manage other Azure infrastructure.
+- Split traffic across multiple versions of an application for Blue/Green deployments
+- Build microservices
+- Run containers from any registry, public or private, including Docker Hub and Azure Container Registry (ACR)
+- Securely manage secrets directly in your application.
+- Monitor logs using Azure Log Analytics
 
 ### Azure Kubernetes Service
 
 Kubernetes is a containers orchestration service, which allows you to deploy and manage fleets of containers, which run on multiple compute nodes, as part of a cluster. 
 
-        Containers are commonly used to create *microservice* architectures. Traditionally applications were developed following a *monolithic* approach, with all code, functions, modules, assets, bundled together in one big package. Hosting and resource choices are defined by the requirements of the 'heaviest' part of the app.
+Kubernetes architecture includes pods which host containers, worker nodes (VMs) which hold pods, and additional nodes comprising a control plane to manage everything. The following diagram illustrates this architecture in Azure.
 
-        A microservice approach separates the functions and components of the application into separate parts, which can then be reconnected back together using APIs. This allows you to de-couple app functions, and make choices to suit these individual components. For example, the front end may be a static website, some components may be containerised, and some may be serverless functions.
+![DIAGRAM](https://learn.microsoft.com/en-us/azure/aks/media/what-is-aks/what-is-aks.png)
+
+    Containers are commonly used to create *microservice* architectures. Traditionally applications were developed following a *monolithic* approach, with all code, functions, modules, assets, bundled together in one big package. Hosting and resource choices are defined by the requirements of the 'heaviest' part of the app.
+
+    A microservice approach separates the functions and components of the application into separate parts, which can then be reconnected back together using APIs. This allows you to de-couple app functions, and make choices to suit these individual components. For example, the front end may be a static website, some components may be containerised, and some may be serverless functions.
 
 ## Azure Functions
 
 ### Serverless Computing
 
-All of us need compute resources, and traditionally, or in the on-premise world, those resources are purchased up-front, deployed and configured, then you can utilise it. 
+All of us need compute resources, and traditionally, in the on-premise world, those resources are purchased up-front, deployed and configured, then you can use them. We can make virtual machine on-premises, but they still used our underlying compute resources, and will be restricted by what the resources available. 
 
-We can make virtual machines, but they still used our underlying compute resources. If our virtual machines are in the cloud, we don't need to buy the resources up front, which is a big benefit, of course. When we do this, we can choose IaaS services and have full control over the VMs and their configuration. We can also choose options such as Azure App Service or Azure Container Instances which will create VMs for us to run our workloads, and these VMs are managed and maintained by Microsoft, easing our admin burden. However, with these services, you often need to pay for the underlying instance, even if it's not being used. 
+If our virtual machines are in the cloud, we don't need to buy the resources up front, giving big **CapEx** savings. When we do this, we can choose IaaS services and have full control over the VMs and their configuration. We can also choose options such as **Azure App Service** or **Azure Container Instances** which will create VMs for us to run our workloads, and these VMs are managed and maintained by Microsoft, reducing our admin overheads. However, with these services, you often need to pay for the underlying instance, even when it's not being used. 
 
-What if we could just give our application code over to a service, and have it run? No worrying about infrastructure and configuration; No worrying about instance limits in App Service Plans; Just upload your code and run it - This is serverless compute.
+What if we could just give our application code over to a service, and just have it run? No worrying about infrastructure and configuration; No worrying about instance limits and App Service tiers; Just upload your code and run it - This is serverless compute.
 
-Obviously, if you need some compute power, there needs to be a computer somewhere. But with serverless services, you never need think about it. The cloud provider has plenty of unused compute capacity in their data centers to run your code, so if you don't care *how* your code runs, as long as it runs, serverless services may be suitable.
+Obviously, if you need some compute power, there needs to be a computer somewhere. But with serverless services, you never need to think about it. The cloud provider has plenty of unused compute capacity in their data centers to run your code, so if you don't care *how* your code runs, as long as it runs, serverless services may be suitable.
 
 ### Azure Functions
 
-Azure Functions runs your code in response to an event, which can be a REST API request, on a schedule, or be triggered by another Azure service. 
+Azure Functions is a serverless service which runs your code, in your preferred language, in response to an event which can be a REST API request, on a schedule, or be triggered by another Azure service. 
 
 Functions can scale quickly on demand, so they are good for senarios with variable demand. Azure Functions also deallocates resources when finished, and you only pay for CPU execution time. 
 
 Azure Functions natively supports code written in C#, Java, JavaScript, PowerShell, and Python, with more supported through custom handlers.
+
+There are some considerations and restrictions with Azure Functions, and there are several service tiers which impact many of these limits:
+- There is a default and maximum timeout, which is how long a request can wait for a response from the app before returning an error. On the Consumption-based Plan, the default it 5 mins, the max is 10. Other tiers have no maximum.
+- Your plan defines the amount of RAM allocated to your function, the amount of persistent storage, the number of underlying instances which can be allocated to your workload, and many other factors.
+- Tiers also impact scaling behaviour
+
+Azure Functions can be deployed in various ways including:
+- Azure CLI
+- Directly from Visual Studio Code
+- As part of a CI/CD pipeline
 
 ## Describe application hosting options
 
