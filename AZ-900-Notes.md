@@ -448,7 +448,7 @@ Azure App Service can host:
 - Mobile Apps as a back-end for iOS and Android apps, for example storing app data in the cloud, authenticating mobile app' users, sending push notifications, etc.
 - WebJobs - run a program or script alongside a web app, API, or mobile app
 
-## Describe Azure virtual networking
+## Describe Azure Virtual Networking
 
 It sounds obvious, but since cloud resources are deployed remotely, to access and work with them, they need access to a network. On-premise networks have:
 - **Routers** which connect networks together, such as private networks to the public internet, allow us to make routing rules which define how traffic can reach specific destinations, define subnets for network segmentation, and implement NAT.
@@ -456,48 +456,56 @@ It sounds obvious, but since cloud resources are deployed remotely, to access an
 - **Firewalls** allow us to implement rules which filter the ports, protocols, IP addresses, and more, from which traffic is permitted or denied.
 - **Cables (or RF)** are used to physically connect clients to networks. They operate at a particular standard, which dictates your network bandwidth and other factors. 
 
-All of these features and more, need to be replicated in your virtual networks in the cloud - with the exception of the physical connection - but bandwidth for your virtual resources remains a consideration.
+All of these features, and more, need to be replicated in your virtual networks in the cloud - *with the exception of the physical connection, but bandwidth for your virtual resources remains a consideration*.
 
 Azure VNets facilitate:
 
 - Isolation and segmentation
 - Internet communications
-- Communicate between Azure resources
-- Communicate with on-premises resources
-- Route network traffic
-- Filter network traffic
-- Connect virtual networks
+- Communication between Azure resources
+- Communication with on-premises resources
+- Routing network traffic
+- Filtering network traffic
+- Connecting virtual networks
 
 ### IP Addresses
 
 Azure VNets support both public and private endpoints:
-- **Public endoints** are assigned a public IP, and can be accessed from the internet, or through an internet facing load-balancer - *assuming you permit the traffic through your Network Security Group, and Azure Firewall if deployed*.
+- **Public endoints** are assigned a public IP, and can be accessed from the internet, or through an internet facing load-balancer - assuming you permit the traffic through your `Network Security Group`, and `Azure Firewall` if deployed.
 - **Private endpoints** receive a private IP, and can only communicate with resources in the same address space*.
 
-        *There are deployment options which do not require public access to resources in order to remotely manage them, for example by using a *Bastion* server
+      There are deployment options which do not require public access to resources in order to remotely manage them, for example by using a Bastion server.
 
 ### Segmentation and Routing
 
-When you set up a virtual network, you define a private IP address space which only exists within the virtual network and isn't internet routable. You can then subnet the address space to divide the range into your required subnets.
+When you set up a virtual network, you define a private IP address space following **RFC1918** which only exists within the virtual network and isn't internet routable. You can then CIDR blocks in the address space to divide the range into your required subnets.
 
 Azure routes traffic between subnets on any connected virtual networks, on-premises networks, and the internet automatically, but if you wish to control routing you can use:
 
 - **Route tables** define how traffic should be directed, you can create custom routes that control how packets are routed between subnets, for example to restrict traffic from one subnet from reaching another that contains sensitive assets.
-- **Border Gateway Protocol (BGP)** a routing protocol which allows neighbouring routers on the internet to share known routes. It works with Azure VPN gateways, Azure Route Server, or Azure ExpressRoute to propagate on-premises BGP routes to Azure virtual networks.
+- **Border Gateway Protocol (BGP)** a routing protocol which allows neighbouring routers on the internet to share known routes. It works with `Azure VPN gateways`, `Azure Route Server`, or `Azure ExpressRoute` to propagate on-premises BGP routes to Azure virtual networks.
 
-For name resolution, you can configure the virtual network to use either private or public DNS.
+For name resolution, you can configure your virtual network to use either private or public DNS with `Azure DNS` or an external DNS service.
+
+The following diagram illustrates a simple VNet with two subnets.
+
+![DIAGRAM](https://learn.microsoft.com/en-us/azure/virtual-network/media/quick-create-portal/virtual-network-qs-resources.png)
 
 ### Filter network traffic
 
 You can filter traffic between subnets, VNets, and the internet using both:
-- **Network Security Groups** which are Azure resources which contain inbound and outbound rules to define which types of traffic should be blocked or permitted. Create rules based on source or destionation IP, port, or protocol.
+- **Network Security Groups** (NSGs) which are Azure resources which hold inbound and outbound rules to manage traffic ingress and egress **in or out of a subnet**. Create rules based on source or destionation IP, port, or protocol.
 - **Virtual Appliances** are dedicated VMs which run applications providing network functionality such as firewalls, packet inspection, optimisations, etc. To use such a device you will create routing rules which directs traffic to the device before before it is then forwarded to it's destination.
 
 ### Connect virtual networks
 
-**Virtual Network Peering** allows you to connect VNets together, traffic between them is private, and traverses the *Microsoft backbone network*, not the internet. Vnets may be in different regions, allowing the creation of a global infrastructure. 
+**Virtual Network Peering** allows you to connect two VNets together and have them appear as one as far as traffic is concerned. Traffic between them is private, and traverses the `Microsoft backbone network`, not the internet. 
 
-Control traffic routing within and between VNets by creating **User Defined Routes**.
+Vnets may be in in the same or different regions, allowing the creation of a global infrastructure. 
+
+Control traffic routing within and between VNets by creating *User Defined Routes*.
+
+**You must ensure that the peered VNets do not have overlapping IP address ranges**.
 
 ## Describe Azure virtual private networks
 
@@ -506,8 +514,8 @@ A VPN is an encrypted tunnel through a network, typically it is used to connect 
 A VPN may be configured on individual devices by installing VPN client software, or you can configure an appliance in each of your trusted networks as a VPN gateway. 
 
 1. You bring up a VPN between the gateways 
-2. Update your route tables to direct your sensitive traffic through the it 
-3. Traffic will be automatically encrypted and decrypted as it enters and exits the tunnel.
+1. Update your route tables to direct your sensitive traffic through the it 
+1. Traffic will be automatically encrypted and decrypted as it enters and exits the tunnel.
 
 ### Communicating Securely with...
 
@@ -560,9 +568,11 @@ In regions that support availability zones, VPN gateways and ExpressRoute gatewa
 
 Azure ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection, they don't go over the public Internet.
 
-You can establish connections to Microsoft cloud services, allowing you to connect offices, datacenters, or other facilities to the Microsoft cloud. Each location would have its own ExpressRoute circuit.
+You can establish connections to Microsoft cloud services, allowing you to connect offices, datacenters, or other facilities to the Azure cloud, and many of Microsoft's other services, such as Microsoft365. Each of your location would require it's own ExpressRoute circuit.
 
 Bring up an ExpressRoute circuit with a connectivity provider at a colocation facility. This setup allows ExpressRoute connections to offer more reliability, faster speeds, consistent latencies, and higher security than typical connections over the Internet.
+
+![DIAGRAM](https://learn.microsoft.com/en-us/azure/expressroute/media/expressroute-introduction/expressroute-connection-overview.png)
 
 Each connectivity provider uses redundant devices in every peering location for higher reliability.
 
@@ -583,11 +593,11 @@ ExpressRoute supports four models for connecting your on-premises network to Azu
 
 ### Describe DNS
 
-The Domain Name System is a service which maps URLs to IP addresses. As we've explored previously, resources on the internet require a public IP address to be reachable, however, humans are not very good at remembering lots of different numbers. 
+The **Domain Name System** is a service which maps URLs to IP addresses. As we've explored previously, resources on the internet require a public IP address to be reachable, however, humans are not very good at remembering lots of different numbers. 
 
 We can remember names though, so we can purchase an unused domains from a domain registrar, and we map our new domain name to our resources using DNS.
 
-So, if I own the domain 'frankiethesausage.co.uk' and I have a web server hosting a web site at 109.212.13.240 I can make a DNS record which points any requests for frankiethesausage.co.uk, which is easy to remember, to the IP address which isn't.
+So, if I own the domain [frankiethesausage.co.uk](http://frankiethesausage.co.uk) and I have a web server hosting a web site at 109.212.13.240 I can make a `DNS record` which points any requests for frankiethesausage.co.uk, which is easy to remember, to the IP address which isn't.
 
 This would be an example of an `A` record, which maps a `URL` to an `IPv4` address. Two other common record types are `AAAA` which point to IPv6 addresses, and `MX` which point to mail servers. One more important record is a `CNAME` (canonical name), this is used to map one domain name to another. The most common use of a CNAME is to, in this case, point the address 'www.frankiethesausage.co.uk' to the same IP address as the A record.
 
@@ -600,18 +610,18 @@ When you have purchased a domain name your registrar will typically offer a publ
 Azure DNS hosts public and private DNS domains, providing name resolution across Microsoft Azure infrastructure. You can manage your DNS records using the same credentials, APIs, tools, and billing as your other Azure services.
 
 Azure DNS leverages the Azure infrastructure to provide:
-- Reliability and performance - Azure DNS uses anycast networking, so the closest available DNS server answers each query.
-- Security - Azure DNS is based on Azure Resource Manager, which provides:
+- **Reliability and performance** - Azure DNS uses anycast networking, so the closest available DNS server answers each query.
+- **Security** - Azure DNS is based on Azure Resource Manager, which provides:
   - RBAC - to control who has access to specific actions
   - Activity Logs - to monitor how resources are modified
   - Resource locks - prevents users from accidentally deleting or modifying critical resources
-- Ease of Use - Azure DNS is integrated in the Azure portal and uses the same credentials, support contract, and billing as your other Azure services.
-- Customisability - use your own custom domain names in your private virtual networks, rather than being stuck with the Azure-generated names.
-- Alias records - your Azure resources can receive a public IP address, and a DNS name. The IP may change, but the name will not, so you can use Alias record to map a resource name to an endpoint.
+- **Ease of Use** - Azure DNS is integrated in the Azure portal and uses the same credentials, support contract, and billing as your other Azure services.
+- **Customisability** - use your own custom domain names in your private virtual networks, rather than being stuck with the Azure-generated names.
+- **Alias records** - your Azure resources can receive a public IP address, and a DNS name. The IP may change, but the name will not, so you can use Alias record to map a resource name to an endpoint.
 
 ## Describe Azure storage services
 
-A storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over HTTP or HTTPS. Data in this account is secure, highly available, durable, and massively scalable.
+A storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over `HTTP` or `HTTPS`. Data in this account is secure, highly available, durable, and massively scalable.
 
 You select the storage account type which determines the storage services and redundancy options, and has an impact on the use cases. 
 
@@ -624,7 +634,7 @@ Available redundancy options include:
 - Geo-zone-redundant storage (GZRS)
 - Read-access geo-zone-redundant storage (RA-GZRS)
 
-Every storage account in Azure must have a unique-in-Azure account name (3-24 characters; lowercase, a-z & 0-9 only), which is used to create a unique namespace for your data. The combination of the account name and the Azure Storage service endpoint forms the endpoints for your storage account.
+Every storage account in Azure must have a unique-in-Azure account name (3-24 characters; lowercase, a-z & 0-9 only), which is used to create a unique namespace for your data. The combination of the account name and the service specfic endpoint forms the endpoint for your particular storage account.
 
 The following table shows the endpoint format for Azure Storage services.
 
@@ -678,21 +688,29 @@ With both GRS and GZRS you can enable read-access to data in the secondary regio
 
         Remember that data in the secondary region may be out of date if changes were made in the primary region which have yet to be replicated. 
 
+### Durability Summary
+|Redundancy Level|Durability|
+|---|---|	
+|LRS|11 nines|
+|ZRS|12 nines|
+|GRS|16 nines|
+|GZRS|16 nines|
+
 ## Azure storage services
 
 Storage is one of the most common services companies require from their cloud provider, not least because most resources will need to have access to, or generate some data, and data is usually an organisation's most valuable asset.
 
 Azure Storage is:
-- Durable and highly available - you can make decisions on the level or durability, and resilience to faults that you require. E.g. do you need to be resilient to data center, availability zone, or regional failure?
-- Secure - All data in an Azure storage account is encrypted, and you have granular access control for the data objects.
-- Scalable - Microsoft deploys significantly more storage capacity into their data centers than is currently demanded, providing scope for customers to massively scale their solutions to meet rapidly changing workloads. 
-- Managed - Microsoft manages the underlying infrastructure of their storage services, including hardware, software, updates, maintenance, etc.
-- Accessible - Objects in Azure storage may be accessed from anywhere through HTTP/HTTPS, and REST APIs. Microsoft also provides client libraries for a variety of programming languages, allowing you to embed Azure Storage functionality into your app development. 
+- **Durable and highly available** - you can make decisions on the level or durability, and resilience to faults that you require. E.g. do you need to be resilient to data center, availability zone, or regional failure?
+- **Secure** - All data in an Azure storage account is encrypted, and you have granular access control for the data objects.
+- **Scalable** - Microsoft deploys significantly more storage capacity into their data centers than is currently demanded, providing scope for customers to massively scale their solutions to meet rapidly changing workloads. 
+- **Managed** - Microsoft manages the underlying infrastructure of their storage services, including hardware, software, updates, maintenance, etc.
+- **Accessible** - Objects in Azure storage may be accessed from anywhere through HTTP/HTTPS, and REST APIs. Microsoft also provides client libraries for a variety of programming languages, allowing you to embed Azure Storage functionality into your app development. 
 
 Once you have created a storage account, you can deploy storage containers of various types, which are optimised for various use cases:
 
 ### Azure Blobs
-Binary Large OBjects (BLOBs) are any binary file, which is basically any file, text, image, video, anything. Azure Blobs are unstructured, allowing any type of data to be added. Users or client applications can access blobs via HTTP or HTTPS, via URLs, the Azure Storage REST API, Azure PowerShell, Azure CLI, or an Azure Storage client library.
+**Binary Large OBjects** (BLOBs) are any binary file, which is basically any file, text, image, video, anything. Azure Blobs are unstructured, allowing any type of data to be added. Users or client applications can access blobs via `HTTP/HTTPS`, via `URLs`, the Azure Storage `REST API`, `Azure PowerShell`, `Azure CLI`, or an Azure Storage `client library`.
 
     Blob storage is ideal for:
 
@@ -713,16 +731,16 @@ Binary Large OBjects (BLOBs) are any binary file, which is basically any file, t
 
     Data is not accessed directly from the Archive tier, it must be moved to a lower tier first, known as *rehydrating the blob*.
 
-  The cool and cold tiers should not be used for highly available solutions, although high durability is still provided. Use when a lower availability SLA and higher access costs compared to hot data are acceptable trade-offs for lower storage costs.
+  The cool and cold tiers should not be used for highly available solutions, use for scenarios where a lower availability SLA and higher access costs compared to hot data are acceptable trade-offs for lower storage costs.
 
   Hot, cool, cold, and archive tiers can be set at the blob level, during or after upload.
 
 ### Azure Files
-Users in an organisation need to share files. They could do so by passing them back and forth over email or DM, but this is cumbersome, only suitable for a few files at a time, and you may end up with multiple different copies of the file, all out of sync with each other. 
+Users in an organisation need to share files. They could do so by passing them back and forth over email or messaging tool, but this is cumbersome, only suitable for a few files at a time. Also you may easily end up with multiple different copies of the file, all out of sync with each other. 
 
-Instead, users can make shared folders, and grant permissions to the appropriate colleagues to access the share over the local network. This allows users to share and access any files they want, and they can each collaborate on the same file if they wish, keeping everything in sync.
+Alternatively users can make shared folders, and grant permissions to the appropriate colleagues to access the share over the local network. This allows users to share and access any files they want, and they can collaborate on the same files if they wish, keeping everything in sync.
 
-Shared folders rely upon protocols to facilitate file sharing over networks. In Windows environments we can use Server Message Block (SMB), and in Linux we can use Network File Sharing (NFS). 
+Shared folders rely upon protocols to facilitate file sharing over networks. In Windows environments we can use `Server Message Block` (SMB), and for Linux workloads we can use `Network File Sharing` (NFS). 
 
 This is a big improvement over sharing individual files, but still has some limitations:
 - The computer upon which the shared folder exists, needs to be switched on, and connected to the network - user absense may result in important files being unavailable.
@@ -730,21 +748,21 @@ This is a big improvement over sharing individual files, but still has some limi
 - Sharing may be limited by storage capacity on the client devices.
 - Client devices may have limited hardware, compromising performance - *it is common for networks architects to provision more bandwidth for servers than clients*.
 
-Some of these challenges can be mitigated by hosting your file shares on a File Server, but considering serving files is a relatively simple task, a whole server may not be efficient. Another solution is to use a dedicated applicance just for this task, called a Network Attached Storage device, or a NAS. You can just fill it with hard disks, create shares, users, and permissions, connect to the network, and you're done. 
+Some of these challenges can be mitigated by hosting your file shares on a File Server, but considering serving files is a relatively simple task, a whole server may not be efficient. Another solution is to use a dedicated applicance just for this task, called a `Network Attached Storage` device, or a `NAS`. You can just fill it with hard disks, create shares, users, and permissions, connect to the network, and you're done. 
   
 However, even with a NAS you are still limited by capacity, and reliant upon local power and networking.
 
-**Azure Files** storage offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) or Network File System (NFS) protocols. 
+`Azure Files` storage offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) or Network File System (NFS) protocols. 
   
 Azure Files file shares can be mounted for access by cloud or on-premises deployments. 
-- SMB Azure file shares are accessible from Windows, Linux, and macOS clients. 
-- NFS Azure Files shares are accessible from Linux or macOS clients. 
+- **SMB** Azure file shares are accessible from Windows, Linux, and macOS clients. 
+- **NFS** Azure Files shares are accessible from Linux or macOS clients. 
 - Additionally, SMB Azure file shares can be syncronised with local Windows Servers using Azure File Sync. This allows for fast, low latency, local access to files, with changes sync'd back to your Azure Files shares.
 
 Key benefits include:
-- Azure Files uses the same protocols that users, administrators, and developers are familiar with, so should seamlessly fit into existing workflows.
+- Azure Files uses the **same protocols** that users, administrators, and developers are familiar with, so should seamlessly fit into existing workflows.
 - As a fully managed service Microsoft is repsonsible for maintenance activities, upgrading capacity as demand grows, and ensuring the shares are resilient and highly available.
-- Manage Azure Files with Azure Portal, Storage Explorer, PowerShell, or Azure CLI.
+- Manage Azure Files with **Azure Portal**, **Storage Explorer**, **PowerShell**, or **Azure CLI**.
 
 ### Azure Queues
 When developing a web app there are typically multiple components, at the very least a user facing front-end, and a back-end which does the processesing. 
@@ -1488,11 +1506,11 @@ Once properly configured, Application Insights can gather and monitor:
 
 It is also capable of sending dummy requests to your app as a health-check.
 
-## Extras
+# Extras
 
 The following topics are technically outside of the scope of AZ-900, but you can't be sure they won't use some additional services in as distractors, or they could throw in some wild-card questions. It's also useful to have additional context, and never bad to expand your knowledge.
 
-### Summary of Support Plans
+## Summary of Support Plans
 
 The following table summarises the key features, and more importantly the differences, between the different Azure support plans offered:
 
@@ -1501,15 +1519,19 @@ The following table summarises the key features, and more importantly the differ
 |Price|Free|$29 per month|$100 per month|$1000 per month|
 |Suitable for...|n/a|Test & non-Prod'|Production|Business-critical|
 |Email & Phone support|&#x2612;|Business hours|&#x2611;|&#x2611;|
-|Response time & severity*|&#x2612;|Sev C: < 8 hours|Sev A: < 1 hour; Sev B: < 4 hours; Sev A: < 1 hour.|Sev A: < 1 hour; Sev B: < 2 hours; Sev A: < 1 hour.|
+|Response time & severity*|&#x2612;|Sev C: < 8 hours|Sev A: < 1 hour;  Sev B: < 4 hours;  Sev A: < 1 hour.|Sev A: < 1 hour;  Sev B: < 2 hours;  Sev A: < 1 hour.|
 |Architecture Support|&#x2612;|General|General|Specialist|
 |API access, Operations support, Training, & Proactive guidance|&#x2612;|&#x2612;|&#x2612;|&#x2611;|
 
 
-### Azure DevTest Labs
+## Azure DevTest Labs
 
 DevTest Labs is a service which allows you to quickly create, manage, and access IaaS VMs. Some common scenarios include classroom and training environments, or for testing software in a variety of configurations.  You can build and pre-configure a range of VMs with the necessary tools and software to meet your requirements. 
 
+## REST APIs
 
+REST APIs or REpresentational State Transfer APIs is a framework for applications to communicate with each other over HTTP.
 
-REST APIs
+REST APIs use standard HTTP methods such as GET, PUT, POST, etc. to interact with resources including services, documents, images, or other objects, and return HTTP responses and status codes.
+
+REST APIs are stateless, meaning each request is an individual object, and not dependant upon preceding or subsequent requests.
