@@ -94,8 +94,9 @@ When architecting a cloud solution you can take advantage of the Azure infrastru
 
 Scaling refers to changing the quantity, capacity, and performance of your resources in response to changing workloads. This could be adding additional virtual machines to share a workload, or adding more storage space as needed. But since we pay for what we use in the cloud, it's also important to scale back down when demand falls; This is known as `elasticity`. 
 
-There are two types of scaling:
+![DIAGRAM](./img/scale-server.jpg)
 
+There are two types of scaling:
 - `Vertical scaling` refers to making one resource more powerful. You could upgrade a server's CPU to add cores, or add more RAM to the system. One advantage of vertical scaling is that you can improve performance for less cost than a whole new system. 
 
   However, there are significant drawbacks, the system usually needs to be taken offline to complete the upgrade, incremental changes are not viable, and due to the long time to implement upgrades you will typically have to plan for and purchase your resource needs well in advance.
@@ -836,15 +837,15 @@ Migration is the process of moving your assets and workloads from one location t
 Azure Migrate helps you migrate from on-prem' environments to the cloud, and provides a centralised hub to start, manage, and track your migration operation. There are three stages to a typical migration project: **Discover, Analyse, & Migrate.**
 
 Azure Migrate integrates a range of tools to gelp you with the process:
-- **Azure Migrate**: Discovery and assessment. Discover and assess on-premises servers running on VMware, Hyper-V, and physical servers in preparation for migration to Azure.
-- **Azure Migrate**: Server Migration. Migrate VMware VMs, Hyper-V VMs, physical servers, other virtualized servers, and public cloud VMs to Azure.
+- **Azure Migrate**: Discover and assess on-premises servers running on VMware, Hyper-V, and physical servers in preparation for migration to Azure.
+- **Azure Migrate**: Migrate `VMware VMs`, `Hyper-V VMs`, physical servers, other virtualized servers, and public cloud VMs to Azure.
 - **Data Migration Assistant**. Data Migration Assistant is a stand-alone tool to assess SQL Servers. It helps pinpoint potential problems blocking migration. It identifies unsupported features, new features that can benefit you after migration, and the right path for database migration.
-- **Azure Database Migration Service**. Migrate on-premises databases to Azure VMs running SQL Server, Azure SQL Database, or SQL Managed Instances.
-- **Azure App Service Migration Assistant**. Azure App Service migration assistant is a standalone tool to assess on-premises websites for migration to Azure App Service. Use Migration Assistant to migrate .NET and PHP web apps to Azure.
+- **Azure Database Migration Service**. Migrate on-premises databases to Azure VMs running SQL Server, `Azure SQL Database`, or `SQL Managed Instances`.
+- **Azure App Service Migration Assistant**. Azure App Service migration assistant is a standalone tool to assess on-premises websites for migration to Azure App Service. Use Migration Assistant to migrate `.NET` and `PHP` web apps to Azure.
 
 ### Azure Data Box
 
-An asyncronous migration process which allows you to get data in & out of Azure securely, using a physical storage device. You order the Data Box through the portal, it is shipped to you, you copy your data across, and ship it back to Microsoft.
+Data Box is an asyncronous data migration tool which allows you to get data in & out of Azure securely, using a physical storage device. You order the Data Box through the portal, it is shipped to you, you copy your data across, and ship it back to Microsoft.
 
 **Data Box** can be useful in a variety of scenarios, including:
 - Bulk uploads during migration.
@@ -854,7 +855,7 @@ An asyncronous migration process which allows you to get data in & out of Azure 
 Data Box is available in three tiers:
 - **Data Box Disk** - 8TB SSD, with a USB/SATA interface; Comes in packs of 5x for up to 40TB of capacity.
 - **Data Box** - Useable capacity 80TB; Briefcase sized; Uses NAS protocols and common copy tools.
-- **Data Box Heavy** - Trolley sized; Similar interfaces to *Data Box* but faster; Useable capacity up to ~750TB.
+- **Data Box Heavy** - Trolley sized; Similar interfaces to Data Box but faster; Useable capacity up to ~750TB.
 
 ## Identify Azure file movement options
 
@@ -886,7 +887,7 @@ When we deploy Active Directory, it's full name is **Active Directory Domain Ser
 
 When you configure your **ADDC**, you tell it what your domain is, and the directory for your resources is created within that domain. Once added, the user accounts and devices *trust* the domain controller as the authority for the domain. 
 
-If a user wants to log into a computer, the computer checks their credentials with the domain controller; If the user successfully logs in then tries to access another resource, such as a file share, or the company intranet, the target resource again checks with the DC, then permits or denys the access. This is why we consider the domain a trust boundary, all of the resources within the domain, trust the DC.
+If a user wants to log into a computer, the computer checks their credentials with the domain controller. If the user successfully logs in then tries to access another resource, such as a file share, or the company intranet, the target resource again checks with the DC, then permits or denys the access. This is why we consider the domain a trust boundary, all of the resources within the domain, trust the DC.
 
     The fact that comapnies have been using ADDS for so long is part of the reason that Azure has grown so quickly.  
     By developing cloud services which mirror their on-premise technologies, Microsoft makes migration easier.  
@@ -894,11 +895,13 @@ If a user wants to log into a computer, the computer checks their credentials wi
 
 ### Entra ID
 
+![DIAGRAM](./img/cloud-security.jpg)
+
 Entra ID is a cloud Identity Provider or `IDp` with which you can manage **authentication** and **authorisation** for access to your applications and resources in Azure. It can also enhance the functionality of your on-premise AD deployment. 
 
 One example of this enhanced functionality is sign-in attempts - with on-premise solutions Microsoft doesn't have data regarding sign-in attempts, but with Entra ID it does. This means Entra can flag up if a user is attempting to log in from an unknown location, along with other anomalies.
 
-Where on-premise AD is managed by you, not just adding users, devices, and configuration, but also ongoing maintenance, i.e. making it highly available, reliable, secure, etc.
+On-premise AD is managed by you - not just adding your users and devices, but also ongoing configuration and maintenance. If you need it to be highly available, reliable, secure, etc. it's all down to you to design and build a solution.
 
 With Entra ID, you simply create and manage identities, Microsoft look after the rest.
 
@@ -909,11 +912,11 @@ Entra ID's functionality can benefit many different functions across an organisa
 - **Developers** can use Entra ID to add authentication and authorisation functionality to their app's, and implement enterprise grade features such as `SSO`, `Federation`, etc.
 - **Users** benefit from streamlined workflows thanks to features such as SSO, and fewer delays with options like **self-service password reset**.
 
-  Additionally, if your users are already using Microsoft services, such as Office365, Dynamics CRM Online, etc. they are already using Entra ID.
+  Additionally, if your users are already using Microsoft services, such as `Office365`, `Dynamics CRM Online`, etc. they are already using Entra ID.
 
 Entra ID provides a wide range of features, including but not limited to:
-- **Authentication** provides verified access to applications and resources. Including options for self-service password reset, multifactor authentication, custom password blacklists, lockout services, etc.
-- **Single Sign-On** simplifies access management by allowing users to login once, then using token-based authentication, they are granted access to required applications, without having to create multiple different accounts. 
+- **Authentication** provides verified access to applications and resources. Including options for **self-service password reset**, **multifactor authentication**, **custom password blacklists**, **lockout services**, etc.
+- **Single Sign-On** simplifies access management by allowing users to login once, then using **token-based** authentication, they are granted access to required applications, without having to create multiple different accounts. 
 
   This also simplifies administration, when someone joins or leaves, only one account needs to be added or disabled.
 
@@ -962,7 +965,7 @@ All security controls ultimately just balance these two factors of security and 
 
 ### Single Sign-On
 
-Single sign-on involves a user authenticating once against a trusted identity provider, such as Entra ID, and if successful they are granted an authentication token. Different applications and service providers can be configured to trust the inital identity provider, and consequently the tokens issued by it. When a user tries to access the external resources their token is presented, and can be verified with the identity provider.
+Single sign-on involves a user authenticating once against a trusted identity provider, such as Entra ID, and if successful they are granted an **authentication token**. Different applications and service providers can be configured to trust the inital identity provider, and consequently the tokens issued by it. When a user tries to access the external resources their token is presented, and can be verified with the identity provider.
 
 Single sign-on relies upon the integrity of the initial provider, so it should be configured with secure authentication processes such as multifactor authentication at least.
 
@@ -974,51 +977,49 @@ There are three authentication factors:
 
 - **Something you know** includes username and password pairs, but also answers to secret question, PIN numbers, etc.
 - **Something you have** refers to something typically on your person which can include a time-syncronised token (basically a number) provided by a key-fob or app, or receiving a text message on your phone. 
-- **Something you are** is your intrinsic characteristics, known as bio-metrics. This can include fingerprints, face/iris scans,  or to get a bit science-fiction-y voice print, or gait analysis... 
+- **Something you are** is your intrinsic characteristics, known as bio-metrics. This can include **fingerprints**, **face/iris scans**, or to get a bit *science-fiction-y* **voice print**, or **gait analysis**... 
 
 ![*DIAGRAM*](./img/gait-analysis.jpg)
 
-This is also a process that we've been using for quite a while, think about your bank account - to withdraw cash you need to **have** your card and **know** your PIN. Interestingly, this used to be the case for making in-store purchases. Contactless is one of the few occasions when security of a system has actually been lowered. 
+This is also a process that we've been using for quite a while, think about your bank account - to withdraw cash you need to **have** your card and **know** your PIN. Interestingly, this used to be the case for making in-store purchases. Contactless is one of the few occasions when security of a system has actually been intentionally lowered. 
 
-    Remember, MFA implies multiple authentication factors. To gain access two or more factors must be used, a password and a secret answer is not multi-factor because it's two things you know.
+    Remember, MFA implies multiple authentication factors. To gain access two or more factors must be used. A password and a secret answer is **not** multi-factor because it's two things you know.
 
 Microsoft Entra multifactor authentication enables users to choose an additional form of authentication during sign-in, such as a phone call or mobile app notification
 
 ### Passwordless Authentication?
 
-Organisations can implement MFA policies, but there is usually going to be a password somewhere, and any time a user has to remember a password there's a weakness. Even with a password manager, it may generate and store complex passwords, but the human still needs a password they can remember to unlock their 'vault'.
+Organisations can implement MFA policies, but there is usually going to be a password somewhere, and any time a user has to remember a password there's a weakness. Even with a password manager, it may generate and store complex passwords, but the human still needs a password they can remember to unlock their **password vault**.
 
 Passwordless authentication methods rely upon multiple factors to authenticate users, but with one important additional point, they rely upon proximity.
 
-If you use a single or small number of devices you can register them, with a service such as Windows Hello. That registered device acts as an additional authentication method, so in addition to having the password or PIN, you must be physically in front of that device to have entered it.
+If you use a single or small number of devices you can register them with a service such as Windows Hello. That registered device acts as an additional authentication method, so in addition to having enter password or PIN to access the device, you must be physically in front of that device to have entered it.
 
 Microsoft global Azure and Azure Government offer the following three passwordless authentication options that integrate with Microsoft Entra ID:
 
-- **Windows Hello for Business** - useful for employees who have a dedicated computer, uses bio-metrics (for example using the webcam), and a PIN to verify something you know, and that you are actually using the computer. 
-- **Microsoft Authenticator app** - is already a common option for many online services, so you may already have it. A configured app or service pushes a notification to the authenticator app, the user is prompted to match or enter a number shown by the requested resource, the user then provides their iOS or Android device's built in bio-metric authentication method.
+- **Windows Hello for Business** - useful for employees who have a dedicated computer, uses **bio-metrics** (for example using the webcam - which needs to meet a minimum specification), and a PIN to verify something you know and that you are actually using the computer. 
+- **Microsoft Authenticator app** - is already a common option for many online services, so you may already have it on your phone. A configured app or service pushes a notification to the authenticator app, the user is prompted to match or enter a number shown by the requested resource, the user then provides their iOS or Android device's built in bio-metric authentication method.
 - **FIDO2 security keys** - Fast Identity Online (FIDO) is an open standard for passwordless authentication. FIDO allows users and organizations to leverage the standard to sign-in to their resources without a username or password by using an external security key or a platform key built into a device.
 
 ## Describe Azure External Identities
-
-In addition to their trusted employees, organisations commonly need to work with external parties and organisations for various purposes. It could be contractors working on fixed-term projects, outsourced service providers such as payroll or accounting, or as a service provider yourself, you may invite client organisations and customers to use your resources.
+In addition to their trusted employees, organisations commonly need to work with external parties and organisations for various purposes. It could be contractors working on fixed-term projects, outsourced service providers such as payroll or accounting. As a service provider, you may invite client organisations and customers to use your resources.
 
 With Microsoft Entra External Identities, external users can "bring their own identities." Whether they have a corporate or government-issued digital identity, or an unmanaged social identity verified by an identity provider like Google or Facebook.
 
 External Identities offers a range of capabilities:
-
-- **Business to Business (B2B) Collaboration** - allows external users to access your shared applications and resources by using their preferred identity. B2B collab' users are represented as 'guests' in your Entra ID directory.
-- **B2B Direct Connect** - allows you to establish a 2-way trust between an external organisation's Entra ID tenant, and your own. External users can connect to Teams shared channels, and share resources through this channel. External users are not visible in your Entra ID tenant, but can be seen through the Teams shared channel, and Teams Admin Center.
-- **Microsoft Azure Active Directory business to customer (B2C)** - Provides the ability to publish (non-Microsoft) SaaS app's to consumers, using Azure AD B2C for identity and access management.
+- **Business to Business (B2B) Collaboration** - allows external users to access your shared applications and resources by using their preferred identity. B2B collab' users are represented as **guests** in your Entra ID directory.
+- **B2B Direct Connect** - allows you to establish a 2-way trust between an external organisation's Entra ID tenant, and your own. External users can connect to Teams shared channels, and share resources through this channel. External users are not visible in your Entra ID tenant, but can be seen through the Teams shared channel, and `Teams Admin Center`.
+- **Microsoft Azure Active Directory business to customer (B2C)** - Provides the ability to publish (non-Microsoft) SaaS app's to consumers, using `Azure AD B2C` for identity and access management.
 
 ## Describe Azure Conditional Access
 
-Conditional Access allows you to permit or restrict access to resources based on identity related signals.
+Conditional Access allows you to permit or restrict access to resources based on **identity related signals**.
 
-Signals are data points, which are constantly being generated by people, resources, services, etc. They are monitored, and the values, patterns, trends, or anomalies in the signal data can be used to inform further actions. A simple example could be ensuring that a user's operating system has a particular update applied to patch a known vulnerability, before permitting access.
+Signals are data points, which are constantly being generated by people, resources, services, etc. They are monitored, and the values, patterns, trends, or anomalies in the signal data can be used to inform further actions. A simple example could be ensuring that a user's operating system has a particular update applied to patch a known vulnerability before permitting access.
 
 Identity related signals can include who the user is, their location, the device the access request originates from, the operating system version, and more. These signals are gathered and validated against your defined conditions when access is attempted.
 
-When properly implemented, conditional access allows administrators to create robust policy collections, which protect company assets, whilst providing minimum impediment to users. For example, a user may not be prompted for an additional authentication factor when accessing resources from a trusted location, but they are when connecting from elsewhere.
+When properly implemented, conditional access allows administrators to create robust policy collections to protect company assets, whilst providing minimum impediment to users. For example, a user may be prompted for an additional authentication factor when accessing a resource only when they are connecting from an untrusted location.
 
 Common uses for conditional access include:
 - Enforcing MFA based on location or role (e.g. administrators vs. standard users)
@@ -1032,11 +1033,11 @@ Access control is one of the fundamental security controls available to protect 
 
 There are 3 common models used to manage access control:
 
-- **Discretionary Access Control (DAC**) - in this model users are allowed to mange their permissions themselves. DAC has minimal administraive burden, but you are reliant upon users assigning permissions correctly. This is model suitable when data assets are not particularly sensitive.
-- **Mandatory Access Control (MAC)** - is when all permissions assignments are managed centrally. Permissions are added, updated, and removed as needed, typically upon request, perhaps with a sign-off from a manager verifiying and justifiying that the change is needed. This approach would typically place the biggest workload upon the administrators who manage the permissions.
-- **Role-Based Access Control (RBAC)** - with this approach common roles within the organisation are defined, and the necessary permissions are attached to that role. When a role is assigned to a user (or group of users) they inherit all of the permissions within the role. As somebody takes on more responsibility, or moves to another business function, they can have roles added or removed as necessary.
+- **Discretionary Access Control (DAC**) - in this model users are allowed to **mange their permissions themselves**. DAC has minimal administraive burden, but you are reliant upon users assigning permissions correctly. This is model suitable when data assets are not particularly sensitive.
+- **Mandatory Access Control (MAC)** - is when all **permissions assignments are managed centrally**. Permissions are added, updated, and removed as needed, typically upon request, perhaps with a sign-off from a manager verifiying and justifiying that the change is needed. This approach would typically place the biggest workload upon the administrators who manage the permissions.
+- **Role-Based Access Control (RBAC)** - with this approach common roles within the organisation are defined, and the **necessary permissions are attached to the roles**. Role are assigned to users (or group of users) and they receive all of the permissions within the role. As somebody takes on more responsibility, or moves to another business function, they can have roles added or removed as necessary.
 
-You can create your own roles aligned with your operations, but Microsoft also provide a wide range of pre-defined roles which match common job titles and business functions. For example, you may have a billing administrator, who needs access to all of the cost management tools, but not to any deployed resources. Someone responsible for monitoring workloads may have read access to VMs so they can configure logs and metrics, but cannot access the data disk on the VM. There are countless scenarios which can be modelled as a role, with the necessary permissions.
+You can create your own roles aligned with your operations, and Microsoft also provide a wide range of pre-defined roles which match common job titles and business functions. For example, you may have a billing administrator, who needs access to all of the cost management tools, but not to any deployed resources. Someone responsible for monitoring workloads may have read access to VMs so they can configure logs and metrics, but cannot access the data disk on the VM. There are countless scenarios which can be modelled as a role, with the necessary permissions.
 
 ### RBAC Scopes
 
@@ -1047,15 +1048,15 @@ Roles may be applied at a number of scopes, which refers to layers of the resour
 - Resource Group
 - Individual Resource
 
-RBAC is enforced for any action, against any resource, which is initiated by Azure Resource Manager - which is pretty much everything.
+RBAC is enforced for any action initiated by Azure Resource Manager, against any resource. Which is pretty much everything.
 
 ![*DIAGRAM*](https://learn.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-overview.png)
 
-RBAC does not work at the application level, application security it typically handled within the app and/or OS.
+RBAC does not work at the application level, application security is typically handled within the app and/or OS.
 
 ## Describe Zero Trust model
 
-Traditional IT operations were based on the assumption that if you were inside the network, you were allowed to be there. Commonly only company owned and controlled devices are used, they are domain joined, and if you login to a trusted device with valid credentials, you must be safe. Few people worked remotely, it was possible but restricted, and the tools to facilitate it were cumbersome, and introduced lots of administrative overhead (for example, deploying and configuring RADIUS servers).
+Traditional IT operations were based on the assumption that *if you were inside the network, you were allowed to be there*. Commonly only company owned and controlled devices were used, they are added to the domain, and if you login to a known device with valid credentials, you must be trusted. Few people worked remotely, it was possible but restricted, and the tools to facilitate it were cumbersome. Remote working also introduced lots of administrative overhead (for example, deploying and configuring RADIUS servers), so the benefit was rarely worth it.
 
 However, the modern technology workforce has changed, COVID forced the adoption of remote working. People are now using their own devices significantly more, they are working from home, from shared workspaces (e.g. WeWork), coffee shops, on the train, basically anywhere.
 
@@ -1065,12 +1066,14 @@ Simply put, **Zero Trust** assumes every action, even once you're logged in and 
 
 The Zero Trust model is based around the following principles:
 - **Verify explicitly** - Always authenticate and authorize based on all available data points.
-- **Use least privilege access** - Limit user access with Just-In-Time and Just-Enough-Access (JIT/JEA), risk-based adaptive policies, and data protection.
+- **Use least privilege access** - Limit user access with Just-In-Time and Just-Enough-Access (**JIT/JEA**), risk-based adaptive policies, and data protection.
 - **Assume breach** - Minimize blast radius and segment access. Verify end-to-end encryption. Use analytics to get visibility, drive threat detection, and improve defenses.
 
 ## Describe Defense-in-Depth
 
 Defense-in-depth is a security model, versions of which have been in use for a long time, which models security controls as layers of defense. This is sometimes called the castle approach to security, where you have a moat, and a gate, and walls, and a keep, and so on.
+
+![DIAGRAM](./img/castle-model.jpg)
 
 The following diagram illustrates the defense-in-depth model, in which an organisation's most valuable assets, typically it's data, is at the center, protected by each individual and isolated layer. If one layer is breached, the next layer is already in place to limit the impact.
 
