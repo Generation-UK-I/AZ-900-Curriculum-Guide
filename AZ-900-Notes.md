@@ -716,28 +716,27 @@ Once you have created a storage account, you can deploy storage containers of va
 ### Azure Blobs
 **Binary Large OBjects** (BLOBs) are any binary file, which is basically any file, text, image, video, anything. Azure Blobs are unstructured, allowing any type of data to be added. Users or client applications can access blobs via `HTTP/HTTPS`, via `URLs`, the Azure Storage `REST API`, `Azure PowerShell`, `Azure CLI`, or an Azure Storage `client library`.
 
-    Blob storage is ideal for:
-
+Blob storage is ideal for:
   - Serving images or documents directly to a browser.
   - Storing files for distributed access.
   - Streaming video and audio.
   - Storing data for backup and restore, disaster recovery, and archiving.
   - Storing data for analysis by an on-premises or Azure-hosted service.
 
-  It is typically free to transfer your data into the cloud, and then you are charged for the amount of storage used, and retrieving the data - *that's not just downloading it, but just accessing the object requires you to read it*. Typically data is most valuable, and most frequently accessed, when it is new, a new report, a new customer account, and so on.
+It is typically free to transfer your data into the cloud, and then you are charged for the amount of storage used, and retrieving the data - *that's not just downloading it, but just accessing the object requires you to read it*. Typically data is most valuable, and most frequently accessed, when it is new, a new report, a new customer account, and so on.
   
-  **Storage tiers** allow you to optimise storage costs by balancing the cost of capacity against the cost of retrieval, and how long the storage is required for. The following storage tiers are available:
+**Storage tiers** allow you to optimise storage costs by balancing the cost of capacity against the cost of retrieval, and how long the storage is required for. The following storage tiers are available:
 
-  - **Hot Access Tier** - For data which is frequently accessed, capacity cost may be a bit higher, but retrieval costs are lower.
-  - **Cool Access Tier** - For data which is accessed less frequently, retrieval costs will be higher, and capacity costs lower. Data should reside in this tier for at least 30 days or an additional charge will be incured.
-  - **Cold Access Tier** - For even less frequently accessed data, and objects should be stored for at least 90 days.
-  - **Archive Tier** - Stores data offline, so is only suitable for rarely accessed data, and objects should be stored for at least 180 days. Not suitable for solutions which require low latency.
+- **Hot Access Tier** - For data which is frequently accessed, capacity cost may be a bit higher, but retrieval costs are lower.
+- **Cool Access Tier** - For data which is accessed less frequently, retrieval costs will be higher, and capacity costs lower. Data should reside in this tier for at least 30 days or an additional charge will be incured.
+- **Cold Access Tier** - For even less frequently accessed data, and objects should be stored for at least 90 days.
+- **Archive Tier** - Stores data offline, so is only suitable for rarely accessed data, and objects should be stored for at least 180 days. Not suitable for solutions which require low latency.
 
-    Data is not accessed directly from the Archive tier, it must be moved to a lower tier first, known as *rehydrating the blob*.
+  Data is not accessed directly from the Archive tier, it must be moved to a lower tier first, known as *rehydrating the blob*.
 
-  The cool and cold tiers should not be used for highly available solutions, use for scenarios where a lower availability SLA and higher access costs compared to hot data are acceptable trade-offs for lower storage costs.
+      The cool and cold tiers should not be used for highly available solutions, use for scenarios where a lower availability SLA and higher access costs compared to hot data are acceptable trade-offs for lower storage costs.
 
-  Hot, cool, cold, and archive tiers can be set at the blob level, during or after upload.
+Hot, cool, cold, and archive tiers can be set at the blob level, during or after upload.
 
 ### Azure Files
 Users in an organisation need to share files. They could do so by passing them back and forth over email or messaging tool, but this is cumbersome, only suitable for a few files at a time. Also you may easily end up with multiple different copies of the file, all out of sync with each other. 
@@ -1543,16 +1542,39 @@ DevTest Labs is a service which allows you to quickly create, manage, and access
 
 ## REST APIs
 
-REST APIs or REpresentational State Transfer APIs is a framework for applications to communicate with each other over HTTP.
+`REST APIs` or **REpresentational State Transfer** APIs is a framework for applications to communicate with each other over `HTTP`.
 
-REST APIs use standard HTTP methods such as GET, PUT, POST, etc. to interact with resources including services, documents, images, or other objects, and return HTTP responses and status codes.
+REST APIs use standard HTTP methods such as `GET`, `PUT`, `POST`, etc. to interact with resources including services, documents, images, or other objects, and return HTTP responses and status codes.
 
-REST APIs are stateless, meaning each request is an individual object, and not dependant upon preceding or subsequent requests.
+REST APIs are **stateless**, meaning each request is an individual object, and not dependant upon preceding or subsequent requests.
 
 ## Load Balancers
 
-Services - Monitor, Governance, Advisor, OSI, 
+Load balancing is an important and common component of many Azure deployments. It can distribute incoming `TCP` and `UDP` (**layer 4**) traffic across a range of targets which can process the request. 
 
+![DIAGRAM](https://learn.microsoft.com/en-us/azure/load-balancer/media/load-balancer-overview/load-balancer.png)
+
+The load balancer includes a `front-end` which requires an IP address, a routing or DNS rule to direct traffic to the front-end address, and a `back-end` containing the targets. Since the targets may change, for example VMs being added and removed from a scale-set, typically you define a back-end pool (IP address range), rather than specifying IP addresses.
+
+![DIAGRAM](https://learn.microsoft.com/en-us/azure/load-balancer/media/load-balancer-components/lbrules.png)
+
+The load balancer also allows us to configure `health probes` which will regularly check the targets, on defined **ports**, **protocols**, and **frequency**, and when your threshold of failed probes are met, that target will be removed from the registered targets.
+
+Load balancers can operate publicly and privately based upon the IP address assigned to it's front-end:
+- A `public` load balancer has a public facing front-end to receive traffic from the internet, and forwards the traffic to the internal resources.
+- With `internal` load balancer the front-end and back-end are both internal, this is useful for high demand internal applications. The internal load balancer can have a private IP allocated to it's front-end.
+
+For a public load balancer you can create inbound rules on the L-B to define the **port/protocol** of the inbound traffic to be balanced, and you can also define `NAT rules` which forward specific traffic to specific targets, even when they only have a private IP, allowing you to connect to them for management purposes with SSH or RDP.
+
+In addition to the load balancer appliance, there are a number of other services which can balance workloads:
+- **Azure Front Door** provides global load balancing and acceleration for web app's. Includes layer 7 features like SSL offloading (avoid handling SSL encryption handline in your app), path-based routing, and fast fail-over.
+- **Traffic Manager** allows you to load balance at DNS level; Typically you create a DNS record for your domain, and multiple targets to direct traffic to. Some of the options include:
+  - Priority - define a primary target, and one or more secondaries which receive traffic when the primary is unavailable.
+  - Weighted - allows you to define the distribution of traffic, for example sending a greater proportion of requests to a more powerful target.
+  - Geographic - route traffic to different targets based on where the request comes from. This can be useful to comply with data sovereignty requirements, or for localisation purposes such as sending a request to a server which uses the appropriate currency.
+- **Application Gateway** - provides application delivery controller as a service, offering various Layer 7 load-balancing capabilities and web application firewall functionality. Use it to transition from public network space into your web servers hosted in private network space within a region.
+
+## OSI Model
 
 
 
