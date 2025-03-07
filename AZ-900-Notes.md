@@ -32,7 +32,9 @@ One example is industries which require you to physically destroy hard disks whe
 ### Private Cloud
 If your organisation wants some of the operational benefits of the cloud, but you can't hand control of your data assets to a 3rd party, you can create your own *private* cloud. It will be very expensive, but you own it, and have full control - *you also have complete responsibility for any mistakes*
 
-        There is another option called Co-Location (co-lo), where a third party has built a data center, the bricks and mortar, the utilities and networking, but not the servers, the customer brings their own. So you use your hardware, you can arrange physical access, but your resources are 'co-located' with other customer, in a shared physical location.
+    There is another option called Co-Location (co-lo), where a third party has built a data center.  
+    The bricks and mortar, the utilities and networking are all there, but not the servers, the customer brings their own.  
+    You use your hardware and you can arrange physical access, but your resources are 'co-located' with other customers, in a shared physical location.
 
 ### Hybrid Cloud
 This deployment model is where customers deploy some resources and services on a public cloud provider, and retain some of their solution on-premise. These two environments can be connected together to share resources, or kept isolated. This can be very useful when an organisation has some sensitive workloads, and some which can be moved to a public cloud. However, it's worth remembering that pretty much every company likely has some physical devices, even if it's just the computers their employees use day to day. 
@@ -72,11 +74,11 @@ One thing to bear in mind, a software development company may choose to sell the
 
 One of the most attractive benefits of the cloud is the ability to transform your business' spending model from one reliant upon capital expenditure, buying assets up front (or on credit), requiring significant investment. When it comes to IT resources, these investments will also depreciate over time, so you have to be confident that you will achieve an ROI.
 
-The default method of paying for resources you deploy in the cloud is based on consumption, i.e. how much of each resource you consume, or `Pay as You Go (PAYG)`. 
+The default method of paying for resources you deploy in the cloud is based on consumption, i.e. how much of each resource you consume, or `Pay as You Go (PAYG)`.
 
-Say you need a server with 8 CPU cores (and associated resources), running for 8 hours a day. On-premise you need to purchase that server, let's say it's £5,000. Obviously, you pay that cost regardless of how much you use the device, 8 hours per day, or 24. 
+Say you need a server with 8 CPU cores (and associated resources), running for 8 hours a day. On-premise you need to purchase that server, let's say it's £5,000. Obviously, you pay that cost regardless of how much you use the device, 8 hours per day, or 24.
 
-Don't take these figures as real, just illustrative, but now let's say that to deploy the same server in the cloud would cost you 10p per hour. 24 hours per day, 30 days per month is 720 hours, at 10p per hour your server costs you £72 per month. That is obviously a much more attractive figure, in fact you'd have to use the cloud server for ~70 months (nearly 6 years) to match the cost of the on-premise server. 
+Don't take these figures as real, just illustrative, but now let's say that to deploy the same server in the cloud would cost you 10p per hour. 24 hours per day, 30 days per month is 720 hours, at 10p per hour your server costs you £72 per month. That is obviously a much more attractive figure, in fact you'd have to use the cloud server for ~70 months (nearly 6 years) to match the cost of the on-premise server.
 
 But, we can go lower; If you only need the server for 8 hours per day, and let's assume only 5 days per week, for 8 hours per day, for four weeks per month. That's 160 hours, at 10p your server costs just £16 per month.
 
@@ -92,20 +94,20 @@ When architecting a cloud solution you can take advantage of the Azure infrastru
 
 ## Scaling
 
-Scaling refers to changing the quantity, capacity, and performance of your resources in response to changing workloads. This could be adding additional virtual machines to share a workload, or adding more storage space as needed. But since we pay for what we use in the cloud, it's also important to scale back down when demand falls; This is known as `elasticity`. 
+Scaling refers to changing the quantity, capacity, and performance of your resources in response to changing workloads. This could be adding additional virtual machines to share a workload, or adding more storage space as needed. But since we pay for what we use in the cloud, it's also important to scale back down when demand falls; This is known as `elasticity`.
 
 ![DIAGRAM](./img/scale-server.jpg)
 
 There are two types of scaling:
-- `Vertical scaling` refers to making one resource more powerful. You could upgrade a server's CPU to add cores, or add more RAM to the system. One advantage of vertical scaling is that you can improve performance for less cost than a whole new system. 
+- `Vertical scaling` refers to making one resource more powerful. You could upgrade a server's CPU to add cores, or add more RAM to the system. One advantage of vertical scaling is that you can improve performance for less cost than a whole new system.
 
   However, there are significant drawbacks, the system usually needs to be taken offline to complete the upgrade, incremental changes are not viable, and due to the long time to implement upgrades you will typically have to plan for and purchase your resource needs well in advance.
 
-- `Horizontal scaling` is about adding extra copies of a resource, such as deploying an additional server then sharing the workload. Adding the additional server should not affect the original, so no downtime is incurred, but you are doubling your administration and management overhead. 
+- `Horizontal scaling` is about adding extra copies of a resource, such as deploying an additional server then sharing the workload. Adding the additional server should not affect the original, so no downtime is incurred, but you are doubling your administration and management overhead.
 
 `On-premise scaling` is difficult for a number of reasons. Organisations usually need a return on their investment; If they purchase an expensive server they expect it to be doing some work and contributing to their revenue. So, having a spare server, sat idle but ready to horizontally scale and share the workload, but only when needed, doesn't really make sense. Therefore, horizontal scaling, particularly in granular increments, and certainly the ability to scale down as well, is only really possible in the cloud.
 
-In the cloud both horizontal and vertical scaling can be done quickly and easily. Although scaling applies to various services, we'll stick to VMs for simplicity. You can vertically scale by changing the size or type of a VM, or changing the size of the attached virtual hard disks (VHDs), but doing so requires stopping the machine. You can horizontally scale by adding additional VMs, thousands if needed. 
+In the cloud both horizontal and vertical scaling can be done quickly and easily. Although scaling applies to various services, we'll stick to VMs for simplicity. You can vertically scale by changing the size or type of a VM, or changing the size of the attached virtual hard disks (VHDs), but doing so requires stopping the machine. You can horizontally scale by adding additional VMs, thousands if needed.
 
 The cloud overcomes one of the barriers to horizontal scaling on-premise, because you don't need to purchase the hardware in advance, just deploy as needed, and tear down when demand falls.
 
@@ -113,14 +115,14 @@ You can define your minimum and maximum number of VMs, allowing you to set a bas
 
 ![DIAGRAM](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/media/autoscale-overview/autoscaleconcept.png#lightbox)
 
-	Sharing a workload across multiple resources is not as simple as just deploying a duplicate - you also need a load balancer to distribute the inbound requests, and consider endpoints, shared storage, etc. 
+	Sharing a workload across multiple resources is not as simple as just deploying a duplicate - you also need a load balancer to distribute the inbound requests, and consider endpoints, shared storage, etc.
 
 
 ## Reliability & Predictability
 
-Organisations which are running critical workloads rely upon their IT infrastructure to support business operations. They need their infrastructure to be both reliable, and operate predictabily, i.e. what is expected to happen should happen. 
+Organisations which are running critical workloads rely upon their IT infrastructure to support business operations. They need their infrastructure to be both reliable, and operate predictabily, i.e. what is expected to happen should happen.
 
-The cloud, and cloud-based technologies can bring significant improvements and benefits in these areas. 
+The cloud, and cloud-based technologies can bring significant improvements and benefits in these areas.
 
 `Reliability` in the cloud can be considered in a number of ways; In terms of a single server, assuming your on-premise server has reliable utilities and cooling, perhaps the cloud provider's data center has more redundancy available. At the end of the day, a single server can be expected to fail at some point, regardless of where it is.
 
