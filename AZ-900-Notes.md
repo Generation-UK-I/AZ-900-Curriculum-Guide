@@ -1576,10 +1576,18 @@ In addition to the load balancer appliance, there are a number of other services
 
 ## OSI Model
 
+The Open Systems Interconnect (OSI) model is a framework for undertanding how data can be transmitted over a network. Each layer has a unique purpose which contributes to the overall functionality and successful communication over a network.
 
+![DIAGRAM](./img/OSI.jpg)
+
+For steps like addressing packets and frames, sequencing, error checking, etc. it is important that all devices connected to a network are carrying out these tasks in the same way. For this reason standards are defined by independent 3rd party organisations, such as the IEEE (Internet Engineering Task Force). If you want to make a device which connects to a network, as long as you follow these standards, it should work. A common standard is Ethernet (802.3) which defines various operations at layers 1 - 3.
+
+The OSI model is utilised whenever communication is initiated over the network. The user generates data through any application, it is then passed down through each layer of the model, with each layer adding extra information, think of it as adding a new wrapper of info at each layer - we call this encapsulation. When the data is received the process is reversed, each layer is unwrapped as the data is passed up through the model from Physical back to Application.
+
+![DIAGRAM](./img/OSI-process.jpg)
 
 #### References:
-- Technical knowledge and images: http://learn.microsoft.com  
+- Technical reference and images: http://learn.microsoft.com  
 - Microsoft Azure Fundamentals, Third Edition  
 - Cartoons - original creations - inspired by XKCD  
 
