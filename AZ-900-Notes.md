@@ -1423,6 +1423,8 @@ This is the scenario ARC is used for, it can extend your management and governan
 
 Azure Resource Manager (ARM) is the deployment and management layer for Azure, through which you create, manage, and delete resources in your Azure account. So basically, ARM is involved in everything you want to do.
 
+![DIAGRAM](./img/ARM-farm.jpg)
+
 As illustrated below, regardless of whether your request comes from the portal, PowerShell, CLI, an ADK*, or a REST call, it is passed through to ARM for authentication and authorisation, before then being actioned against the relevant resources. 
 
     * A Software Developer Kit allows you to import or install Azure commands and features into your preferred programming language, allowing you to embed Azure functionality into your developed applications.
@@ -1604,6 +1606,4 @@ The OSI model is utilised whenever communication is initiated over the network. 
 
 Additional Images:
 - https://uploads.dailydot.com/2024/06/old-man-yells-at-cloud.jpg?q=65&auto=format&w=1200&ar=2:1&fit=crop
-- 
 
-Specific services - review list 
