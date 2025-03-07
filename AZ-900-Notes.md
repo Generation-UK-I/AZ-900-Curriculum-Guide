@@ -736,6 +736,8 @@ It is typically free to transfer your data into the cloud, and then you are char
 
       The cool and cold tiers should not be used for highly available solutions, use for scenarios where a lower availability SLA and higher access costs compared to hot data are acceptable trade-offs for lower storage costs.
 
+![DIAGRAM](./img/storage-tiers.jpg)
+
 Hot, cool, cold, and archive tiers can be set at the blob level, during or after upload.
 
 ### Azure Files
@@ -844,7 +846,9 @@ Azure Migrate integrates a range of tools to gelp you with the process:
 
 ### Azure Data Box
 
-Data Box is an asyncronous data migration tool which allows you to get data in & out of Azure securely, using a physical storage device. You order the Data Box through the portal, it is shipped to you, you copy your data across, and ship it back to Microsoft.
+Data Box is an asyncronous data migration tool which allows you to get data in & out of Azure securely, using a physical storage device. You order the Data Box through the portal, it is shipped to you, then you copy your data across and ship it back to Microsoft, who upload it directly into your storage account.
+
+![DIAGRAM](./img/data-box.jpg)
 
 **Data Box** can be useful in a variety of scenarios, including:
 - Bulk uploads during migration.
@@ -1599,3 +1603,5 @@ The OSI model is utilised whenever communication is initiated over the network. 
 Additional Images:
 - https://uploads.dailydot.com/2024/06/old-man-yells-at-cloud.jpg?q=65&auto=format&w=1200&ar=2:1&fit=crop
 - 
+
+Specific services - review list 
