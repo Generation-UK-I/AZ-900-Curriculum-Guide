@@ -1283,6 +1283,8 @@ Tags are key-value pairs which allow you to assign additional meta-data to your 
 **Governance and Compliance** - Identify resources related to or necessary for regulatory or legislative compliance. 
 **Optimisation and Automation** - Automate workloads or processes such as a CI/CD pipeline by targetting actions against tagged resources.
 
+![DIAGRAM](./img/name-tag.jpg)
+
 ### Managing Tags
 
 You can add, modify, or delete resource tags through Windows PowerShell, the Azure CLI, Azure Resource Manager templates, the REST API, or the Azure portal.
@@ -1586,7 +1588,10 @@ The OSI model is utilised whenever communication is initiated over the network. 
 
 ![DIAGRAM](./img/OSI-process.jpg)
 
-#### References:
+---
+[Azure Services List](https://frankiescout.z33.web.core.windows.net/)
+
+### References:
 - Technical reference and images: http://learn.microsoft.com  
 - Microsoft Azure Fundamentals, Third Edition  
 - Cartoons - original creations - inspired by XKCD  
