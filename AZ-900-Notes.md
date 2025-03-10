@@ -320,7 +320,7 @@ Availability sets do not incur any costs, you only pay for the VMs within.
 As mentioned, VMs are suitable when you require the highest level of control over your resources, but there are a number of scenarios where they are a good choice also:
 
 - **Testing and Development** When developing apps it is common to need to verify functionality and compatibility with a variety of O/S and software configurations, which can be quickly deployed and destroyed as VMs. 
-- **Running Apps** Some applications may not 'scale to zero' or have rpaidly fluctuating demand which requires performance head room to be maintained.
+- **Running Apps** Some applications may not 'scale to zero' or have rapidly fluctuating demand which requires performance head room to be maintained.
 - **Hybrid Infrastructures & Migration** When connecting VM based workloads in private cloud or on-premise, or migrating existing VMs using a 'lift and shift' approach, minimising admin and developer work in redesigning workloads for cloud operation. 
 - **Disaster Recovery** A common strategy is for organisations to rebuild their infrastructure in the cloud, then turn it off to minimise costs. In the case of an outage at the primary site, the cloud environment can be launched in minutes, then traffic and workloads can be redirected to your cloud endpoints to restore service.
 
@@ -328,13 +328,13 @@ As mentioned, VMs are suitable when you require the highest level of control ove
 
 When deploying a VM, in addition to resource like `CPU cores` and `RAM`, it requires a number of additional supporting resources, such as storage. Azure VMs require an OS disk for the operating system, and persistent storage for user data if required. 
 
-Additonially, since you obviously can't' sit in front of your VM and use it as a local user with a keyboard, mouse, and monitor, the VM needs access tp a Virtual Network (VNet) and a virtual network interface card (NIC) to connect to the VNet. You may also wish to allocate a public IP address to the VM, which is another resource. 
+Additionally, since you obviously can't sit in front of your VM and use it as a local user with a keyboard, mouse, and monitor, the VM needs access to a Virtual Network (VNet) and a virtual network interface card (NIC) to connect to the VNet. You may also wish to allocate a public IP address to the VM, which is another resource. 
 
 If you do not manually select these options they will be created automatically.
 
 ## Azure Virtual Desktop
 
-Organisations have a wide range of compute requirements which can be met with virtual machines, but cloud providers offer a range of different compute services which can offer greater performance, or be more cost effectiveness than dedicated VMs. One such example is Azure Virtual Desktop (AVD). 
+Organisations have a wide range of compute requirements which can be met with virtual machines, but cloud providers offer a range of different compute services which can offer greater performance and cost effectiveness than dedicated VMs. One such example is Azure Virtual Desktop (AVD). 
 
 Traditionally, if a user works in a desktop environment, carrying out typical productivity tasks with common Microsoft365 and 3rd party apps, you give that user a computer running the required OS, and install all of the required app's. You then manage the computer using some automated configuration management tool, and/or `group policy`. You may also allow your users to use their own computers and phones, known as **bring your own device** (BYOD), but that introduces further administrative overhead and security concerns.
 
@@ -356,7 +356,7 @@ While virtual desktop solutions have been available for a while, they can be cre
 
 As flexible and configurable as VMs are, there are also some limitations:
 - Each virtual machine includes an entire OS, and **software stack**, which means that changes and deployments can take a while - we're talking minutes, but any downtime is a problem. 
-- You have to pay for a VM's attached storage, so, if you need to deploy multiple servers with the same operating system, there is potentially a lot of duplicate data.
+- You have to pay for a VMs' attached storage, so, if you need to deploy multiple servers with the same operating system, there is potentially a lot of duplicate data.
 - Whilst portable, we can migrate VMs from on-premise to the cloud and vice-versa, they can be quite large, so migrating them can take some time, particularly on a slow connection.
 
 Containers are another type of virtualised environment, but unlike a VM, they don't require a full OS, just a user environment, the application code, and maybe any required dependencies or middleware. This makes them much smaller, faster to deploy and change, and they more efficiently use resources. You can typically run many more containers on any given physical server compared to VMs, and you don't need multiple copies of the operating system running.
@@ -406,7 +406,7 @@ Kubernetes architecture includes pods which host containers, worker nodes (VMs) 
 
 ### Serverless Computing
 
-All of us need compute resources, and traditionally, in the on-premise world, those resources are purchased up-front, deployed and configured, then you can use them. We can make virtual machine on-premises, but they still used our underlying compute resources, and will be restricted by what the resources available. 
+All of us need compute resources, and traditionally, in the on-premise world, those resources are purchased up-front, deployed and configured, then you can use them. We can make virtual machine on-premises, but they still use our underlying compute resources, and will be restricted by the resources available.
 
 If our virtual machines are in the cloud, we don't need to buy the resources up front, giving big **CapEx** savings. When we do this, we can choose IaaS services and have full control over the VMs and their configuration. We can also choose options such as **Azure App Service** or **Azure Container Instances** which will create VMs for us to run our workloads, and these VMs are managed and maintained by Microsoft, reducing our admin overheads. However, with these services, you often need to pay for the underlying instance, even when it's not being used. 
 
@@ -500,13 +500,13 @@ The following diagram illustrates a simple VNet with two subnets.
 
 You can filter traffic between subnets, VNets, and the internet using both:
 - **Network Security Groups** (NSGs) which are Azure resources which hold inbound and outbound rules to manage traffic ingress and egress **in or out of a subnet**. Create rules based on source or destionation IP, port, or protocol.
-- **Virtual Appliances** are dedicated VMs which run applications providing network functionality such as firewalls, packet inspection, optimisations, etc. To use such a device you will create routing rules which directs traffic to the device before before it is then forwarded to it's destination.
+- **Virtual Appliances** are dedicated VMs which run applications providing network functionality such as firewalls, packet inspection, optimisations, etc. To use such a device you will create routing rules which directs traffic to the device before it is then forwarded to its destination.
 
 ### Connect virtual networks
 
 **Virtual Network Peering** allows you to connect two VNets together and have them appear as one as far as traffic is concerned. Traffic between them is private, and traverses the `Microsoft backbone network`, not the internet. 
 
-Vnets may be in in the same or different regions, allowing the creation of a global infrastructure. 
+VNets may be in the same or different regions, allowing the creation of a global infrastructure. 
 
 Control traffic routing within and between VNets by creating *User Defined Routes*.
 
@@ -822,7 +822,7 @@ Your VHDs are encrypted by Azure Storage service, known as **Server Side Encrypt
     - Easier maintenance
     - Improved security and access control
 
-  - **Temporary Disk** - Temp' disks are not managed, i.e. they do **not** have the same level of durability or availability. They are designed for short-term storage for app's and processes, and data may be lost when you stop the VM or if it fails due to an unplanned maintenance event. *During a normal successful restart, the data should be retained*.
+  - **Temporary Disk** - Temp' disks are not managed, i.e. they do **not** have the same level of durability or availability. They are designed for short-term storage for apps and processes, and data may be lost when you stop the VM or if it fails due to an unplanned maintenance event. *During a normal successful restart, the data should be retained*.
 
 ### Azure Tables
 Azure tables is a `NoSQL` (non-relational) datastore in which you can store large amounts of **structured data**. Authenticated calls can be made against the data from inside and outside the Azure cloud. 
@@ -1606,4 +1606,3 @@ The OSI model is utilised whenever communication is initiated over the network. 
 
 Additional Images:
 - https://uploads.dailydot.com/2024/06/old-man-yells-at-cloud.jpg?q=65&auto=format&w=1200&ar=2:1&fit=crop
-
