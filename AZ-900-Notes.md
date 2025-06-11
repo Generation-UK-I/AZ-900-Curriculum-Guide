@@ -1436,7 +1436,7 @@ ARM allows you to manage your infrastructure through declarative templates writt
 Benefits of using ARM include:
 - By defining your resources in an ARM template you can deploy, manage, and monitor all of the described resources as a group.
 - The template can be reused to deploy duplicate environments in alternate regions.
-- The ARM template can be managed with an SCM tool such as management, allowing for iterative changes and refinements.
+- The ARM template can be managed with SCM (source code management) tools such as Git, allowing for iterative changes and refinements.
 - The template allows you to define dependencies between resources, ensuring they're deployed in the correct order. So, if component B relies upon component A, ARM will wait until A is ready before deploying B to avoid errors.
 - ARM also allows you to implement RBAC for access control, and apply tags to deployed resources for enhanced management and billing capabilities.
 
